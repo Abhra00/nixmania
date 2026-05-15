@@ -7,6 +7,8 @@
       wget
       curl
       yt-dlp
+      nvme-cli
+      smartmontools
 
       # GUI
       eog

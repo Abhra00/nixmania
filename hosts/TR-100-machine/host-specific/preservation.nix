@@ -7,19 +7,34 @@
           "/var/lib/bluetooth"
           "/var/lib/libvirt"
           "/var/lib/postgresql"
-          {directory = "/var/lib/nixos"; inInitrd = true;}
+          "/var/lib/NetworkManager"
+          {
+            directory = "/var/lib/nixos";
+            inInitrd = true;
+          }
         ];
         files = [
-          {file = "/etc/machine-id"; inInitrd = true;}
+          {
+            file = "/etc/machine-id";
+            inInitrd = true;
+          }
         ];
         users.bugs = {
           directories = [
-            {directory = ".ssh"; mode = "0700";}
-            {directory = ".gnupg"; mode = "0700";}
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+            {
+              directory = ".gnupg";
+              mode = "0700";
+            }
             ".config/mozilla"
             ".mozilla"
             ".config/noctalia"
             ".local/share/bash"
+            ".cache/noctalia"
+            ".cache/noctalia-qs"
             "nixmania"
             "Projects"
             "Pictures"
@@ -28,7 +43,6 @@
         };
       };
     };
-
     systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
   };
 }

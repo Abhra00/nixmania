@@ -16,6 +16,7 @@
       lt = "eza -lhT --icons";
 
       # git
+      g = "git";
       ga = "git add";
       gaa = "git add --all";
       gc = "git commit";

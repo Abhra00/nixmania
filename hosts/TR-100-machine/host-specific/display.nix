@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.TR-100-machine_display = {
+  flake.modules.nixos.TR-100-machine = {
     config,
     lib,
     ...

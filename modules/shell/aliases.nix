@@ -10,54 +10,72 @@
       ct = "cargo test";
 
       # eza
-      l = "eza -lh --icons";
-      la = "eza -lah --icons";
-      lat = "eza -lahT --icons";
-      lt = "eza -lhT --icons";
+      ls = "eza -lh --icons --group";
+      la = "eza -lah --icons --group";
+      lat = "eza -lahT --icons --group";
+      lt = "eza -lhT --icons --group";
 
       # git
       g = "git";
       ga = "git add";
       gaa = "git add --all";
       gc = "git commit";
+      gcl = "git clone";
       gcm = "git commit -m";
       gco = "git checkout";
       gd = "git diff";
       gl = "git log --oneline --graph --decorate";
       gp = "git push";
       gpl = "git pull";
+      grb = "git rebase";
+      grs = "git restore";
       gs = "git status";
       gst = "git stash";
+      gstp = "git stash pop";
+      gsts = "git stash show";
 
       # general
       ff = "fastfetch";
       rmf = "rm -rf";
+      cp = "cp -i";
+      mv = "mv -i";
+      mkdir = "mkdir -p";
+      ytm = ''yt-dlp -x --audio-quality 0 --embed-thumbnail --convert-thumbnails jpg --embed-metadata --parse-metadata "playlist_index:%(track_number)s" --ppa "EmbedThumbnail+ffmpeg_o:-c:v mjpeg -vf crop=ih" -o "~/Music/%(playlist_title,title)s/%(playlist_index&{:02d}. |)s%(title)s.%(ext)s"'';
     };
   in {
-    environment.shellAliases = {
-      # cd
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      cf = "cd ${confDir}";
+    environment.shellAliases =
+      userAliases
+      // {
+        # cd
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        cf = "cd ${confDir}";
 
-      # eza
-      ls = "eza --icons";
+        # eza
+        ls = "eza --icons";
 
-      # nix
-      nos = "nh os switch .";
-      nup = "nix flake update";
+        # nix
+        nos = "nh os switch .";
+        nup = "nix flake update";
+        nsh = "nix shell --impure";
+        nrn = "nix run nixpkgs#";
+        nflc = "nix flake check";
 
-      # systemd
-      sc = "systemctl";
-      scs = "systemctl status";
-      scr = "systemctl restart";
-      sce = "systemctl enable";
-      scd = "systemctl disable";
-      jl = "journalctl";
-      jlf = "journalctl -f";
-      jlu = "journalctl -u";
-    };
+        # systemd
+        sc = "systemctl";
+        scs = "systemctl status";
+        scr = "systemctl restart";
+        sce = "systemctl enable";
+        scd = "systemctl disable";
+        scu = "systemctl --user";
+        scus = "systemctl --user status";
+        scur = "systemctl --user restart";
+        jl = "journalctl";
+        jlf = "journalctl -f";
+        jlu = "journalctl -u";
+        jlfu = "journalctl -fu";
+      };
     hm.programs.bash.shellAliases = userAliases;
   };
 }

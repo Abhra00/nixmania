@@ -6,9 +6,10 @@
           space = ":fmt";
           w = ":w";
           q = ":q";
-          f = "file_picker";
-          b = "buffer_picker";
           i = ":toggle lsp.display-inlay-hints";
+          b.p = ":buffer-previous";
+          b.n = ":buffer-next";
+          b.x = ":buffer-close";
         };
         tab = ":buffer-next";
         S-tab = ":buffer-previous";

@@ -20,6 +20,7 @@
       };
       extraConfig = ''
         " Search
+        set path+=**
         set incsearch
         " UI
         set cursorline

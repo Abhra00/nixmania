@@ -4,7 +4,7 @@
       enable = true;
 
       settings = {
-        general.bar_width = 1;
+        general.bar_width = 2;
         output = {
           channels = "mono";
         };

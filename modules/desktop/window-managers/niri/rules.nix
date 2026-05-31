@@ -14,7 +14,7 @@
         {
           matches = [
             {
-              app-id = "firefox$";
+              app-id = "^firefox-devedition$";
               title = "^Picture-in-Picture$";
             }
             {app-id = "org.gnome.NautilusPreviewer";}

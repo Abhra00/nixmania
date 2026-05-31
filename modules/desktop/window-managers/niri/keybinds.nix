@@ -6,9 +6,9 @@
       "Mod+E".action.spawn = "nautilus";
       "Mod+B".action.spawn = "firefox-devedition";
       "Mod+Q".action.close-window = {};
+      "Alt+Shift+L".action.spawn-sh = "noctalia-shell ipc call sessionMenu toggle";
       "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
       "Mod+Shift+C".action.spawn-sh = "noctalia-shell kill; sleep 1; noctalia-shell -d";
-      "Mod+Shift+L".action.spawn-sh = "noctalia-shell ipc call sessionMenu toggle";
       "Mod+Shift+Q".action.quit = {};
       "Alt+Tab" = {
         action.toggle-overview = {};
@@ -18,25 +18,25 @@
       "Alt+Print".action.screenshot-window = {};
       "Ctrl+Print".action.screenshot-screen = {};
 
-      # Navigation (vim hjkl)
+      # Navigation (h j k l)
       "Mod+H".action.focus-column-left = {};
       "Mod+J".action.focus-window-down = {};
       "Mod+K".action.focus-window-up = {};
       "Mod+L".action.focus-column-right = {};
 
-      # Arrow fallback (navigation)
+      # Navigation (🡐 🡒 🡑 🡓)
       "Mod+Left".action.focus-column-left = {};
       "Mod+Down".action.focus-window-down = {};
       "Mod+Up".action.focus-window-up = {};
       "Mod+Right".action.focus-column-right = {};
 
-      # Move (vim hjkl)
-      # NOTE: Mod+Shift+L is taken by sessionMenu; use arrow fallbacks for move instead
+      # Move (h j k l)
       "Mod+Shift+H".action.move-column-left = {};
       "Mod+Shift+J".action.move-window-down = {};
       "Mod+Shift+K".action.move-window-up = {};
+      "Mod+Shift+L".action.move-column-right = {};
 
-      # Arrow fallback (move)
+      # Move (🡐 🡒 🡑 🡓)
       "Mod+Shift+Left".action.move-column-left = {};
       "Mod+Shift+Down".action.move-window-down = {};
       "Mod+Shift+Up".action.move-window-up = {};
@@ -89,16 +89,6 @@
       # Move workspace
       "Mod+Ctrl+Page_Down".action.move-workspace-down = {};
       "Mod+Ctrl+Page_Up".action.move-workspace-up = {};
-
-      # Monitors
-      "Alt+H".action.focus-monitor-left = {};
-      "Alt+J".action.focus-monitor-down = {};
-      "Alt+K".action.focus-monitor-up = {};
-      "Alt+L".action.focus-monitor-right = {};
-      "Alt+Shift+H".action.move-column-to-monitor-left = {};
-      "Alt+Shift+J".action.move-column-to-monitor-down = {};
-      "Alt+Shift+K".action.move-column-to-monitor-up = {};
-      "Alt+Shift+L".action.move-column-to-monitor-right = {};
 
       # System
       "Mod+Shift+Escape" = {

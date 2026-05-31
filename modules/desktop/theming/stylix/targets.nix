@@ -5,6 +5,7 @@
     };
 
     hm.stylix.targets = {
+      tmux.enable = false;
       helix.enable = false;
       foot.enable = false;
       noctalia-shell.enable = false;
@@ -15,6 +16,16 @@
         fonts.enable = true;
         profileNames = ["dev-edition-default"];
       };
+      cava = {
+        rainbow.enable = true;
+      };
+      gtk.extraCss = ''
+        window.dialog decoration,
+        window.dialog {
+          border-radius: 0;
+          box-shadow: none;
+        }
+      '';
     };
   };
 }

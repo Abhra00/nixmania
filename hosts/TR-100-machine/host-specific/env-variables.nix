@@ -1,6 +1,8 @@
 {
   flake.modules.nixos.TR-100-machine = {
     hm.home.sessionVariables = {
+      TERMINAL = "foot";
+      BROWSER = "firefox-devedition";
       EDITOR = "hx";
       VISUAL = "hx";
       SUDO_EDITOR = "vim";

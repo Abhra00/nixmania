@@ -33,7 +33,7 @@
 
         # UI/UX
         popup-border = "none";
-        bufferline = "always";
+        bufferline = "multiple";
         color-modes = true;
         cursorline = true;
         end-of-line-diagnostics = "hint";
@@ -45,7 +45,7 @@
         cursor-shape = {
           normal = "block";
           insert = "block";
-          select = "underline";
+          select = "block";
         };
 
         # indent guides
@@ -89,9 +89,9 @@
           ];
           separator = "┊";
           mode = {
-            normal = "NORM";
-            insert = "INST";
-            select = "SLCT";
+            normal = "λ NOR";
+            insert = "λ INS";
+            select = "λ SEL";
           };
         };
       };

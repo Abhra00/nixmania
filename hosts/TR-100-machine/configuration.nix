@@ -13,7 +13,7 @@
         desktop-shell_noctalia
         desktop_sound
         desktop_xkb
-        login-manager_gdm
+        login-manager_ly
         window-manager_niri
 
         # desktop/theming/*
@@ -37,10 +37,13 @@
         cli_fastfetch
         cli_fzf
         cli_git
+        cli_lazygit
         cli_nh
         cli_nix-index
         cli_nix-search-tv
         cli_packages
+        cli_tmux
+        cli_yazi
         cli_zoxide
 
         # programs/editor/*

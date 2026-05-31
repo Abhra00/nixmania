@@ -12,6 +12,7 @@
             directory = "/var/lib/nixos";
             inInitrd = true;
           }
+          "/etc/NetworkManager/system-connections"
         ];
         files = [
           {
@@ -38,6 +39,7 @@
             "nixmania"
             "Projects"
             "Pictures"
+            "Music"
             "Videos"
           ];
         };

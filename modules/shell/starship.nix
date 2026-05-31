@@ -39,6 +39,7 @@
 
         git_status = {
           format = "([\\[$all_status$ahead_behind\\]]($style))";
+          style = "red";
           stashed = "[\${count}*](green)";
           modified = "[\${count}+](yellow)";
           deleted = "[\${count}-](red)";

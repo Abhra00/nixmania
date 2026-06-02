@@ -61,6 +61,7 @@
         bind -n M-Down switch-client -n
         # Floats
         bind g display-popup -E -d '#{pane_current_path}' -w 95% -h 95% -T " lazygit" "lazygit"
+        bind e display-popup -E -d '#{pane_current_path}' -w 95% -h 95% -T " bash" "bash"
         # General
         set -ag terminal-overrides ",*:RGB"
         set -g renumber-windows on

@@ -1,6 +1,7 @@
 {
   flake.modules.nixos.theming_targets = {
     stylix.targets = {
+      kmscon.enable = false;
       fontconfig.enable = true;
     };
 

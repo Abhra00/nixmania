@@ -60,6 +60,7 @@
 
         # services/*
         service_bluetooth
+        service_gpg
         service_gvfs
         service_postgresql
         service_power-profiles-daemon

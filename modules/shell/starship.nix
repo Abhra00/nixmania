@@ -51,8 +51,8 @@
 
         character = {
           format = "$symbol ";
-          success_symbol = " [](green)";
-          error_symbol = " [](red)";
+          success_symbol = " [➜](green)";
+          error_symbol = " [➜](red)";
         };
       };
     };

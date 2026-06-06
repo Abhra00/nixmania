@@ -51,8 +51,8 @@
         editor_vim
 
         # programs/gui/*
-        gui_foot
         gui_firefox
+        gui_ghostty
         gui_mpv
         gui_nautilus
         gui_packages

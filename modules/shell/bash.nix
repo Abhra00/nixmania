@@ -29,28 +29,6 @@
         "lithist"
         "no_empty_cmd_completion"
       ];
-      initExtra = ''
-        prompt_marker() {
-            printf '\e]133;A\e\\'
-        }
-        osc7_cwd() {
-            local strlen=''${#PWD}
-            local encoded=""
-            local pos c o
-            local sq=$(printf "\x27")
-            for (( pos=0; pos<strlen; pos++ )); do
-              c=''${PWD:$pos:1}
-              case "$c" in
-                [-/:_.!()~[:alnum:]] ) o="''${c}" ;;
-                * ) printf -v o "%%%02X" "$sq''${c}" ;;
-              esac
-              encoded+="''${o}"
-            done
-            printf "\e]7;file://%s%s\a" "''${HOSTNAME}" "''${encoded}"
-        }
-        PROMPT_COMMAND=''${PROMPT_COMMAND:+$PROMPT_COMMAND; }prompt_marker
-        PROMPT_COMMAND=''${PROMPT_COMMAND:+''${PROMPT_COMMAND%;}; }osc7_cwd
-      '';
     };
   };
 }

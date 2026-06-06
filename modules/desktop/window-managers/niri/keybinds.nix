@@ -2,7 +2,7 @@
   flake.modules.nixos.window-manager_niri = {
     hm.programs.niri.settings.binds = {
       # Essentials
-      "Mod+Return".action.spawn = "footclient";
+      "Mod+Return".action.spawn-sh = "ghostty +new-window";
       "Mod+E".action.spawn = "nautilus";
       "Mod+B".action.spawn = "firefox-devedition";
       "Mod+Q".action.close-window = {};

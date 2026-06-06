@@ -4,23 +4,15 @@
       enable = true;
       settings = {
         format = lib.concatStrings [
-          ''[ ](purple)''
-          "$username"
-          ''[ in ](base0F)''
+          ''[ ](purple) ''
           "$directory"
           "$git_branch"
           "$git_status"
           "$jobs"
           "$character"
+          ''[:](cyan) ''
         ];
         add_newline = true;
-
-        username = {
-          show_always = true;
-          format = "[$user]($style)";
-          style_user = "blue";
-          style_root = "red";
-        };
 
         directory = {
           format = "[$path]($style)[$read_only]($read_only_style)";
@@ -32,8 +24,8 @@
         };
 
         git_branch = {
-          format = " [$symbol](brown) [$branch]($style)";
-          symbol = "";
+          format = " [$symbol](brown)[$branch]($style)";
+          symbol = "";
           style = "bright-black";
         };
 
@@ -52,15 +44,15 @@
 
         jobs = {
           format = " [$symbol]($style)";
-          symbol = "●";
+          symbol = "✦";
           style = "purple";
           number_threshold = 1;
         };
 
         character = {
           format = "$symbol ";
-          success_symbol = " [λ](purple)";
-          error_symbol = " [λ](red)";
+          success_symbol = " [](green)";
+          error_symbol = " [](red)";
         };
       };
     };

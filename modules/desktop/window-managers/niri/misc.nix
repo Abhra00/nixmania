@@ -21,7 +21,6 @@
 
       spawn-at-startup = [
         {command = ["noctalia-shell"];}
-        {sh = "foot --server &";}
         {sh = "nautilus --gapplication-service &";}
       ];
 

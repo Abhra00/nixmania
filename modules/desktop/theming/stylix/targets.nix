@@ -8,7 +8,6 @@
     hm.stylix.targets = {
       tmux.enable = false;
       helix.enable = false;
-      foot.enable = false;
       noctalia-shell.enable = false;
       fontconfig.enable = true;
       firefox = {

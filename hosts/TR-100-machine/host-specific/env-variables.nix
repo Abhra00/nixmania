@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.TR-100-machine = {
     hm.home.sessionVariables = {
-      TERMINAL = "foot";
+      TERMINAL = "ghostty";
       BROWSER = "firefox-devedition";
       EDITOR = "hx";
       VISUAL = "hx";

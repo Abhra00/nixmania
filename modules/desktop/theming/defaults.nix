@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.theming_defaults = {pkgs, ...}: {
     hm = {
-      gtk.gtk4.theme = null;
       home.pointerCursor = {
         name = "Bibata-Modern-Ice";
         package = pkgs.bibata-cursors;

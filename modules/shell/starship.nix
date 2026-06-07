@@ -4,55 +4,81 @@
       enable = true;
       settings = {
         format = lib.concatStrings [
-          ''[ ](blue) ''
+          "$jobs"
+          "$username"
+          "$hostname"
           "$directory"
           "$git_branch"
+          "$git_state"
           "$git_status"
-          "$jobs"
+          "$cmd_duration"
+          "$nix_shell"
+          "$line_break"
+          "$python"
           "$character"
-          ''[:](cyan) ''
         ];
         add_newline = true;
-
         directory = {
-          format = "[$path]($style)[$read_only]($read_only_style)";
-          style = "cyan";
-          read_only_style = "red";
-          read_only = " 󰌾";
-          truncation_length = 3;
-          truncate_to_repo = true;
+          style = "blue";
+          truncate_to_repo = false;
         };
-
+        username = {
+          format = "[$user]($style)";
+          style_user = "bright-black";
+          style_root = "red";
+          show_always = false;
+        };
+        hostname = {
+          format = "[@$hostname]($style) ";
+          style = "bright-black";
+          ssh_only = true;
+        };
+        character = {
+          success_symbol = "[❯](purple)";
+          error_symbol = "[❯](red)";
+        };
         git_branch = {
-          format = " [$symbol](brown)[$branch]($style)";
-          symbol = "";
+          format = "[$branch]($style)";
           style = "bright-black";
         };
-
         git_status = {
-          format = "([\\[$all_status$ahead_behind\\]]($style))";
-          style = "red";
-          stashed = "[\${count}*](green)";
-          modified = "[\${count}+](yellow)";
-          deleted = "[\${count}-](red)";
-          conflicted = "[\${count}~](red)";
-          ahead = "⇡\${count}";
-          behind = "⇣\${count}";
-          untracked = "[\${count}?](blue)";
-          staged = "[\${count}+](green)";
+          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+          style = "cyan";
+          conflicted = "​";
+          untracked = "​";
+          modified = "​";
+          staged = "​";
+          renamed = "​";
+          deleted = "​";
+          stashed = "≡";
         };
-
+        git_state = {
+          format = "\\([$state( $progress_current/$progress_total)]($style)\\) ";
+          style = "bright-black";
+        };
+        cmd_duration = {
+          format = "[$duration]($style) ";
+          style = "yellow";
+          min_time = 5000;
+        };
         jobs = {
-          format = " [$symbol]($style)";
+          format = "[$symbol]($style) ";
           symbol = "✦";
           style = "purple";
           number_threshold = 1;
         };
-
-        character = {
-          format = "$symbol ";
-          success_symbol = " [➜](green)";
-          error_symbol = " [✘](red)";
+        nix_shell = {
+          format = "[$symbol$name]($style) ";
+          symbol = "󱄅 ";
+          style = "bright-black";
+          impure_msg = "";
+          pure_msg = "";
+        };
+        python = {
+          format = "[$virtualenv]($style) ";
+          style = "bright-black";
+          detect_extensions = [];
+          detect_files = [];
         };
       };
     };

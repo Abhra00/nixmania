@@ -89,9 +89,9 @@
           ];
           separator = "│";
           mode = {
-            normal = "λ NOR";
-            insert = "λ INS";
-            select = "λ SEL";
+            normal = "NOR";
+            insert = "INS";
+            select = "SEL";
           };
         };
       };

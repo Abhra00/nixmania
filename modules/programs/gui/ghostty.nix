@@ -7,6 +7,8 @@
       settings = {
         adjust-cell-height = "20%";
 
+        adjust-underline-position = 4;
+
         adjust-cursor-height = "20%";
         cursor-style = "block";
         cursor-style-blink = true;
@@ -16,7 +18,11 @@
         window-padding-balance = true;
         window-decoration = false;
 
+        gtk-tabs-location = "bottom";
+        gtk-wide-tabs = false;
+
         mouse-hide-while-typing = true;
+        mouse-scroll-multiplier = 1;
 
         scrollback-limit = 10000;
         confirm-close-surface = false;
@@ -30,6 +36,7 @@
           "ctrl+shift+l=next_tab"
           "ctrl+shift+h=previous_tab"
           "ctrl+shift+r=prompt_tab_title"
+          "ctrl+alt+t=toggle_tab_overview"
 
           # splits
           "ctrl+shift+enter=new_split:right"

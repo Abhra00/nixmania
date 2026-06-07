@@ -21,8 +21,8 @@
       set -g status-right-length 40
 
       # Windows
-      set -g window-status-format "#[fg=#${c.base02},bg=default]#[bg=#${c.base02},fg=#${c.base05}]#I:#W#[fg=#${c.base02},bg=default] "
-      set -g window-status-current-format "#[fg=#${c.base0D},bg=default]#[bg=#${c.base0D},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base05}] #W#[fg=#${c.base02},bg=default] "
+      set -g window-status-format "#[fg=#${c.base0D},bg=default]#[bg=#${c.base0D},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base03}] #W#[fg=#${c.base02},bg=default] "
+      set -g window-status-current-format "#[fg=#${c.base0F},bg=default]#[bg=#${c.base0F},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base05}] #W#[fg=#${c.base02},bg=default] "
       set -g window-status-separator ""
 
       # Pane borders

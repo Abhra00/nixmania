@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         format = lib.concatStrings [
-          ''[ ](purple) ''
+          ''[ ](blue) ''
           "$directory"
           "$git_branch"
           "$git_status"
@@ -52,7 +52,7 @@
         character = {
           format = "$symbol ";
           success_symbol = " [➜](green)";
-          error_symbol = " [➜](red)";
+          error_symbol = " [✘](red)";
         };
       };
     };

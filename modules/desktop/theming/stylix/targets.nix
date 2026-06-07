@@ -9,6 +9,7 @@
       tmux.enable = false;
       helix.enable = false;
       noctalia-shell.enable = false;
+      ghostty.enable = false;
       fontconfig.enable = true;
       firefox = {
         colorTheme.enable = true;

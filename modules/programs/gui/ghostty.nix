@@ -5,9 +5,11 @@
       systemd.enable = true;
 
       settings = {
+        adjust-cell-height = "20%";
+
+        adjust-cursor-height = "20%";
         cursor-style = "block";
         cursor-style-blink = true;
-        shell-integration-features = "cursor,sudo,title";
 
         window-padding-x = 30;
         window-padding-y = 30;
@@ -18,6 +20,8 @@
 
         scrollback-limit = 10000;
         confirm-close-surface = false;
+
+        shell-integration-features = "cursor,sudo,title";
 
         keybind = [
           # tabs
@@ -58,6 +62,9 @@
           "ctrl+equal=increase_font_size:1"
           "ctrl+minus=decrease_font_size:1"
           "ctrl+zero=reset_font_size"
+
+          # quick terminal
+          "ctrl+alt+enter=toggle_quick_terminal"
         ];
       };
     };

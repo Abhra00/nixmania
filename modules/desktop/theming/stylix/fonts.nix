@@ -11,8 +11,8 @@
           package = pkgs.fraunces;
         };
         monospace = {
-          name = "JetBrains Mono";
-          package = pkgs.jetbrains-mono;
+          name = "Cascadia Code";
+          package = pkgs.cascadia-code;
         };
       };
     };

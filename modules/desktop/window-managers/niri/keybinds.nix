@@ -6,15 +6,15 @@
       "Mod+E".action.spawn = "nautilus";
       "Mod+B".action.spawn = "firefox-devedition";
       "Mod+Q".action.close-window = {};
-      "Alt+Shift+L".action.spawn-sh = "noctalia-shell ipc call sessionMenu toggle";
-      "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
-      "Mod+Shift+C".action.spawn-sh = "noctalia-shell kill; sleep 1; noctalia-shell -d";
+      "Alt+Shift+L".action.spawn-sh = "noctalia msg panel-toggle session";
+      "Mod+Space".action.spawn-sh = "noctalia msg panel-toggle launcher";
+      "Mod+Shift+C".action.spawn-sh = "noctalia msg config-reload";
       "Mod+Shift+Q".action.quit = {};
       "Alt+Tab" = {
         action.toggle-overview = {};
         repeat = false;
       };
-      "Print".action.spawn-sh = "niri msg action screenshot && niri msg --json event-stream | grep -m 1 ScreenshotCaptured && wl-paste | satty --filename - --output-filename $(xdg-user-dir PICTURES)/Screenshots/Screenshot_$(date '+%d-%m-%y_%H-%M-%S')-satty.png --actions-on-enter save-to-file";
+      "Print".action.spawn-sh = "niri msg action screenshot";
       "Alt+Print".action.screenshot-window = {};
       "Ctrl+Print".action.screenshot-screen = {};
 

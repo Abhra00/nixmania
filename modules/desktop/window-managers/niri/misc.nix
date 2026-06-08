@@ -9,7 +9,6 @@
       environment = {
         NIXOS_OZONE_WL = "1";
         QT_QPA_PLATFORM = "wayland";
-        QS_ICON_THEME = "Papirus-Dark";
       };
 
       cursor = {
@@ -20,7 +19,7 @@
       };
 
       spawn-at-startup = [
-        {command = ["noctalia-shell"];}
+        {sh = "noctalia -d";}
         {sh = "nautilus --gapplication-service &";}
       ];
 

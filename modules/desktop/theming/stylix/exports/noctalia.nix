@@ -54,7 +54,7 @@
       terminal = termColors;
     };
   in {
-    hm.home.file.".config/noctalia/colorschemes/stylix/stylix.json".text = lib.mkIf cfg (
+    hm.home.file.".config/noctalia/palettes/stylix.json".text = lib.mkIf cfg (
       builtins.toJSON {
         dark = schemeColors;
         light = schemeColors;

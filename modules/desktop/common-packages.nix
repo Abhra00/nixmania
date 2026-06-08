@@ -7,7 +7,7 @@
       wl-clip-persist
       wl-clipboard
       wtype
-      gpu-screen-recorder
+      obs-studio
     ];
   };
 }

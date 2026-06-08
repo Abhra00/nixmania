@@ -31,11 +31,10 @@
               mode = "0700";
             }
             ".config/mozilla"
+            ".config/obs"
             ".mozilla"
-            ".config/noctalia"
+            ".local/state/noctalia"
             ".local/share/bash"
-            ".cache/noctalia"
-            ".cache/noctalia-qs"
             "nixmania"
             "Projects"
             "Pictures"

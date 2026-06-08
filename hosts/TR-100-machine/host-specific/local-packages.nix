@@ -13,7 +13,6 @@
       # GUI
       eog
       onlyoffice-desktopeditors
-      satty
 
       # Rust
       rustlings

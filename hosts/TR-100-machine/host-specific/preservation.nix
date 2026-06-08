@@ -31,7 +31,7 @@
               mode = "0700";
             }
             ".config/mozilla"
-            ".config/obs"
+            ".config/obs-studio"
             ".mozilla"
             ".local/state/noctalia"
             ".local/share/bash"

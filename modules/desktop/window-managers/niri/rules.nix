@@ -5,7 +5,7 @@
 
       layer-rules = [
         {
-          matches = [{namespace = "^noctalia-overview*";}];
+          matches = [{namespace = "^noctalia-backdrop";}];
           place-within-backdrop = true;
         }
       ];
@@ -23,11 +23,21 @@
           open-floating = true;
         }
         {
+          matches = [{app-id = "dev.noctalia.Noctalia.Settings";}];
+          open-floating = true;
+          default-column-width = {fixed = 1080;};
+          default-window-height = {fixed = 920;};
+        }
+        {
+          matches = [{app-id = "com.obsproject.Studio";}];
+          open-on-workspace = "5";
+        }
+        {
           geometry-corner-radius = {
-            top-left = 2.0;
-            top-right = 2.0;
-            bottom-left = 2.0;
-            bottom-right = 2.0;
+            top-left = 4.0;
+            top-right = 4.0;
+            bottom-left = 4.0;
+            bottom-right = 4.0;
           };
           clip-to-geometry = true;
         }

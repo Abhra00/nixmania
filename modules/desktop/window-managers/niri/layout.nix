@@ -11,10 +11,6 @@
         {proportion = 0.25;}
         {proportion = 0.50;}
         {proportion = 0.75;}
-
-        # {proportion = 0.33333;}
-        # {proportion = 0.50;}
-        # {proportion = 0.66667;}
       ];
 
       focus-ring = {

@@ -55,6 +55,7 @@
         gui_ghostty
         gui_mpv
         gui_nautilus
+        gui_obs
         gui_packages
         gui_satty
         gui_zathura

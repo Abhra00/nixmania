@@ -9,6 +9,7 @@
       "Alt+Shift+L".action.spawn-sh = "noctalia msg panel-toggle session";
       "Mod+Space".action.spawn-sh = "noctalia msg panel-toggle launcher";
       "Mod+Shift+C".action.spawn-sh = "noctalia msg config-reload";
+      "Mod+Shift+V".action.spawn-sh = "noctalia msg panel-toggle clipboard";
       "Mod+Shift+Q".action.quit = {};
       "Alt+Tab" = {
         action.toggle-overview = {};
@@ -16,7 +17,7 @@
       };
       "Print".action.spawn-sh = "niri msg action screenshot";
       "Alt+Print".action.screenshot-window = {};
-      "Ctrl+Print".action.screenshot-screen = {};
+      "Ctrl+Print".action.spawn-sh = "noctalia msg screenshot-fullscreen";
 
       # Navigation (h j k l)
       "Mod+H".action.focus-column-left = {};

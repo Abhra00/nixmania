@@ -7,7 +7,6 @@
       wl-clip-persist
       wl-clipboard
       wtype
-      obs-studio
     ];
   };
 }

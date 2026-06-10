@@ -17,12 +17,12 @@
       set -g status-left-length 40
 
       # Right: date pill
-      set -g status-right "#[fg=#${c.base0F},bg=default]#[fg=#${c.base00},bg=#${c.base0F}]󰃰 #[bg=#${c.base02},fg=#${c.base05}] %Y-%m-%d %H:%M#[fg=#${c.base02},bg=default]"
+      set -g status-right "#[fg=#${c.base0A},bg=default]#[fg=#${c.base00},bg=#${c.base0A}]󰃰 #[bg=#${c.base02},fg=#${c.base05}] %Y-%m-%d %H:%M#[fg=#${c.base02},bg=default]"
       set -g status-right-length 40
 
       # Windows
       set -g window-status-format "#[fg=#${c.base0D},bg=default]#[bg=#${c.base0D},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base03}] #W#[fg=#${c.base02},bg=default] "
-      set -g window-status-current-format "#[fg=#${c.base0F},bg=default]#[bg=#${c.base0F},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base05}] #W#[fg=#${c.base02},bg=default] "
+      set -g window-status-current-format "#[fg=#${c.base0A},bg=default]#[bg=#${c.base0A},fg=#${c.base00}]#I #[bg=#${c.base02},fg=#${c.base05}] #W#[fg=#${c.base02},bg=default] "
       set -g window-status-separator ""
 
       # Pane borders

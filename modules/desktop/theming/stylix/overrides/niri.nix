@@ -18,7 +18,7 @@
         };
 
         border = {
-          active = {color = stx.base0E;};
+          active = {color = stx.base0A;};
           inactive = {color = stx.base02;};
           urgent = {color = stx.base08;};
         };

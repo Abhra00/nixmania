@@ -50,7 +50,7 @@
         "12=#${stx.base0D}"
         "13=#${stx.base0E}"
         "14=#${stx.base0C}"
-        "15=#${stx.base07}"
+        "15=#${stx.base05}"
       ];
     };
   };

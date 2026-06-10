@@ -107,18 +107,18 @@
         "ui.help"       = { fg = "base0F" }
 
         "ui.bufferline"            = { fg = "base04", bg = "base01" }
-        "ui.bufferline.active"     = { fg = "base0F", bg = "base00", modifiers = ["bold"] }
+        "ui.bufferline.active"     = { fg = "base0A", bg = "base00", modifiers = ["bold"] }
         "ui.bufferline.background" = { bg = "base00" }
 
         "ui.cursor"                  = { fg = "base05", modifiers = ["reversed"] }
         "ui.cursor.primary"          = { fg = "base05", modifiers = ["reversed"] }
         "ui.cursor.primary.normal"   = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.insert"   = { fg = "base00", bg = "base0E" }
-        "ui.cursor.primary.select"   = { fg = "base00", bg = "base0F" }
+        "ui.cursor.primary.insert"   = { fg = "base00", bg = "base05" }
+        "ui.cursor.primary.select"   = { fg = "base00", bg = "base0A" }
         "ui.cursor.normal"           = { fg = "base00", bg = "base03" }
         "ui.cursor.insert"           = { fg = "base00", bg = "base03" }
         "ui.cursor.select"           = { fg = "base00", bg = "base03" }
-        "ui.cursor.match"            = { fg = "base05", bg = "base02", modifiers = ["bold"] }
+        "ui.cursor.match"            = { fg = "base0A", bg = "base02", modifiers = ["bold"] }
         "ui.cursorline.primary"      = { fg = "base05", bg = "base01" }
 
         "ui.debug.breakpoint" = { fg = "base08" }
@@ -139,9 +139,9 @@
 
         "ui.statusline"          = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive" = { fg = "base04", bg = "base01" }
-        "ui.statusline.normal"   = { fg = "base00", bg = "base0E", modifiers = ["bold"] }
+        "ui.statusline.normal"   = { fg = "base00", bg = "base0A", modifiers = ["bold"] }
         "ui.statusline.insert"   = { fg = "base00", bg = "base0B", modifiers = ["bold"] }
-        "ui.statusline.select"   = { fg = "base00", bg = "base0F", modifiers = ["bold"] }
+        "ui.statusline.select"   = { fg = "base00", bg = "base09", modifiers = ["bold"] }
 
         "ui.text"           = "base05"
         "ui.text.directory" = "base0D"

@@ -21,6 +21,7 @@
         directory = {
           style = "blue";
           truncate_to_repo = false;
+          truncation_symbol = "…/";
         };
         username = {
           format = "[$user]($style)";

@@ -31,13 +31,13 @@
         blue = stx.base0D;
         magenta = stx.base0E;
         cyan = stx.base0C;
-        white = stx.base07;
+        white = stx.base05;
       };
     };
     schemeColors = {
-      mPrimary = stx.base0E;
+      mPrimary = stx.base0A;
       mOnPrimary = stx.base00;
-      mSecondary = stx.base0D;
+      mSecondary = stx.base0B;
       mOnSecondary = stx.base00;
       mTertiary = stx.base0C;
       mOnTertiary = stx.base00;

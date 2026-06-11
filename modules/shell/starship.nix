@@ -35,7 +35,7 @@
           ssh_only = true;
         };
         character = {
-          success_symbol = "[❯](purple)";
+          success_symbol = "[❯](green)";
           error_symbol = "[❯](red)";
         };
         git_branch = {
@@ -65,7 +65,7 @@
         jobs = {
           format = "[$symbol]($style) ";
           symbol = "✦";
-          style = "purple";
+          style = "blue";
           number_threshold = 1;
         };
         nix_shell = {

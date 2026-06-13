@@ -17,12 +17,12 @@
     highlight_med = l stx.base02 0.10;
     highlight_high = l stx.base02 0.22;
 
-    base08_10 = hsluv.mixRGB stx.base00 stx.base08 0.15;
-    base09_10 = hsluv.mixRGB stx.base00 stx.base09 0.15;
-    base0A_10 = hsluv.mixRGB stx.base00 stx.base0A 0.15;
-    base0B_10 = hsluv.mixRGB stx.base00 stx.base0B 0.15;
-    base0C_10 = hsluv.mixRGB stx.base00 stx.base0C 0.15;
-    base0D_10 = hsluv.mixRGB stx.base00 stx.base0D 0.15;
+    base08_15 = hsluv.mixRGB stx.base00 stx.base08 0.15;
+    base09_15 = hsluv.mixRGB stx.base00 stx.base09 0.15;
+    base0A_15 = hsluv.mixRGB stx.base00 stx.base0A 0.15;
+    base0B_15 = hsluv.mixRGB stx.base00 stx.base0B 0.15;
+    base0C_15 = hsluv.mixRGB stx.base00 stx.base0C 0.15;
+    base0D_15 = hsluv.mixRGB stx.base00 stx.base0D 0.15;
   in {
     hm.programs.helix.settings.theme = lib.mkIf cfg "stylix";
 
@@ -36,20 +36,26 @@
         "ui.background"           = { bg = "base00" }
         "ui.background.separator" = { bg = "base00" }
 
-        "ui.cursor"         = { fg = "base05", bg = "highlight_high" }
-        "ui.cursor.match"   = { fg = "base05", bg = "highlight_med" }
-        "ui.cursor.primary" = { fg = "base05", bg = "base03" }
+        "ui.cursor"                = { fg = "base05", bg = "highlight_high" }
+        "ui.cursor.normal"         = { fg = "base05", bg = "highlight_high" }
+        "ui.cursor.insert"         = { fg = "base05", bg = "highlight_med"  }
+        "ui.cursor.select"         = { fg = "base05", bg = "highlight_high" }
+        "ui.cursor.match"          = { fg = "base05", bg = "highlight_med"  }
+        "ui.cursor.primary"        = { fg = "base05", bg = "highlight_high" }
+        "ui.cursor.primary.normal" = { fg = "base05", bg = "highlight_high" }
+        "ui.cursor.primary.insert" = { fg = "base05", bg = "highlight_med"  }
+        "ui.cursor.primary.select" = { fg = "base05", bg = "highlight_high" }
 
         "ui.linenr"          = { fg = "base03" }
         "ui.linenr.selected" = { fg = "base05" }
 
         "ui.bufferline"          = { fg = "base03", bg = "base00" }
-        "ui.bufferline.active"   = { fg = "base05", bg = "base02" }
+        "ui.bufferline.active"   = { fg = "base05", bg = "base02", modifiers = ["italic"] }
         "ui.statusline"          = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive" = { fg = "base03", bg = "base01" }
-        "ui.statusline.normal"   = { fg = "base0A", bg = "base0A_10" }
-        "ui.statusline.insert"   = { fg = "base0C", bg = "base0C_10" }
-        "ui.statusline.select"   = { fg = "base0D", bg = "base0D_10" }
+        "ui.statusline.normal"   = { fg = "base0A", bg = "base0A_15" }
+        "ui.statusline.insert"   = { fg = "base0C", bg = "base0C_15" }
+        "ui.statusline.select"   = { fg = "base0D", bg = "base0D_15" }
 
         "ui.popup"      = { bg = "base01" }
         "ui.popup.info" = { bg = "base01" }
@@ -196,12 +202,12 @@
         highlight_med  = "#${highlight_med}"
         highlight_high = "#${highlight_high}"
 
-        base08_10 = "#${base08_10}"
-        base09_10 = "#${base09_10}"
-        base0A_10 = "#${base0A_10}"
-        base0B_10 = "#${base0B_10}"
-        base0C_10 = "#${base0C_10}"
-        base0D_10 = "#${base0D_10}"
+        base08_15 = "#${base08_15}"
+        base09_15 = "#${base09_15}"
+        base0A_15 = "#${base0A_15}"
+        base0B_15 = "#${base0B_15}"
+        base0C_15 = "#${base0C_15}"
+        base0D_15 = "#${base0D_15}"
       '');
   };
 }

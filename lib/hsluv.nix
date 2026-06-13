@@ -329,7 +329,7 @@ in rec {
   # Complement (hue + 180)
   complement = hex: rotateHue hex 180.0;
 
-  # RGB-space mix — no hue shift, faithful to how the official _10 tints work
+  # RGB-space mix
   mixRGB = hexA: hexB: t: let
     a = hexToRGB hexA;
     b = hexToRGB hexB;

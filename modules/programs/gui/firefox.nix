@@ -23,9 +23,6 @@
           "extensions.startupScanScopes" = 15;
 
           # Betterfox 149.0 | Fastfox
-          "gfx.content.skia-font-cache-size" = 32;
-          "gfx.webrender.layer-compositor" = true;
-          "gfx.canvas.accelerated.cache-items" = 32768;
           "gfx.canvas.accelerated.cache-size" = 256;
           "browser.cache.disk.enable" = false;
           "media.memory_cache_max_size" = 65536;

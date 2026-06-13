@@ -13,7 +13,7 @@
       set -g status-style "bg=default,fg=default"
 
       # Left: session name pill
-      set -g status-left "#{?client_prefix,#[fg=#${c.base0B}],#[fg=#${c.base0E}]}#[bg=default]#{?client_prefix,#[bg=#${c.base0B}],#[bg=#${c.base0E}]}#[fg=#${c.base00}] #[bg=#${c.base02},fg=#${c.base05}] #S#[fg=#${c.base02},bg=default] "
+      set -g status-left "#{?client_prefix,#[fg=#${c.base0D}],#[fg=#${c.base08}]}#[bg=default]#{?client_prefix,#[bg=#${c.base0D}],#[bg=#${c.base08}]}#[fg=#${c.base00}] #[bg=#${c.base02},fg=#${c.base05}] #S#[fg=#${c.base02},bg=default] "
       set -g status-left-length 40
 
       # Right: date pill

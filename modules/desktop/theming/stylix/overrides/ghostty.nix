@@ -10,10 +10,8 @@
     opacity = config.stylix.opacity.terminal;
   in {
     hm.programs.ghostty.settings = lib.mkIf cfg {
-      font-family = [
-        fonts.monospace.name
-        fonts.emoji.name
-      ];
+      font-family = fonts.monospace.name;
+      font-family-bold = fonts.monospace.name;
       font-family-italic = "Maple Mono CN";
       font-family-bold-italic = "Maple Mono CN";
       font-size = fonts.sizes.terminal;

@@ -18,6 +18,7 @@
           "$character"
         ];
         add_newline = true;
+        continuation_prompt = "[∙  ┆ ](bright-black)";
         directory = {
           style = "blue";
           truncate_to_repo = false;

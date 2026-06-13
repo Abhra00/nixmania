@@ -43,7 +43,7 @@
           auto-format = true;
           formatter.command = "${pkgs.prettier}/bin/prettier";
           formatter.args = ["--parser" "json"];
-          language-servers = ["vscode-json-language-server" "scls"];
+          language-servers = ["vscode-json-language-server"];
         }
         {
           name = "jsx";

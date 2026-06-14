@@ -11,8 +11,8 @@
           package = pkgs.fraunces;
         };
         monospace = {
-          name = "Fira Code";
-          package = pkgs.fira-code;
+          name = "Lilex";
+          package = pkgs.lilex;
         };
       };
     };

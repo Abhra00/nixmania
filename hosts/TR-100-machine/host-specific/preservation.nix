@@ -35,6 +35,7 @@
             ".mozilla"
             ".local/state/noctalia"
             ".local/share/bash"
+            ".rustup"
             "nixmania"
             "Projects"
             "Pictures"

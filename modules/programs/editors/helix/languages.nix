@@ -27,9 +27,9 @@
         {
           name = "html";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "html"];
-          language-servers = ["vscode-html-language-server" "scls"];
+          formatter.command = "${pkgs.superhtml}/bin/superhtml";
+          formatter.args = ["fmt" "--stdin"];
+          language-servers = ["superhtml" "scls"];
         }
         {
           name = "javascript";
@@ -108,7 +108,6 @@
       ];
 
       languages.language-server = {
-        # Snippets
         scls = {
           command = "${pkgs.simple-completion-language-server}/bin/simple-completion-language-server";
           environment = {
@@ -121,31 +120,24 @@
           };
         };
 
-        # Bash
         bash-language-server.command = "${pkgs.bash-language-server}/bin/bash-language-server";
-        # C
         clangd.command = "${pkgs.clang-tools}/bin/clangd";
-        # Markdown
         marksman.command = "${pkgs.marksman}/bin/marksman";
         mpls = {
           command = "${pkgs.mpls}/bin/mpls";
           args = ["--no-auto" "--enable-emoji" "--dark-mode"];
         };
-        # Nix
         nil = {
           command = "${pkgs.nil}/bin/nil";
           config.nil.nix.flake.autoArchive = true;
         };
         nixd.command = "${pkgs.nixd}/bin/nixd";
-        # Python
         basedpyright = {
           command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
           args = ["--stdio"];
         };
         ruff.command = "${pkgs.ruff}/bin/ruff";
-        # Rust
         rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-        # PERN / Web
         typescript-language-server = {
           command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
           args = [
@@ -153,16 +145,16 @@
             "--tsserver-path=${pkgs.typescript}/lib/node_modules/typescript/lib"
           ];
         };
-        vscode-css-language-server = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
-          args = ["--stdio"];
+        superhtml = {
+          command = "${pkgs.superhtml}/bin/superhtml";
+          args = ["lsp"];
         };
-        vscode-html-language-server = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server";
+        vscode-css-language-server = {
+          command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";
           args = ["--stdio"];
         };
         vscode-json-language-server = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
+          command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver";
           args = ["--stdio"];
         };
         yaml-language-server = {

@@ -20,43 +20,55 @@
         {
           name = "css";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "css"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "css"];
+          };
           language-servers = ["vscode-css-language-server" "scls"];
         }
         {
           name = "html";
           auto-format = true;
-          formatter.command = "${pkgs.superhtml}/bin/superhtml";
-          formatter.args = ["fmt" "--stdin"];
+          formatter = {
+            command = "${pkgs.superhtml}/bin/superhtml";
+            args = ["fmt" "--stdin"];
+          };
           language-servers = ["superhtml" "scls"];
         }
         {
           name = "javascript";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "babel"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "babel"];
+          };
           language-servers = ["typescript-language-server" "scls"];
         }
         {
           name = "json";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "json"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "json"];
+          };
           language-servers = ["vscode-json-language-server"];
         }
         {
           name = "jsx";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "babel"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "babel"];
+          };
           language-servers = ["typescript-language-server" "scls"];
         }
         {
           name = "markdown";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "markdown"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "markdown"];
+          };
           language-servers = [
             "marksman"
             {
@@ -86,22 +98,28 @@
         {
           name = "tsx";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "babel"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "babel"];
+          };
           language-servers = ["typescript-language-server" "scls"];
         }
         {
           name = "typescript";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "typescript"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "typescript"];
+          };
           language-servers = ["typescript-language-server" "scls"];
         }
         {
           name = "yaml";
           auto-format = true;
-          formatter.command = "${pkgs.prettier}/bin/prettier";
-          formatter.args = ["--parser" "yaml"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "yaml"];
+          };
           file-types = ["yaml" "yml" {glob = "templates/*.yaml";}];
           language-servers = ["yaml-language-server" "scls"];
         }
@@ -123,40 +141,46 @@
         bash-language-server.command = "${pkgs.bash-language-server}/bin/bash-language-server";
         clangd.command = "${pkgs.clang-tools}/bin/clangd";
         marksman.command = "${pkgs.marksman}/bin/marksman";
+
         mpls = {
           command = "${pkgs.mpls}/bin/mpls";
           args = ["--no-auto" "--enable-emoji" "--dark-mode"];
         };
+
         nil = {
           command = "${pkgs.nil}/bin/nil";
           config.nil.nix.flake.autoArchive = true;
         };
         nixd.command = "${pkgs.nixd}/bin/nixd";
+
         basedpyright = {
           command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
           args = ["--stdio"];
         };
+
         ruff.command = "${pkgs.ruff}/bin/ruff";
         rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+
         typescript-language-server = {
           command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
-          args = [
-            "--stdio"
-            "--tsserver-path=${pkgs.typescript}/lib/node_modules/typescript/lib"
-          ];
+          args = ["--stdio"];
         };
+
         superhtml = {
           command = "${pkgs.superhtml}/bin/superhtml";
           args = ["lsp"];
         };
+
         vscode-css-language-server = {
           command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";
           args = ["--stdio"];
         };
+
         vscode-json-language-server = {
           command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver";
           args = ["--stdio"];
         };
+
         yaml-language-server = {
           command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
           args = ["--stdio"];

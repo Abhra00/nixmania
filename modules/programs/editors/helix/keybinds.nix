@@ -7,9 +7,7 @@
           w = ":w";
           q = ":q";
           i = ":toggle lsp.display-inlay-hints";
-          b.p = ":buffer-previous";
-          b.n = ":buffer-next";
-          b.x = ":buffer-close";
+          x = ":buffer-close";
         };
         tab = ":buffer-next";
         S-tab = ":buffer-previous";

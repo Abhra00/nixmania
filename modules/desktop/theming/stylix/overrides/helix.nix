@@ -50,7 +50,7 @@
         "ui.linenr.selected" = { fg = "base05" }
 
         "ui.bufferline"          = { fg = "base03", bg = "base00" }
-        "ui.bufferline.active"   = { fg = "base05", bg = "base02", modifiers = ["italic"] }
+        "ui.bufferline.active"   = { fg = "base05", bg = "base02" }
         "ui.statusline"          = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive" = { fg = "base03", bg = "base01" }
         "ui.statusline.normal"   = { fg = "base0A", bg = "base0A_15" }

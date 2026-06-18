@@ -5,13 +5,12 @@
       systemd.enable = true;
 
       settings = {
-        adjust-cell-height = "20%";
-
+        adjust-cell-height = "15%";
         adjust-underline-position = 4;
 
-        adjust-cursor-height = "20%";
         cursor-style = "block";
         cursor-style-blink = true;
+        adjust-cursor-height = "15%";
 
         window-padding-x = 30;
         window-padding-y = 30;

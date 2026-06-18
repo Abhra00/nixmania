@@ -7,7 +7,6 @@
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       unifont
-      maple-mono.CN
     ];
     nerd-fonts = with pkgs.nerd-fonts; [
       symbols-only

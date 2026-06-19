@@ -3,16 +3,16 @@
     fontSets = {
       source = {
         sansSerif = {
-          name = "Source Sans 3";
-          package = pkgs.source-sans;
+          name = "Rubik";
+          package = pkgs.rubik;
         };
         serif = {
-          name = "Source Serif 4";
-          package = pkgs.source-serif;
+          name = "Fraunces";
+          package = pkgs.fraunces;
         };
         monospace = {
-          name = "Source Code Pro";
-          package = pkgs.source-code-pro;
+          name = "Cascadia Code";
+          package = pkgs.cascadia-code;
         };
       };
     };

@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.theming_fonts = {pkgs, ...}: let
     fontSets = {
-      source = {
+      bliss = {
         sansSerif = {
           name = "Rubik";
           package = pkgs.rubik;
@@ -18,7 +18,7 @@
     };
   in {
     stylix.fonts =
-      fontSets.source
+      fontSets.bliss
       // {
         emoji = {
           name = "Noto Color Emoji";
@@ -39,9 +39,9 @@
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
           <alias>
-            <family>${fontSets.source.monospace.name}</family>
+            <family>${fontSets.bliss.monospace.name}</family>
             <prefer>
-              <family>${fontSets.source.monospace.name}</family>
+              <family>${fontSets.bliss.monospace.name}</family>
               <family>Symbols Nerd Font</family>
             </prefer>
           </alias>
@@ -58,14 +58,14 @@
         <alias>
         <family>sans-serif</family>
         <prefer>
-          <family>${fontSets.source.sansSerif.name}</family>
+          <family>${fontSets.bliss.sansSerif.name}</family>
           <family>Noto Sans Bengali</family>
         </prefer>
         </alias>
         <alias>
         <family>serif</family>
         <prefer>
-          <family>${fontSets.source.sansSerif.name}</family>
+          <family>${fontSets.bliss.serif.name}</family>
           <family>Noto Serif Bengali</family>
         </prefer>
         </alias>

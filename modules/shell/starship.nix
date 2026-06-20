@@ -36,8 +36,8 @@
           ssh_only = true;
         };
         character = {
-          success_symbol = "[❯](green)";
-          error_symbol = "[❯](red)";
+          success_symbol = "[[](yellow) ](white)";
+          error_symbol = "[[](red) ](white)";
         };
         git_branch = {
           format = "[$branch]($style)";

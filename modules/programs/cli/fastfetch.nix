@@ -41,26 +41,26 @@
           "break"
           {
             type = "os";
-            key = "{#31} ";
+            key = "{#31}  ";
             format = "{pretty-name}";
           }
           {
             type = "kernel";
-            key = "{#32} {icon}";
+            key = "{#32}  ";
             format = "{release}";
           }
           {
             type = "uptime";
-            key = "{#33} {icon}";
+            key = "{#33}  ";
           }
           {
             type = "shell";
-            key = "{#34} {icon}";
+            key = "{#34}  ";
             format = "{pretty-name} {version}";
           }
           {
             type = "wm";
-            key = "{#35} {icon}";
+            key = "{#35}  ";
             format = "{pretty-name} {version}";
           }
           {

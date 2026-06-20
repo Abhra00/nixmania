@@ -11,8 +11,8 @@
           package = pkgs.fraunces;
         };
         monospace = {
-          name = "Lilex";
-          package = pkgs.lilex;
+          name = "Cascadia Code";
+          package = pkgs.cascadia-code;
         };
       };
     };

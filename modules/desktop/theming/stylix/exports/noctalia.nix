@@ -35,11 +35,11 @@
       };
     };
     schemeColors = {
-      mPrimary = stx.base0A;
+      mPrimary = stx.base09;
       mOnPrimary = stx.base00;
-      mSecondary = stx.base0B;
+      mSecondary = stx.base0D;
       mOnSecondary = stx.base00;
-      mTertiary = stx.base0C;
+      mTertiary = stx.base0F;
       mOnTertiary = stx.base00;
       mError = stx.base08;
       mOnError = stx.base00;

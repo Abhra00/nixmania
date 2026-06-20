@@ -20,7 +20,7 @@
         add_newline = true;
         continuation_prompt = "[∙  ┆ ](bright-black)";
         directory = {
-          style = "blue";
+          style = "white";
           truncate_to_repo = false;
           truncation_symbol = "…/";
         };
@@ -36,7 +36,7 @@
           ssh_only = true;
         };
         character = {
-          success_symbol = "[[](yellow) ](white)";
+          success_symbol = "[[](blue) ](white)";
           error_symbol = "[[](red) ](white)";
         };
         git_branch = {

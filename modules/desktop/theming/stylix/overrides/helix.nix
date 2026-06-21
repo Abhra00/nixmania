@@ -30,8 +30,8 @@
     hm.xdg.configFile."helix/themes/stylix.toml".text =
       lib.mkIf cfg
       (with stx; ''
-                # ┳┳┳
-                # ┃┃┃
+        # ┳┳┳
+        # ┃┃┃
         # ┗┛┻
         #
         "ui.background"           = { fg = "base05", bg = "base00" }
@@ -40,12 +40,12 @@
         "ui.cursor"                = { fg = "base00", bg = "base05" }
         "ui.cursor.normal"         = { fg = "base00", bg = "base05" }
         "ui.cursor.insert"         = { fg = "base00", bg = "base05" }
-        "ui.cursor.select"         = { fg = "base00", bg = "base0E" }
+        "ui.cursor.select"         = { fg = "base00", bg = "base09" }
         "ui.cursor.match"          = { fg = "base0F", bg = "base0F_15" }
         "ui.cursor.primary"        = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.normal" = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.insert" = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.select" = { fg = "base00", bg = "base0E" }
+        "ui.cursor.primary.select" = { fg = "base00", bg = "base09" }
 
         "ui.debug.breakpoint" = { fg = "base08" }
         "ui.debug.active"     = { fg = "base0A" }
@@ -63,7 +63,7 @@
         "ui.statusline.inactive"  = { fg = "base03", bg = "base01" }
         "ui.statusline.normal"    = { fg = "base0F", bg = "base0F_15" }
         "ui.statusline.insert"    = { fg = "base0B", bg = "base0B_15" }
-        "ui.statusline.select"    = { fg = "base0D", bg = "base0D_15" }
+        "ui.statusline.select"    = { fg = "base09", bg = "base09_15" }
         "ui.statusline.separator" = { fg = "base03" }
 
         "ui.popup"                       = { fg = "base05", bg = "base01" }

@@ -20,7 +20,7 @@
         add_newline = true;
         continuation_prompt = "[∙  ┆ ](bright-black)";
         directory = {
-          style = "white";
+          style = "blue";
           truncate_to_repo = false;
           truncation_symbol = "…/";
         };

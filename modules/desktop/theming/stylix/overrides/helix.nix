@@ -30,8 +30,8 @@
     hm.xdg.configFile."helix/themes/stylix.toml".text =
       lib.mkIf cfg
       (with stx; ''
-        # ┳┳┳
-        # ┃┃┃
+                # ┳┳┳
+                # ┃┃┃
         # ┗┛┻
         #
         "ui.background"           = { fg = "base05", bg = "base00" }
@@ -39,12 +39,12 @@
 
         "ui.cursor"                = { fg = "base00", bg = "base05" }
         "ui.cursor.normal"         = { fg = "base00", bg = "base05" }
-        "ui.cursor.insert"         = { fg = "base00", bg = "base0B" }
+        "ui.cursor.insert"         = { fg = "base00", bg = "base05" }
         "ui.cursor.select"         = { fg = "base00", bg = "base0E" }
-        "ui.cursor.match"          = { fg = "base0A", modifiers = ["underlined"] }
+        "ui.cursor.match"          = { fg = "base0F", bg = "base0F_15" }
         "ui.cursor.primary"        = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.normal" = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.insert" = { fg = "base00", bg = "base0B" }
+        "ui.cursor.primary.insert" = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.select" = { fg = "base00", bg = "base0E" }
 
         "ui.debug.breakpoint" = { fg = "base08" }
@@ -72,7 +72,7 @@
         "ui.picker.header.column"        = { fg = "base04" }
         "ui.picker.header.column.active" = { fg = "base0D", modifiers = ["bold"] }
         "ui.window"                      = { fg = "base02", bg = "base00" }
-        "ui.help"                        = { fg = "base04", bg = "base02" }
+        "ui.help"                        = { fg = "base04", bg = "base00" }
 
         "ui.text"           = { fg = "base05" }
         "ui.text.focus"     = { bg = "base02" }
@@ -82,7 +82,7 @@
         "ui.text.symlink"   = { fg = "base0C" }
 
         "ui.virtual.jump-label"             = { fg = "base08", modifiers = ["bold"] }
-        "ui.virtual.ruler"                  = { bg = "base02" }
+        "ui.virtual.ruler"                  = { bg = "highlight_low" }
         "ui.virtual.whitespace"             = { fg = "highlight_high" }
         "ui.virtual.indent-guide"           = { fg = "base03" }
         "ui.virtual.inlay-hint"             = { fg = "base04" }
@@ -187,9 +187,9 @@
         "variable.other.member.private" = "base0C"
 
         "label"                 = "base0C"
-        "punctuation"           = "base04"
-        "punctuation.delimiter" = "base04"
-        "punctuation.bracket"   = "base04"
+        "punctuation"           = "base09"
+        "punctuation.delimiter" = "base09"
+        "punctuation.bracket"   = "base09"
         "punctuation.special"   = "base0E"
 
         "keyword"                     = "base0E"

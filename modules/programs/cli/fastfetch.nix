@@ -14,8 +14,8 @@
         logo = {
           type = "kitty";
           source = "${confDir}/assets/pictures/logos/nixos.png";
-          width = 20;
-          height = 8;
+          width = 22;
+          height = 10;
           padding = {
             top = 0;
             right = 2;

@@ -11,8 +11,8 @@
           package = pkgs.fraunces;
         };
         monospace = {
-          name = "JetBrains Mono";
-          package = pkgs.jetbrains-mono;
+          name = "Fira Code";
+          package = pkgs.fira-code;
         };
       };
     };

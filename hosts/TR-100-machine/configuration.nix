@@ -64,7 +64,6 @@
         service_bluetooth
         service_gpg
         service_gvfs
-        service_postgresql
         service_power-profiles-daemon
         service_udiskie
         service_upower

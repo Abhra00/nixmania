@@ -14,18 +14,8 @@
       eog
       onlyoffice-desktopeditors
 
-      # Rust
-      rustlings
-      rustup
-
-      # Gcc
-      gcc
-
-      # Python
-      python3
-
-      # Nodejs
-      nodejs
+      # Devenv
+      devenv
     ];
   };
 }

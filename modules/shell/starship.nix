@@ -7,12 +7,12 @@
           "$jobs"
           "$username"
           "$hostname"
+          "$nix_shell"
           "$directory"
           "$git_branch"
           "$git_state"
           "$git_status"
           "$cmd_duration"
-          "$nix_shell"
           "$line_break"
           "$python"
           "$character"
@@ -36,15 +36,15 @@
           ssh_only = true;
         };
         character = {
-          success_symbol = "[[](blue) ](white)";
-          error_symbol = "[[](red) ](white)";
+          success_symbol = "[❯](purple)";
+          error_symbol = "[❯](red)";
         };
         git_branch = {
           format = "[$branch]($style)";
           style = "bright-black";
         };
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style) ";
+          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
           style = "cyan";
           conflicted = "​";
           untracked = "​";
@@ -70,9 +70,9 @@
           number_threshold = 1;
         };
         nix_shell = {
-          format = "[$symbol$name]($style) ";
+          format = "[$symbol$name]($style) [┃](bright-black) ";
           symbol = "󱄅 ";
-          style = "bright-black";
+          style = "base09";
           impure_msg = "";
           pure_msg = "";
         };

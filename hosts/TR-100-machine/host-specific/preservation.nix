@@ -6,7 +6,6 @@
         directories = [
           "/var/lib/bluetooth"
           "/var/lib/libvirt"
-          "/var/lib/postgresql"
           "/var/lib/NetworkManager"
           {
             directory = "/var/lib/nixos";
@@ -35,7 +34,6 @@
             ".mozilla"
             ".local/state/noctalia"
             ".local/share/bash"
-            ".rustup"
             "nixmania"
             "Projects"
             "Pictures"

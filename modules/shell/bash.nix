@@ -29,6 +29,12 @@
         "lithist"
         "no_empty_cmd_completion"
       ];
+      initExtra = ''
+        hx() {
+          command hx "$@"
+          printf '\e[1 q'
+        }
+      '';
     };
   };
 }

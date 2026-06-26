@@ -87,7 +87,7 @@
             "separator"
             "total-line-numbers"
           ];
-          separator = "┃";
+          separator = "│";
           mode = {
             normal = "NOR";
             insert = "INS";

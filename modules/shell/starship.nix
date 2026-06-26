@@ -44,7 +44,7 @@
           style = "bright-black";
         };
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](purple) ($ahead_behind$stashed)]($style)";
           style = "cyan";
           conflicted = "​";
           untracked = "​";
@@ -72,9 +72,9 @@
           number_threshold = 1;
         };
         nix_shell = {
-          format = "[$symbol$name]($style) [┃](bright-black) ";
+          format = "[$symbol]($style)[nsh](orange) [│](bright-black) [$name](brown) [│](bright-black) ";
           symbol = "󱄅 ";
-          style = "base09";
+          style = "blue";
           impure_msg = "";
           pure_msg = "";
         };

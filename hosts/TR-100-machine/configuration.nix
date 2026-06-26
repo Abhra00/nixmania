@@ -33,6 +33,7 @@
         cli_cava
         cli_chafa
         cli_comma
+        cli_direnv
         cli_eza
         cli_fastfetch
         cli_fzf

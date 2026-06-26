@@ -12,8 +12,8 @@
     hm.programs.ghostty.settings = lib.mkIf cfg {
       font-family = fonts.monospace.name;
       font-family-bold = fonts.monospace.name;
-      font-family-italic = "MapleMono CN";
-      font-family-bold-italic = "MapleMono CN";
+      font-family-italic = fonts.monospace.name;
+      font-family-bold-italic = fonts.monospace.name;
       font-size = fonts.sizes.terminal;
 
       background-opacity = opacity;

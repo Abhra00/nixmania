@@ -53,6 +53,8 @@
           renamed = "​";
           deleted = "​";
           stashed = "≡";
+          ahead = "⇡\${count} ";
+          behind = "⇣\${count} ";
         };
         git_state = {
           format = "\\([$state( $progress_current/$progress_total)]($style)\\) ";

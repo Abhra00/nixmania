@@ -7,9 +7,9 @@
       settings = {
         adjust-cell-height = "15%";
         adjust-cursor-height = "15%";
-        adjust-cursor-thickness = 2;
+        adjust-underline-position = 4;
 
-        cursor-style = "underline";
+        cursor-style = "block";
         cursor-style-blink = true;
 
         window-padding-x = 30;
@@ -26,7 +26,7 @@
         scrollback-limit = 10000;
         confirm-close-surface = false;
 
-        shell-integration-features = "cursor,sudo,title";
+        shell-integration-features = "no-cursor,sudo,title";
 
         keybind = [
           # tabs

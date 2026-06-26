@@ -5,8 +5,6 @@
       systemd.enable = true;
 
       settings = {
-        adjust-cell-height = "15%";
-        adjust-cursor-height = "15%";
         adjust-underline-position = 4;
 
         cursor-style = "block";
@@ -23,7 +21,9 @@
         mouse-hide-while-typing = true;
         mouse-scroll-multiplier = 1;
 
+        scrollbar = "never";
         scrollback-limit = 10000;
+
         confirm-close-surface = false;
 
         shell-integration-features = "no-cursor,sudo,title";

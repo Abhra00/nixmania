@@ -35,7 +35,7 @@
       };
     };
     schemeColors = {
-      mPrimary = stx.base09;
+      mPrimary = stx.base0E;
       mOnPrimary = stx.base00;
       mSecondary = stx.base0D;
       mOnSecondary = stx.base00;

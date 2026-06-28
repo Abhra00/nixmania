@@ -62,6 +62,7 @@
         # Floats
         bind g display-popup -E -d '#{pane_current_path}' -w 95% -h 95% -T " lazygit" "lazygit"
         bind e display-popup -E -d '#{pane_current_path}' -w 95% -h 95% -T " bash" "bash"
+        bind f display-popup -E -d '#{pane_current_path}' -w 95% -h 95% -T " superfile" "superfile"
         # General
         set -ag terminal-overrides ",*:RGB"
         set -g renumber-windows on

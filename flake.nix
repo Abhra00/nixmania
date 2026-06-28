@@ -57,6 +57,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # superfile
+    superfile = {
+      url = "github:yorukot/superfile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # firefox addons
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";

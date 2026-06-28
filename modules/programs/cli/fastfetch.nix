@@ -47,7 +47,7 @@
           {
             type = "kernel";
             key = "{#32}  ";
-            format = "{release}";
+            format = "{sysname} {#31}•{#} {release} {#35}•{#} {arch}";
           }
           {
             type = "uptime";

@@ -1,6 +1,6 @@
 {config, ...}: {
   flake.modules.nixos.TR-100-machine = {pkgs, ...}: {
-    boot.kernelPackages = pkgs.linuxPackages_zen;
+    boot.kernelPackages = pkgs.linuxPackages;
     users.defaultUserShell = pkgs.bash;
     system.stateVersion = "25.11";
     imports =
@@ -43,8 +43,8 @@
         cli_nix-index
         cli_nix-search-tv
         cli_packages
+        cli_superfile
         cli_tmux
-        cli_yazi
         cli_zoxide
 
         # programs/editor/*

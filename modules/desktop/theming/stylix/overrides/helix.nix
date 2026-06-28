@@ -17,13 +17,13 @@
     highlight_med = l stx.base02 0.10;
     highlight_high = l stx.base02 0.22;
 
-    base08_15 = hsluv.mixRGB stx.base00 stx.base08 0.15;
-    base09_15 = hsluv.mixRGB stx.base00 stx.base09 0.15;
-    base0A_15 = hsluv.mixRGB stx.base00 stx.base0A 0.15;
-    base0B_15 = hsluv.mixRGB stx.base00 stx.base0B 0.15;
-    base0C_15 = hsluv.mixRGB stx.base00 stx.base0C 0.15;
-    base0D_15 = hsluv.mixRGB stx.base00 stx.base0D 0.15;
-    base0F_15 = hsluv.mixRGB stx.base00 stx.base0F 0.15;
+    base08_20 = hsluv.mixRGB stx.base00 stx.base08 0.20;
+    base09_20 = hsluv.mixRGB stx.base00 stx.base09 0.20;
+    base0A_20 = hsluv.mixRGB stx.base00 stx.base0A 0.20;
+    base0B_20 = hsluv.mixRGB stx.base00 stx.base0B 0.20;
+    base0C_20 = hsluv.mixRGB stx.base00 stx.base0C 0.20;
+    base0D_20 = hsluv.mixRGB stx.base00 stx.base0D 0.20;
+    base0F_20 = hsluv.mixRGB stx.base00 stx.base0F 0.20;
   in {
     hm.programs.helix.settings.theme = lib.mkIf cfg "stylix";
 
@@ -40,12 +40,12 @@
         "ui.cursor"                = { fg = "base00", bg = "base05" }
         "ui.cursor.normal"         = { fg = "base00", bg = "base05" }
         "ui.cursor.insert"         = { fg = "base00", bg = "base05" }
-        "ui.cursor.select"         = { fg = "base00", bg = "base09" }
-        "ui.cursor.match"          = { fg = "base0F", bg = "base0F_15" }
+        "ui.cursor.select"         = { fg = "base00", bg = "base0F" }
+        "ui.cursor.match"          = { fg = "base08", bg = "base08_20", modifers = ["bold"] }
         "ui.cursor.primary"        = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.normal" = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.insert" = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.select" = { fg = "base00", bg = "base09" }
+        "ui.cursor.primary.select" = { fg = "base00", bg = "base0F" }
 
         "ui.debug.breakpoint" = { fg = "base08" }
         "ui.debug.active"     = { fg = "base0A" }
@@ -61,9 +61,9 @@
 
         "ui.statusline"           = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive"  = { fg = "base03", bg = "base01" }
-        "ui.statusline.normal"    = { fg = "base0F", bg = "base0F_15" }
-        "ui.statusline.insert"    = { fg = "base0B", bg = "base0B_15" }
-        "ui.statusline.select"    = { fg = "base09", bg = "base09_15" }
+        "ui.statusline.normal"    = { fg = "base0F", bg = "base0F_20" }
+        "ui.statusline.insert"    = { fg = "base0B", bg = "base0B_20" }
+        "ui.statusline.select"    = { fg = "base09", bg = "base09_20" }
         "ui.statusline.separator" = { fg = "base03" }
 
         "ui.popup"                       = { fg = "base05", bg = "base01" }
@@ -82,7 +82,7 @@
         "ui.text.symlink"   = { fg = "base0C" }
 
         "ui.virtual.jump-label"             = { fg = "base08", modifiers = ["bold"] }
-        "ui.virtual.ruler"                  = { bg = "highlight_low" }
+        "ui.virtual.ruler"                  = { bg = "base01" }
         "ui.virtual.whitespace"             = { fg = "highlight_high" }
         "ui.virtual.indent-guide"           = { fg = "base03" }
         "ui.virtual.inlay-hint"             = { fg = "base04" }
@@ -95,15 +95,15 @@
         "ui.menu.scroll"   = { fg = "base03", bg = "highlight_med" }
 
         "ui.selection"         = { bg = "base02" }
-        "ui.selection.primary" = { bg = "highlight_med" }
+        "ui.selection.primary" = { bg = "base02" }
 
         "ui.highlight"           = { bg = "highlight_low" }
-        "ui.highlight.frameline" = { bg = "base0A_15" }
+        "ui.highlight.frameline" = { bg = "base0A_20" }
 
-        "ui.cursorline.primary"     = { bg = "highlight_low" }
-        "ui.cursorline.secondary"   = { bg = "base01" }
-        "ui.cursorcolumn.primary"   = { bg = "highlight_low" }
-        "ui.cursorcolumn.secondary" = { bg = "base01" }
+        "ui.cursorline.primary"     = { bg = "base01" }
+        "ui.cursorline.secondary"   = { bg = "base02" }
+        "ui.cursorcolumn.primary"   = { bg = "base01" }
+        "ui.cursorcolumn.secondary" = { bg = "base02" }
 
         # ┳┓┳┏┓┏┓┳┓┏┓┏┓┏┳┓┳┏┓┏┓
         # ┃┃┃┣┫┃┓┃┃┃┃┗┓ ┃ ┃┃ ┗┓
@@ -148,76 +148,74 @@
         # ┗┓┗┫┃┃ ┃ ┣┫ ┃┃
         # ┗┛┗┛┛┗ ┻ ┛┗┗┛┗┛
         #
-        "special"   = "base0A"
-        "attribute" = "base0D"
+        "special"   = "base0C"
+        "attribute" = "base0C"
 
-        "type"              = "base0A"
-        "type.builtin"      = "base09"
-        "type.parameter"    = "base0E"
-        "type.enum.variant" = "base0C"
-        "constructor"       = "base0D"
+        "type"              = "base0C"
+        "type.builtin"      = "base0C"
+        "type.parameter"    = "base0A"
+        "type.enum.variant" = "base09"
+        "constructor"       = "base0E"
 
         "constant"                  = "base09"
-        "constant.builtin"          = { fg = "base08", modifiers = ["bold"] }
+        "constant.builtin"          = { fg = "base0C", modifiers = ["bold"] }
         "constant.builtin.boolean"  = "base09"
-        "constant.character"        = "base0C"
+        "constant.character"        = "base0B"
         "constant.character.escape" = "base0E"
         "constant.numeric"          = "base09"
         "constant.numeric.integer"  = "base09"
         "constant.numeric.float"    = "base09"
 
         "string"                = "base0B"
-        "string.regexp"         = "base0C"
-        "string.special.path"   = "base0D"
-        "string.special.url"    = { fg = "base0D", underline = { color = "base0D", style = "line" } }
+        "string.regexp"         = "base07"
+        "string.special.path"   = "base0B"
+        "string.special.url"    = { fg = "base06", underline = { color = "base06", style = "line" } }
         "string.special.symbol" = "base0E"
 
         "comment"                       = { fg = "base03", modifiers = ["italic"] }
-        "comment.line.documentation"    = { fg = "base04", modifiers = ["italic"] }
-        "comment.block.documentation"   = { fg = "base04", modifiers = ["italic"] }
+        "comment.line.documentation"    = { fg = "base0A", modifiers = ["italic"] }
+        "comment.block.documentation"   = { fg = "base0A", modifiers = ["italic"] }
         "comment.unused"                = { fg = "base03", modifiers = ["italic", "dim"] }
 
         "variable"                      = "base05"
-        "variable.mutable"              = "base05"
         "variable.builtin"              = "base08"
-        "variable.builtin.mutable"      = "base08"
-        "variable.parameter"            = "base0D"
-        "variable.parameter.mutable"    = "base0D"
+        "variable.parameter"            = "base0A"
         "variable.other.member"         = "base0C"
         "variable.other.member.private" = "base0C"
 
-        "label"                 = "base0C"
-        "punctuation"           = "base09"
-        "punctuation.delimiter" = "base09"
-        "punctuation.bracket"   = "base09"
-        "punctuation.special"   = "base0E"
+        "label"                 = "base0D"
+        "punctuation"           = "base05"
+        "punctuation.delimiter" = "base0C"
+        "punctuation.bracket"   = "base05"
+        "punctuation.special"   = "base0C"
 
-        "keyword"                     = "base0E"
+        "keyword"                     = "base0F"
         "keyword.control"             = "base0E"
         "keyword.control.conditional" = "base0E"
-        "keyword.control.repeat"      = "base0E"
+        "keyword.control.repeat"      = "base0F"
         "keyword.control.import"      = "base0E"
-        "keyword.control.return"      = "base0E"
+        "keyword.control.return"      = "base0F"
         "keyword.control.exception"   = "base0E"
-        "keyword.operator"            = "base0F"
-        "keyword.directive"           = "base09"
+        "keyword.operator"            = "base0C"
+        "keyword.directive"           = "base0C"
         "keyword.function"            = "base0E"
         "keyword.storage"             = "base0E"
         "keyword.storage.type"        = "base0E"
         "keyword.storage.modifier"    = "base0E"
 
-        "operator" = "base0F"
+        "operator" = "base0C"
 
-        "function"             = "base0D"
-        "function.builtin"     = "base0D"
-        "function.method"      = "base0D"
+        "function"                = "base0D"
+        "function.builtin"        = "base0C"
+        "function.method"         = "base0D"
         "function.method.private" = "base0D"
-        "function.macro"       = "base0C"
-        "function.special"     = "base0C"
+        "function.macro"          = "base0C"
+        "function.special"        = "base0C"
 
-        "tag"         = "base0E"
-        "tag.builtin" = "base0E"
-        "namespace"   = "base05"
+        "tag"         = "base0D"
+        "tag.builtin" = "base0D"
+
+        "namespace"   = "base0C"
 
         # ┳┳┓┏┓┳┓┓┏┓┳┳┏┓
         # ┃┃┃┣┫┣┫┃┫ ┃┃┃┃
@@ -284,13 +282,13 @@
         highlight_med  = "#${highlight_med}"
         highlight_high = "#${highlight_high}"
 
-        base08_15 = "#${base08_15}"
-        base09_15 = "#${base09_15}"
-        base0A_15 = "#${base0A_15}"
-        base0B_15 = "#${base0B_15}"
-        base0C_15 = "#${base0C_15}"
-        base0D_15 = "#${base0D_15}"
-        base0F_15 = "#${base0F_15}"
+        base08_20 = "#${base08_20}"
+        base09_20 = "#${base09_20}"
+        base0A_20 = "#${base0A_20}"
+        base0B_20 = "#${base0B_20}"
+        base0C_20 = "#${base0C_20}"
+        base0D_20 = "#${base0D_20}"
+        base0F_20 = "#${base0F_20}"
       '');
   };
 }

@@ -3,16 +3,16 @@
     fontSets = {
       bliss = {
         sansSerif = {
-          name = "Rubik";
-          package = pkgs.rubik;
+          name = "Source Sans 3";
+          package = pkgs.source-sans;
         };
         serif = {
-          name = "Fraunces";
-          package = pkgs.fraunces;
+          name = "Source Serif 4";
+          package = pkgs.source-serif;
         };
         monospace = {
-          name = "Ioskeley Mono Term";
-          package = pkgs.ioskeley-mono.normal-term;
+          name = "Source Code Pro";
+          package = pkgs.source-code-pro;
         };
       };
     };

@@ -23,6 +23,7 @@
     base0B_20 = hsluv.mixRGB stx.base00 stx.base0B 0.20;
     base0C_20 = hsluv.mixRGB stx.base00 stx.base0C 0.20;
     base0D_20 = hsluv.mixRGB stx.base00 stx.base0D 0.20;
+    base0E_20 = hsluv.mixRGB stx.base00 stx.base0E 0.20;
     base0F_20 = hsluv.mixRGB stx.base00 stx.base0F 0.20;
   in {
     hm.programs.helix.settings.theme = lib.mkIf cfg "stylix";
@@ -41,7 +42,7 @@
         "ui.cursor.normal"         = { fg = "base00", bg = "base05" }
         "ui.cursor.insert"         = { fg = "base00", bg = "base05" }
         "ui.cursor.select"         = { fg = "base00", bg = "base0F" }
-        "ui.cursor.match"          = { fg = "base08", bg = "base08_20", modifers = ["bold"] }
+        "ui.cursor.match"          = { fg = "base08", bg = "base08_20", modifiers = ["bold"] }
         "ui.cursor.primary"        = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.normal" = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.insert" = { fg = "base00", bg = "base05" }
@@ -61,9 +62,9 @@
 
         "ui.statusline"           = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive"  = { fg = "base03", bg = "base01" }
-        "ui.statusline.normal"    = { fg = "base0F", bg = "base0F_20" }
+        "ui.statusline.normal"    = { fg = "base0E", bg = "base0E_20" }
         "ui.statusline.insert"    = { fg = "base0B", bg = "base0B_20" }
-        "ui.statusline.select"    = { fg = "base09", bg = "base09_20" }
+        "ui.statusline.select"    = { fg = "base0F", bg = "base0F_20" }
         "ui.statusline.separator" = { fg = "base03" }
 
         "ui.popup"                       = { fg = "base05", bg = "base01" }
@@ -82,7 +83,7 @@
         "ui.text.symlink"   = { fg = "base0C" }
 
         "ui.virtual.jump-label"             = { fg = "base08", modifiers = ["bold"] }
-        "ui.virtual.ruler"                  = { bg = "base01" }
+        "ui.virtual.ruler"                  = { bg = "highlight_low" }
         "ui.virtual.whitespace"             = { fg = "highlight_high" }
         "ui.virtual.indent-guide"           = { fg = "base03" }
         "ui.virtual.inlay-hint"             = { fg = "base04" }
@@ -100,9 +101,9 @@
         "ui.highlight"           = { bg = "highlight_low" }
         "ui.highlight.frameline" = { bg = "base0A_20" }
 
-        "ui.cursorline.primary"     = { bg = "base01" }
+        "ui.cursorline.primary"     = { bg = "highlight_low" }
         "ui.cursorline.secondary"   = { bg = "base02" }
-        "ui.cursorcolumn.primary"   = { bg = "base01" }
+        "ui.cursorcolumn.primary"   = { bg = "highlight_low" }
         "ui.cursorcolumn.secondary" = { bg = "base02" }
 
         # ┳┓┳┏┓┏┓┳┓┏┓┏┓┏┳┓┳┏┓┏┓
@@ -148,8 +149,8 @@
         # ┗┓┗┫┃┃ ┃ ┣┫ ┃┃
         # ┗┛┗┛┛┗ ┻ ┛┗┗┛┗┛
         #
-        "special"   = "base0C"
-        "attribute" = "base0C"
+        "special"   = "base0F"
+        "attribute" = "base0F"
 
         "type"              = "base0C"
         "type.builtin"      = "base0C"
@@ -288,6 +289,7 @@
         base0B_20 = "#${base0B_20}"
         base0C_20 = "#${base0C_20}"
         base0D_20 = "#${base0D_20}"
+        base0E_20 = "#${base0E_20}"
         base0F_20 = "#${base0F_20}"
       '');
   };

@@ -9,12 +9,12 @@ rec {
     base05 = "#F6F6F7";
     base06 = "#FBFBFB";
     base07 = "#FFFFFF";
-    base08 = "#EC6A88";
+    base08 = "#E95678";
     base09 = "#FFBFA9";
     base0A = "#E8EDA2";
     base0B = "#87E58E";
     base0C = "#A7DFEF";
-    base0D = "#D0B5F3";
+    base0D = "#BAA0E8";
     base0E = "#E48CC1";
     base0F = "#B08BBB";
   };

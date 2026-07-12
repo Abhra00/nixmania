@@ -39,6 +39,7 @@
           staged = "​";
           renamed = "​";
           deleted = "​";
+          diverged = "​";
           stashed = "≡";
           ahead = "⇡\${count} ";
           behind = "⇣\${count} ";

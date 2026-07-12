@@ -299,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783835045,
-        "narHash": "sha256-yL4Ptl/aH7kJK/4HtLEzpSE40zdMNdXolfgwwGY3bmk=",
+        "lastModified": 1783864904,
+        "narHash": "sha256-BQxN5UMg9FOevAsgBRwPxfxlh51Puj+dNn/8Dsi3sPM=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "9b7545740d701a28a6d46de0665a685191205ba1",
+        "rev": "1111b9bc836afb7e31a7014e8d1272de9b1c917d",
         "type": "github"
       },
       "original": {
@@ -366,11 +366,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783830881,
-        "narHash": "sha256-V75/tqvYElVWyXnFf+0jh89wMh5a/cbV5YYe/P7RFDM=",
+        "lastModified": 1783869378,
+        "narHash": "sha256-Du/ehXZEoO4pNg/ifC5Pd2RiXx8YTbLpaMixR3Mv5gw=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "ed3cb98536eaec92c2b523ddf703e1dc6728f535",
+        "rev": "a1a490d613028ea9148d49722fecc42c9bea06cc",
         "type": "github"
       },
       "original": {
@@ -419,6 +419,26 @@
         "type": "github"
       }
     },
+    "programming-fonts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783868215,
+        "narHash": "sha256-Esxx8DlFNwqWGp6WWI7exhWH6L0F1iAz7arMEvIjpbo=",
+        "owner": "Abhra00",
+        "repo": "programming-fonts",
+        "rev": "2edb9a20bf0fd4e3d24dc3c5ded6d73225497214",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Abhra00",
+        "repo": "programming-fonts",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -431,6 +451,7 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "preservation": "preservation",
+        "programming-fonts": "programming-fonts",
         "stylix": "stylix"
       }
     },

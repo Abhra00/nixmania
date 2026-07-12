@@ -54,7 +54,7 @@
           number_threshold = 1;
         };
         nix_shell = {
-          format = "[$symbol]($style)[nsh](orange) [│](bright-black) [$name](cyan) [│](bright-black) ";
+          format = "[$symbol]($style)[nsh](bold orange) [│](bright-black) [$name](bold blue) [│](bright-black) ";
           symbol = "󱄅 ";
           style = "blue";
           impure_msg = "";

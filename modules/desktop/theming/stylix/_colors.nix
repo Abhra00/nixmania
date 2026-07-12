@@ -16,6 +16,6 @@ rec {
     base0C = "#A7DFEF";
     base0D = "#BAA0E8";
     base0E = "#E48CC1";
-    base0F = "#B08BBB";
+    base0F = "#B4637A";
   };
 }

@@ -10,7 +10,9 @@
 
         adjust-cell-height = "20%";
         adjust-cursor-height = "20%";
-        adjust-underline-position = 5;
+        adjust-underline-thickness = "40%";
+        adjust-cursor-thickness = "150%";
+        adjust-underline-position = 6;
 
         window-padding-x = 30;
         window-padding-y = 30;

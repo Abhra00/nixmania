@@ -24,7 +24,6 @@
     base0C_20 = hsluv.mixRGB stx.base00 stx.base0C 0.20;
     base0D_20 = hsluv.mixRGB stx.base00 stx.base0D 0.20;
     base0E_20 = hsluv.mixRGB stx.base00 stx.base0E 0.20;
-    base0F_20 = hsluv.mixRGB stx.base00 stx.base0F 0.20;
   in {
     hm.programs.helix.settings.theme = lib.mkIf cfg "stylix";
 
@@ -57,7 +56,7 @@
         "ui.linenr.selected"              = { fg = "base05" }
 
         "ui.bufferline"                   = { fg = "base03", bg = "base00" }
-        "ui.bufferline.active"            = { fg = "base0E", bg = "base0E_20", underline = { color = "base0E", style = "line" }, modifiers = ["bold"] }
+        "ui.bufferline.active"            = { fg = "base0E", bg = "base0E_20", underline = { color = "base0E", style = "line" }, modifiers = ["italic"] }
         "ui.bufferline.background"        = { bg = "base00" }
 
         "ui.statusline"                   = { fg = "base04", bg = "base01" }
@@ -86,9 +85,9 @@
         "ui.virtual.ruler"                = { bg = "base01" }
         "ui.virtual.whitespace"           = { fg = "highlight_high" }
         "ui.virtual.indent-guide"         = { fg = "base03" }
-        "ui.virtual.inlay-hint"           = { fg = "base04" }
-        "ui.virtual.inlay-hint.parameter" = { fg = "base04" }
-        "ui.virtual.inlay-hint.type"      = { fg = "base0A" }
+        "ui.virtual.inlay-hint"           = { fg = "base04", modifiers = ["italic"] }
+        "ui.virtual.inlay-hint.parameter" = { fg = "base04", modifiers = ["italic"] }
+        "ui.virtual.inlay-hint.type"      = { fg = "base0A", modifiers = ["italic"] }
         "ui.virtual.wrap"                 = { fg = "base03" }
 
         "ui.menu"                         = { fg = "base04", bg = "base01" }
@@ -291,7 +290,6 @@
         base0C_20 = "#${base0C_20}"
         base0D_20 = "#${base0D_20}"
         base0E_20 = "#${base0E_20}"
-        base0F_20 = "#${base0F_20}"
       '');
   };
 }

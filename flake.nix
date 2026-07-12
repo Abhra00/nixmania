@@ -64,5 +64,11 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # programming fonts
+    programming-fonts = {
+      url = "github:Abhra00/programming-fonts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

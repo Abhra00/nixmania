@@ -1,24 +1,27 @@
 {
-  flake.modules.nixos.theming_fonts = {pkgs, ...}: let
-    fontSets = {
-      adobe = {
-        sansSerif = {
-          name = "Source Sans 3";
-          package = pkgs.source-sans;
-        };
-        serif = {
-          name = "Source Serif 4";
-          package = pkgs.source-serif;
-        };
-        monospace = {
-          name = "Source Code Pro";
-          package = pkgs.source-code-pro;
-        };
+  flake.modules.nixos.theming_fonts = {
+    pkgs,
+    inputs,
+    ...
+  }: let
+    system = pkgs.stdenv.hostPlatform.system;
+    typography = {
+      sansSerif = {
+        name = "Source Sans 3";
+        package = pkgs.source-sans;
+      };
+      serif = {
+        name = "Source Serif 4";
+        package = pkgs.source-serif;
+      };
+      monospace = {
+        name = "Hasklug Nerd Font";
+        package = inputs.programming-fonts.packages.${system}.default;
       };
     };
   in {
     stylix.fonts =
-      fontSets.adobe
+      typography
       // {
         emoji = {
           name = "Noto Color Emoji";
@@ -39,9 +42,9 @@
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
           <alias>
-            <family>${fontSets.adobe.monospace.name}</family>
+            <family>${typography.monospace.name}</family>
             <prefer>
-              <family>${fontSets.adobe.monospace.name}</family>
+              <family>${typography.monospace.name}</family>
               <family>Symbols Nerd Font</family>
             </prefer>
           </alias>
@@ -58,14 +61,14 @@
         <alias>
         <family>sans-serif</family>
         <prefer>
-          <family>${fontSets.adobe.sansSerif.name}</family>
+          <family>${typography.sansSerif.name}</family>
           <family>Noto Sans Bengali</family>
         </prefer>
         </alias>
         <alias>
         <family>serif</family>
         <prefer>
-          <family>${fontSets.adobe.serif.name}</family>
+          <family>${typography.serif.name}</family>
           <family>Noto Serif Bengali</family>
         </prefer>
         </alias>

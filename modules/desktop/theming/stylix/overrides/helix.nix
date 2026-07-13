@@ -61,7 +61,7 @@
 
         "ui.statusline"                   = { fg = "base04", bg = "base01" }
         "ui.statusline.inactive"          = { fg = "base03", bg = "base01" }
-        "ui.statusline.normal"            = { fg = "base0D", bg = "base0D_20" }
+        "ui.statusline.normal"            = { fg = "base0C", bg = "base0C_20" }
         "ui.statusline.insert"            = { fg = "base0B", bg = "base0B_20" }
         "ui.statusline.select"            = { fg = "base0E", bg = "base0E_20" }
         "ui.statusline.separator"         = { fg = "base03" }

@@ -5,30 +5,30 @@
       <stop style="stop-color:#e05e7a;stop-opacity:1;" offset="0" fill="#0c151d"/>
       <stop style="stop-color:#e05e7a;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
-    <!-- bar2: Nosfera base09 #f7c2b0 -->
+    <!-- bar2: Nosfera base09 #fcd2ac -->
     <linearGradient id="linearGradient3" fill="#0c151d">
-      <stop style="stop-color:#f7c2b0;stop-opacity:1;" offset="0" fill="#0c151d"/>
-      <stop style="stop-color:#f7c2b0;stop-opacity:1;" offset="1" fill="#0c151d"/>
+      <stop style="stop-color:#fcd2ac;stop-opacity:1;" offset="0" fill="#0c151d"/>
+      <stop style="stop-color:#fcd2ac;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
-    <!-- bar3: Nosfera base0E #de90be -->
+    <!-- bar3: Nosfera base0E #e48abe -->
     <linearGradient id="linearGradient6" fill="#0c151d">
-      <stop style="stop-color:#de90be;stop-opacity:1;" offset="0" fill="#0c151d"/>
-      <stop style="stop-color:#de90be;stop-opacity:1;" offset="1" fill="#0c151d"/>
+      <stop style="stop-color:#e48abe;stop-opacity:1;" offset="0" fill="#0c151d"/>
+      <stop style="stop-color:#e48abe;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
-    <!-- bar4: Nosfera base0B #8fe395 (comment was mislabeled 0D) -->
+    <!-- bar4: Nosfera base0B #8ce692 (comment was mislabeled 0D) -->
     <linearGradient id="linearGradient9" fill="#0c151d">
-      <stop style="stop-color:#8fe395;stop-opacity:1;" offset="0" fill="#0c151d"/>
-      <stop style="stop-color:#8fe395;stop-opacity:1;" offset="1" fill="#0c151d"/>
+      <stop style="stop-color:#8ce692;stop-opacity:1;" offset="0" fill="#0c151d"/>
+      <stop style="stop-color:#8ce692;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
-    <!-- bar5: Nosfera base0C #abdeed -->
+    <!-- bar5: Nosfera base0C #a9dfef -->
     <linearGradient id="linearGradient12" fill="#0c151d">
-      <stop style="stop-color:#abdeed;stop-opacity:1;" offset="0" fill="#0c151d"/>
-      <stop style="stop-color:#abdeed;stop-opacity:1;" offset="1" fill="#0c151d"/>
+      <stop style="stop-color:#a9dfef;stop-opacity:1;" offset="0" fill="#0c151d"/>
+      <stop style="stop-color:#a9dfef;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
-    <!-- bar6: Nosfera base0D #b8a2df -->
+    <!-- bar6: Nosfera base0D #b69ae7 -->
     <linearGradient id="linearGradient15" fill="#0c151d">
-      <stop style="stop-color:#b8a2df;stop-opacity:1;" offset="0" fill="#0c151d"/>
-      <stop style="stop-color:#b8a2df;stop-opacity:1;" offset="1" fill="#0c151d"/>
+      <stop style="stop-color:#b69ae7;stop-opacity:1;" offset="0" fill="#0c151d"/>
+      <stop style="stop-color:#b69ae7;stop-opacity:1;" offset="1" fill="#0c151d"/>
     </linearGradient>
 
     <linearGradient y2="880.37714" x2="-414.38654" y1="782.33563" x1="-584.19934" gradientTransform="translate(864.69589,-1491.3405)" gradientUnits="userSpaceOnUse" id="linearGradient1299" xlink:href="#linearGradient3" inkscape:collect="always" fill="#0c151d"/>

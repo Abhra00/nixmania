@@ -23,6 +23,8 @@
         {sh = "nautilus --gapplication-service &";}
       ];
 
+      switch-events.lid-close.action.spawn = ["noctalia" "msg" "session" "lock"];
+
       workspaces = {
         "1" = {};
         "2" = {};

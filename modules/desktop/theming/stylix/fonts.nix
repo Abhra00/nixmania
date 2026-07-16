@@ -7,12 +7,12 @@
     system = pkgs.stdenv.hostPlatform.system;
     typography = {
       sansSerif = {
-        name = "Source Sans 3";
-        package = pkgs.source-sans;
+        name = "Montserrat";
+        package = pkgs.montserrat;
       };
       serif = {
-        name = "Source Serif 4";
-        package = pkgs.source-serif;
+        name = "Aleo";
+        package = pkgs.aleo-fonts;
       };
       monospace = {
         name = "Hasklug Nerd Font";

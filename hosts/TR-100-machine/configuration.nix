@@ -38,6 +38,7 @@
         cli_fastfetch
         cli_fzf
         cli_git
+        cli_gpu-screen-recorder
         cli_lazygit
         cli_nh
         cli_nix-index

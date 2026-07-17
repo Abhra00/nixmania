@@ -5,14 +5,14 @@
     ...
   }: let
     system = pkgs.stdenv.hostPlatform.system;
-    typography = {
+    adobe = {
       sansSerif = {
-        name = "Montserrat";
-        package = pkgs.montserrat;
+        name = "Source Sans 3";
+        package = pkgs.source-sans;
       };
       serif = {
-        name = "Aleo";
-        package = pkgs.aleo-fonts;
+        name = "Source Serif 4";
+        package = pkgs.source-serif;
       };
       monospace = {
         name = "Hasklug Nerd Font";
@@ -21,7 +21,7 @@
     };
   in {
     stylix.fonts =
-      typography
+      adobe
       // {
         emoji = {
           name = "Noto Color Emoji";
@@ -42,9 +42,9 @@
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
           <alias>
-            <family>${typography.monospace.name}</family>
+            <family>${adobe.monospace.name}</family>
             <prefer>
-              <family>${typography.monospace.name}</family>
+              <family>${adobe.monospace.name}</family>
               <family>Symbols Nerd Font</family>
             </prefer>
           </alias>
@@ -61,14 +61,14 @@
         <alias>
         <family>sans-serif</family>
         <prefer>
-          <family>${typography.sansSerif.name}</family>
+          <family>${adobe.sansSerif.name}</family>
           <family>Noto Sans Bengali</family>
         </prefer>
         </alias>
         <alias>
         <family>serif</family>
         <prefer>
-          <family>${typography.serif.name}</family>
+          <family>${adobe.serif.name}</family>
           <family>Noto Serif Bengali</family>
         </prefer>
         </alias>

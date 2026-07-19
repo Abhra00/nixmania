@@ -285,7 +285,7 @@
             capsule_padding = 10.0;
             capsule_radius = 4;
             custom_image = "${confDir}/assets/pictures/logos/NixOS.svg";
-            scale = 1.3;
+            scale = 1.0;
           };
 
           network.show_label = false;

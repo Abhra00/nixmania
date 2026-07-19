@@ -35,6 +35,9 @@
 
         shell-integration-features = "no-cursor,sudo,title";
 
+        bell-features = "attention,no-system,no-title,no-border";
+        notify-on-command-finish = "unfocused";
+
         keybind = [
           # tabs
           "ctrl+shift+t=new_tab"

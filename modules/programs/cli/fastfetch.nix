@@ -31,6 +31,7 @@
           };
         };
         modules = [
+          "break"
           {
             type = "title";
             format = " {user-name-colored}@{host-name-colored}";

@@ -17,6 +17,8 @@
     highlight_med = l stx.base02 0.10;
     highlight_high = l stx.base02 0.20;
 
+    comment_fg = l stx.base03 0.20;
+
     base08_20 = hsluv.mixRGB stx.base00 stx.base08 0.20;
     base09_20 = hsluv.mixRGB stx.base00 stx.base09 0.20;
     base0A_20 = hsluv.mixRGB stx.base00 stx.base0A 0.20;
@@ -37,14 +39,14 @@
         "ui.background"                   = { fg = "base05", bg = "base00" }
         "ui.background.separator"         = { fg = "base03" }
 
-        "ui.cursor"                       = { fg = "base00", bg = "base05" }
-        "ui.cursor.normal"                = { fg = "base00", bg = "base05" }
-        "ui.cursor.insert"                = { fg = "base00", bg = "base05" }
+        "ui.cursor"                       = { fg = "base00", bg = "base06" }
+        "ui.cursor.normal"                = { fg = "base00", bg = "base06" }
+        "ui.cursor.insert"                = { fg = "base00", bg = "base06" }
         "ui.cursor.select"                = { fg = "base00", bg = "base0E" }
         "ui.cursor.match"                 = { fg = "base08", bg = "base08_20", modifiers = ["bold"] }
-        "ui.cursor.primary"               = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.normal"        = { fg = "base00", bg = "base05" }
-        "ui.cursor.primary.insert"        = { fg = "base00", bg = "base05" }
+        "ui.cursor.primary"               = { fg = "base00", bg = "base06" }
+        "ui.cursor.primary.normal"        = { fg = "base00", bg = "base06" }
+        "ui.cursor.primary.insert"        = { fg = "base00", bg = "base06" }
         "ui.cursor.primary.select"        = { fg = "base00", bg = "base0E" }
 
         "ui.debug.breakpoint"             = { fg = "base08" }
@@ -172,10 +174,10 @@
         "string.special.url"              = { fg = "base09", underline = { color = "base09", style = "line" } }
         "string.special.symbol"           = "base0B"
 
-        "comment"                         = { fg = "base03", modifiers = ["italic"] }
-        "comment.line.documentation"      = { fg = "base03", modifiers = ["italic", "bold"] }
-        "comment.block.documentation"     = { fg = "base03", modifiers = ["italic", "bold"] }
-        "comment.unused"                  = { fg = "base03", modifiers = ["italic", "dim"] }
+        "comment"                         = { fg = "comment_fg", modifiers = ["italic"] }
+        "comment.line.documentation"      = { fg = "comment_fg", modifiers = ["italic", "bold"] }
+        "comment.block.documentation"     = { fg = "comment_fg", modifiers = ["italic", "bold"] }
+        "comment.unused"                  = { fg = "comment_fg", modifiers = ["italic", "dim"] }
 
         "variable"                        = "base05"
         "variable.builtin"                = { fg = "base05", modifiers = ["italic"] }
@@ -282,6 +284,8 @@
         highlight_low  = "#${highlight_low}"
         highlight_med  = "#${highlight_med}"
         highlight_high = "#${highlight_high}"
+
+        comment_fg = "#${comment_fg}"
 
         base08_20 = "#${base08_20}"
         base09_20 = "#${base09_20}"

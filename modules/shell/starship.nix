@@ -26,7 +26,7 @@
         };
 
         git_status = {
-          format = "[$all_status]($style)";
+          format = "[$all_status$ahead_behind]($style)";
           style = "cyan";
           ahead = "⇡$count ";
           diverged = "⇕⇡$ahead_count⇣$behind_count ";

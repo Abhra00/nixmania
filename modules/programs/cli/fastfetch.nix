@@ -34,14 +34,16 @@
           "break"
           {
             type = "title";
-            format = " {user-name-colored}@{host-name-colored}";
+            format = " {user-name-colored} in {host-name-colored}";
             color = {
               user = color.accent4;
-              at = color.accent5;
               host = color.accent2;
             };
           }
-          "break"
+          {
+            type = "custom";
+            format = "{#35}------------------------";
+          }
           {
             type = "os";
             key = "{#31}  ";

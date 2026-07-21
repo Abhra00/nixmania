@@ -1,8 +1,8 @@
 rec {
   palette = Cat;
   Cat = {
-    base00 = "#1E1E2E";
-    base01 = "#282839";
+    base00 = "#181825";
+    base01 = "#1E1E2E";
     base02 = "#313244";
     base03 = "#45475A";
     base04 = "#585B70";

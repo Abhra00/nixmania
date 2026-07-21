@@ -3,68 +3,46 @@
     hm.programs.starship = {
       enable = true;
       settings = {
-        format = lib.concatStrings [
-          "$jobs"
-          "$username"
-          "$hostname"
-          "$nix_shell"
-          "$directory"
-          "$git_branch"
-          "$git_state"
-          "$git_status"
-          "$cmd_duration"
-          "$line_break"
-          "$python"
-          "$character"
-        ];
         add_newline = true;
-        continuation_prompt = "[∙  ┆ ](bright-black)";
-        directory = {
-          truncation_symbol = "…/";
-        };
+        command_timeout = 200;
+        format = "[$nix_shell$directory$git_branch$git_status]($style)$character";
+
         character = {
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[✘](bold red)";
+          error_symbol = "[❯](bold red)";
+          success_symbol = "[❯](bold green)";
         };
+
+        directory = {
+          truncation_length = 2;
+          truncation_symbol = "…/";
+          style = "bold blue";
+          repo_root_style = "bold cyan";
+          repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
+        };
+
         git_branch = {
-          format = "on [$symbol$branch(:$remote_branch)]($style)";
-          symbol = "";
+          format = "[$branch]($style) ";
+          style = "italic brown";
         };
+
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bold purple) ($ahead_behind$stashed)]($style)";
-          style = "bold cyan";
-          conflicted = "​";
-          untracked = "​";
-          modified = "​";
-          staged = "​";
-          renamed = "​";
-          deleted = "​";
-          diverged = "​";
-          stashed = "≡";
-          ahead = "⇡\${count} ";
-          behind = "⇣\${count} ";
-        };
-        cmd_duration = {
-          format = "took [$duration]($style) ";
-        };
-        jobs = {
-          format = "[$symbol]($style) ";
-          symbol = "✦";
-          style = "blue";
-          number_threshold = 1;
+          format = "[$all_status]($style)";
+          style = "cyan";
+          ahead = "⇡$count ";
+          diverged = "⇕⇡$ahead_count⇣$behind_count ";
+          behind = "⇣$count ";
+          conflicted = " ";
+          up_to_date = " ";
+          untracked = "? ";
+          modified = " ";
+          staged = "";
+          renamed = "";
+          deleted = "";
         };
         nix_shell = {
-          format = "[$symbol]($style)[nsh](bold orange) [│](bright-black) [$name](bold blue) [│](bright-black) ";
+          format = "[$symbol]($style)[$state](bold red) [│](bold bright-black) ";
           symbol = "󱄅 ";
-          style = "blue";
-          impure_msg = "";
-          pure_msg = "";
-        };
-        python = {
-          format = "[$virtualenv]($style) ";
-          style = "bols purple";
-          detect_extensions = [];
-          detect_files = [];
+          style = "bold orange";
         };
       };
     };

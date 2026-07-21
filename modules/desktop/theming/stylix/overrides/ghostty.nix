@@ -14,10 +14,10 @@
     base0E_20 = hsluv.mixRGB stx.base00 stx.base0E 0.20;
   in {
     hm.programs.ghostty.settings = lib.mkIf cfg {
-      font-family = "${fonts.monospace.name} Med";
+      font-family = fonts.monospace.name;
       font-family-bold = fonts.monospace.name;
-      font-family-italic = "Cartograph CF";
-      font-family-bold-italic = "Cartograph CF";
+      font-family-italic = fonts.monospace.name;
+      font-family-bold-italic = fonts.monospace.name;
       font-size = fonts.sizes.terminal;
 
       background-opacity = opacity;

@@ -419,26 +419,6 @@
         "type": "github"
       }
     },
-    "programming-fonts": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783953090,
-        "narHash": "sha256-h6XWbi6mfVqredrXEKDhm7d3Sz15hWN7Cy16XaaKzRA=",
-        "owner": "Abhra00",
-        "repo": "programming-fonts",
-        "rev": "dc9e2f1ac28fcb8d29987a3ada189e9dbdef0fd2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Abhra00",
-        "repo": "programming-fonts",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -451,7 +431,6 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "preservation": "preservation",
-        "programming-fonts": "programming-fonts",
         "stylix": "stylix"
       }
     },

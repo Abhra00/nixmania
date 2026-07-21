@@ -4,24 +4,23 @@
     inputs,
     ...
   }: let
-    system = pkgs.stdenv.hostPlatform.system;
-    adobe = {
+    inkwell = {
       sansSerif = {
-        name = "Source Sans 3";
-        package = pkgs.source-sans;
+        name = "Montserrat";
+        package = pkgs.montserrat;
       };
       serif = {
-        name = "Source Serif 4";
-        package = pkgs.source-serif;
+        name = "Lora";
+        package = pkgs.lora;
       };
       monospace = {
-        name = "Hasklug Nerd Font";
-        package = inputs.programming-fonts.packages.${system}.default;
+        name = "JetBrains Mono";
+        package = pkgs.jetbrains-mono;
       };
     };
   in {
     stylix.fonts =
-      adobe
+      inkwell
       // {
         emoji = {
           name = "Noto Color Emoji";
@@ -42,9 +41,9 @@
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
           <alias>
-            <family>${adobe.monospace.name}</family>
+            <family>${inkwell.monospace.name}</family>
             <prefer>
-              <family>${adobe.monospace.name}</family>
+              <family>${inkwell.monospace.name}</family>
               <family>Symbols Nerd Font</family>
             </prefer>
           </alias>
@@ -61,14 +60,14 @@
         <alias>
         <family>sans-serif</family>
         <prefer>
-          <family>${adobe.sansSerif.name}</family>
+          <family>${inkwell.sansSerif.name}</family>
           <family>Noto Sans Bengali</family>
         </prefer>
         </alias>
         <alias>
         <family>serif</family>
         <prefer>
-          <family>${adobe.serif.name}</family>
+          <family>${inkwell.serif.name}</family>
           <family>Noto Serif Bengali</family>
         </prefer>
         </alias>

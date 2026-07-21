@@ -22,12 +22,12 @@
         };
         status = {
           sep_left = {
-            open = "█";
+            open = "";
             close = "";
           };
           sep_right = {
             open = "";
-            close = "█";
+            close = "";
           };
         };
         which = {

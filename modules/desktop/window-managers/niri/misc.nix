@@ -1,9 +1,9 @@
 {
-  flake.modules.nixos.window-manager_niri = {
+  flake.modules.nixos.window-manager_niri = {config, ...}: {
     hm.programs.niri.settings = {
       prefer-no-csd = true;
       hotkey-overlay.skip-at-startup = true;
-      screenshot-path = "~/Pictures/Screenshots/Screenshot-%d-%m-%y_%H-%M-%S.png";
+      screenshot-path = "${config.hm.home.homeDirectory}/Pictures/Screenshots/Screenshot-%d-%m-%y_%H-%M-%S.png";
       gestures.hot-corners.enable = false;
 
       environment = {

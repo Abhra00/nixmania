@@ -248,7 +248,7 @@
 
           screenshot = {
             directory = "${config.home.homeDirectory}/Pictures/Screenshots";
-            filename_pattern = "Screenshot-%d-%m-%y_%H-%M-%S.png";
+            filename_pattern = "Screenshot-%d-%m-%y_%H-%M-%S";
           };
         };
 
@@ -300,7 +300,7 @@
 
           workspaces = {
             capsule_radius = 4;
-            display = "Name";
+            display = "name";
             labels_only_when_occupied = true;
           };
         };

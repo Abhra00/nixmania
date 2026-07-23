@@ -265,11 +265,11 @@
           transition_duration = 2200;
           transition_on_startup = true;
 
-          default.path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.jpg";
-          last.path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.jpg";
+          default.path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.png";
+          last.path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.png";
 
           monitor."eDP-1".directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
-          monitors."eDP-1".path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.jpg";
+          monitors."eDP-1".path = "${config.home.homeDirectory}/Pictures/Wallpapers/Wallpaper.png";
         };
 
         widget = {

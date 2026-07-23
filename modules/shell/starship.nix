@@ -22,7 +22,7 @@
 
         git_branch = {
           format = "[$branch]($style) ";
-          style = "italic brown";
+          style = "italic purple";
         };
 
         git_status = {

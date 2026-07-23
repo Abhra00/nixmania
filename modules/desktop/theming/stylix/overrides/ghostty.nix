@@ -25,7 +25,7 @@
       foreground = stx.base05;
       background = stx.base00;
 
-      cursor-color = stx.base06;
+      cursor-color = stx.base05;
       cursor-text = stx.base00;
 
       selection-foreground = stx.base0E;

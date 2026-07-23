@@ -14,8 +14,8 @@
         package = pkgs.lora;
       };
       monospace = {
-        name = "JetBrains Mono";
-        package = pkgs.jetbrains-mono;
+        name = "Hack";
+        package = pkgs.hack-font;
       };
     };
   in {

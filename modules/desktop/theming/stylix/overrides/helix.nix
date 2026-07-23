@@ -39,14 +39,14 @@
         "ui.background"                   = { fg = "base05", bg = "base00" }
         "ui.background.separator"         = { fg = "base03" }
 
-        "ui.cursor"                       = { fg = "base00", bg = "base06" }
-        "ui.cursor.normal"                = { fg = "base00", bg = "base06" }
-        "ui.cursor.insert"                = { fg = "base00", bg = "base06" }
+        "ui.cursor"                       = { fg = "base00", bg = "base05" }
+        "ui.cursor.normal"                = { fg = "base00", bg = "base05" }
+        "ui.cursor.insert"                = { fg = "base00", bg = "base05" }
         "ui.cursor.select"                = { fg = "base00", bg = "base0E" }
         "ui.cursor.match"                 = { fg = "base08", bg = "base08_20", modifiers = ["bold"] }
-        "ui.cursor.primary"               = { fg = "base00", bg = "base06" }
-        "ui.cursor.primary.normal"        = { fg = "base00", bg = "base06" }
-        "ui.cursor.primary.insert"        = { fg = "base00", bg = "base06" }
+        "ui.cursor.primary"               = { fg = "base00", bg = "base05" }
+        "ui.cursor.primary.normal"        = { fg = "base00", bg = "base05" }
+        "ui.cursor.primary.insert"        = { fg = "base00", bg = "base05" }
         "ui.cursor.primary.select"        = { fg = "base00", bg = "base0E" }
 
         "ui.debug.breakpoint"             = { fg = "base08" }

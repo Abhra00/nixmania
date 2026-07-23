@@ -8,11 +8,11 @@
         cursor-style = "block";
         cursor-style-blink = true;
 
-        adjust-cell-height = "10%";
-        adjust-cursor-height = "10%";
+        adjust-cell-height = "25%";
+        adjust-cursor-height = "25%";
         adjust-underline-thickness = "10%";
         adjust-cursor-thickness = "150%";
-        adjust-underline-position = 2;
+        adjust-underline-position = 3;
 
         window-padding-x = 30;
         window-padding-y = 30;

@@ -39,7 +39,7 @@
           stashed = "≡ ";
         };
         nix_shell = {
-          format = "[$symbol]($style)[$state](red) [│](bold bright-black) ";
+          format = "[$symbol]($style)[$state](red) [│](bright-black) ";
           symbol = "󱄅 ";
           style = "orange";
         };

@@ -14,8 +14,8 @@
         package = pkgs.source-serif;
       };
       monospace = {
-        name = "MesloLGM Nerd Font";
-        package = pkgs.nerd-fonts.meslo-lg;
+        name = "JetBrains Mono NL";
+        package = pkgs.jetbrains-mono;
       };
     };
   in {

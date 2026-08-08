@@ -8,15 +8,15 @@
         format = "[$nix_shell$directory$git_branch$git_status$cmd_duration]($style)$character";
 
         character = {
-          error_symbol = "[❯](bold red)";
-          success_symbol = "[❯](bold green)";
+          error_symbol = "[❯](red)";
+          success_symbol = "[❯](green)";
         };
 
         directory = {
           truncation_length = 2;
           truncation_symbol = "…/";
-          style = "bold blue";
-          repo_root_style = "bold blue";
+          style = "blue";
+          repo_root_style = "blue";
           repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
         };
 
@@ -26,7 +26,7 @@
         };
 
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+          format = "[[(•$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
           style = "cyan";
           conflicted = "​";
           untracked = "​";

@@ -1,0 +1,594 @@
+{
+  "List comprehension": {
+    "prefix": "lc",
+    "body": "[${3:value} for ${2:value} in ${1:iterable}]$0",
+    "description": "List comprehension for creating a list based on existing lists."
+  },
+  "List comprehension if else": {
+    "prefix": "lcie",
+    "body": "[${3:value} if ${4:condition} else ${5:condition} for ${2:value} in ${1:iterable}]$0",
+    "description": "List comprehension for creating a list based on existing lists, with conditional if-else statement."
+  },
+  "List comprehension if filter": {
+    "prefix": "lci",
+    "body": "[${3:value} for ${2:value} in ${1:iterable} if ${4:condition}$0]",
+    "description": "List comprehension for creating a list based on existing lists, with conditional if statement."
+  },
+  "Dictionary comprehension": {
+    "prefix": "dc",
+    "body": "{${4:key}: ${5:value} for ${2:key}, ${3:value} in ${1:iterable}}$0",
+    "description": "Handy and faster way to create dictionaries based on existing dictionaries."
+  },
+  "Dictionary comprehension if filter": {
+    "prefix": "dci",
+    "body": "{${4:key}: ${5:value} for ${2:key}, ${3:value} in ${1:iterable} if ${6:condition}}$0",
+    "description": "Handy and faster way to create dictionaries based on existing dictionaries, with conditional if statement."
+  },
+  "Set comprehension": {
+    "prefix": "sc",
+    "body": "{${3:value} for ${2:value} in ${1:iterable}}$0",
+    "description": "Create a set based on existing iterables."
+  },
+  "Set Comprehension if filter": {
+    "prefix": "sci",
+    "body": "{${3:value} for ${2:value} in ${1:iterable} if ${4:condition}}$0",
+    "description": "Create a set based on existing iterables, with condition if statement."
+  },
+  "Generator comprehension": {
+    "prefix": "gc",
+    "body": "(${3:key} for ${2:value} in ${1:iterable})$0",
+    "description": "Create a generator based on existing iterables."
+  },
+  "Generator comprehension if filter": {
+    "prefix": "gci",
+    "body": "(${3:key} for ${2:value} in ${1:iterable} if ${4:condition})$0",
+    "description": "Create a generator based on existing iterables, with condition if statement."
+  },
+  "PDB set trace": {
+    "prefix": "pdb",
+    "body": "__import__('pdb').set_trace()$0",
+    "description": "Code snippet for pdb debug"
+  },
+  "iPDB set trace": {
+    "prefix": "ipdb",
+    "body": "__import__('ipdb').set_trace()$0",
+    "description": "Code snippet for ipdb debug"
+  },
+  "rPDB set trace": {
+    "prefix": "rpdb",
+    "body": "import rpdb2; rpdb2.start_embedded_debugger('${1:debug_password}')$0"
+  },
+  "PuDB set trace": {
+    "prefix": "pudb",
+    "body": "import pudb; pudb.set_trace()$0",
+    "description": "Code snippet for pudb debug"
+  },
+  "IPython set trace": {
+    "prefix": "ipydb",
+    "body": "from IPython import embed; embed()$0"
+  },
+  "Celery set trace": {
+    "prefix": "rdb",
+    "body": "from celery.contrib import rdb; rdb.set_trace()$0",
+    "description": "Code snippet for celery remote debugger breakpoint"
+  },
+  "Pretty print": {
+    "prefix": "pprint",
+    "body": "__import__('pprint').pprint(${1:expression})$0"
+  },
+  "debugpy remote attach": {
+    "prefix": "debugpy",
+    "body": [
+      "import debugpy, platform",
+      "debugpy.listen((platform.node(), ${1:5678}))",
+      "print(f\"debugpy listening on {platform.node()}:$1\", flush=True)",
+      "debugpy.wait_for_client()$0"
+    ],
+    "description": "Code snippet for debugpy remote attach"
+  },
+  "comment": {
+    "prefix": "###",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Args:",
+      "    ${4:argument_name}: ${5:type and description.}",
+      "",
+      "Returns:",
+      "    ${3:type and description of the returned object.}",
+      "",
+      "Example:",
+      "    # ${6:Description of my example.}",
+      "    ${7:use_it_this_way(arg1, arg2)}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for functions and methods, including short summary, details, args, returns, and examples. This docstring is an synonym of \"\"\"function."
+  },
+  "comment simple": {
+    "prefix": "##",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "\"\"\""
+    ],
+    "description": "A simple Python docstring comment. Useful when you prefer to add the docstrings manually on functions."
+  },
+  "module docstring": {
+    "prefix": "###module",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Examples:",
+      "    # ${3:Description of my example.}",
+      "    ${4:use_it_this_way(arg1, arg2)}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for modules, including a one-line summary, details, and example."
+  },
+  "test module docstring": {
+    "prefix": "###test",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "\"\"\""
+    ],
+    "description": "Module-level docstrings for test files are not required. They should be included only when there is additional information that can be provided.\n\nExamples include some specifics on how the test should be run, an explanation of an unusual setup pattern, dependency on the external environment, and so on. Docstrings that do not provide any new information should not be used, such as \"\"\"Tests for foo.bar.\"\"\""
+  },
+  "function docstring": {
+    "prefix": "###function",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Args:",
+      "    ${4:argument_name}: ${5:type and description.}",
+      "",
+      "Returns:",
+      "    ${3:type and description of the returned object.}",
+      "",
+      "Example:",
+      "    # ${6:Description of my example.}",
+      "    ${7:use_it_this_way(arg1, arg2)}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for functions and methods, including short summary, details, args, returns, and example."
+  },
+  "function docstring typed": {
+    "prefix": "###function_typed",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Args:",
+      "    ${5:argument_name} (${6:type}): ${7:description.}",
+      "",
+      "Returns:",
+      "    ${3:type}: {4:Description of the returned object.}",
+      "",
+      "Example:",
+      "    # ${8:Description of my example.}",
+      "    ${9:use_it_this_way(arg1, arg2)}",
+      "\"\"\""
+    ],
+    "description": "Alternative Python docstring for functions and methods, with a different type syntax. Some teams prefer it."
+  },
+  "generator docstring": {
+    "prefix": "###generator",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Args:",
+      "    ${4:argument_name}: ${5:type and description.}",
+      "",
+      "Yields:",
+      "    ${3:type and description of the yielded object.}",
+      "",
+      "Example:",
+      "    # ${6:Description of my example.}",
+      "    ${7:use_it_this_way(arg1, arg2)}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for generator methods, including a one-line summary, details, parameters, yields, and example. It is the same, but it has yields instead of returns."
+  },
+  "class docstring": {
+    "prefix": "###class",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Attributes:",
+      "    ${3:attribute_name}: ${4:type and description.}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for classes, including a one-line summary, details, attributes, and returns."
+  },
+  "exception docstring": {
+    "prefix": "###exception",
+    "body": [
+      "\"\"\"",
+      "${1:A one-line summary.}",
+      "",
+      "${2:Detailed description.}$0",
+      "",
+      "Attributes:",
+      "    ${3:attribute_name}: ${4:type and description.}",
+      "\"\"\""
+    ],
+    "description": "A Python docstring for exceptions, including a one-line summary, description, and attributes."
+  },
+  "raises docstring": {
+    "prefix": "###raises",
+    "body": [
+      "Raises:",
+      "    ${1:ErrorName}: ${2:Error description.}$0"
+    ],
+    "description": "A Python docstring for methods when we want to be exclicit about the errors it Raises. Use it only when is relevant."
+  },
+  "Assert equal": {
+    "prefix": "ase",
+    "body": "self.assertEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+  },
+  "Assert not equal": {
+    "prefix": "asne",
+    "body": "self.assertNotEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+  },
+  "Assert raises": {
+    "prefix": "asr",
+    "body": "self.assertRaises(${1:exception}, ${2:callable}, ${3:args})$0"
+  },
+  "Assert True": {
+    "prefix": "ast",
+    "body": "self.assertTrue(${1:actual}${2:, '${3:message}'})$0"
+  },
+  "Assert False": {
+    "prefix": "asf",
+    "body": "self.assertFalse(${1:actual}${2:, '${3:message}'})$0"
+  },
+  "Assert is": {
+    "prefix": "asi",
+    "body": "self.assertIs(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+  },
+  "Assert is not": {
+    "prefix": "asint",
+    "body": "self.assertIsNot(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+  },
+  "Assert is None": {
+    "prefix": "asino",
+    "body": "self.assertIsNone(${1:actual}${2:, '${3:message}'})$0"
+  },
+  "Assert is not None": {
+    "prefix": "asinno",
+    "body": "self.assertIsNotNone(${1:actual}${2:, '${3:message}'})$0"
+  },
+  "Assert in": {
+    "prefix": "asin",
+    "body": "self.assertIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0"
+  },
+  "Assert not in": {
+    "prefix": "asni",
+    "body": "self.assertNotIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0"
+  },
+  "Assert": {
+    "prefix": "as",
+    "body": "self.assert_(${1:boolean expression}${2:, '${3:message}'})$0"
+  },
+  "Fail (a test)": {
+    "prefix": "fail",
+    "body": "self.fail('${1:message}')$0"
+  },
+  "#!/usr/bin/env pythonX": {
+    "prefix": "#env",
+    "body": "#!/usr/bin/env python$0",
+    "description": "Shebang line for the first python in PATH"
+  },
+  "pyright ignore line": {
+    "prefix": "#ignore",
+    "body": "# pyright: ignore[$0]",
+    "description": "Ignore specific line diagnostic in pyright (ignore all is unsafe)"
+  },
+  "Multiline string": {
+    "prefix": "#",
+    "body": [
+      "\"\"\"$0",
+      "\"\"\""
+    ],
+    "description": "Snippet to avoid autopair plugin annoyances when typing multiple \""
+  },
+  "One-line multiline string": {
+    "prefix": "##",
+    "body": "\"\"\"$0\"\"\"",
+    "description": "Snippet to avoid autopair plugin annoyances when typing multiple \""
+  },
+  "self": {
+    "prefix": "s",
+    "body": "self.$0",
+    "description": "Snippet to reference the self property in an object"
+  },
+  "__magic__": {
+    "prefix": "__",
+    "body": "__${1:init}__$0",
+    "description": "Create magic method"
+  },
+  "if __name__ == __main__": {
+    "prefix": "ifmain",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "\t${1:main()}"
+    ],
+    "description": "Execute code if the file is executed directly"
+  },
+  "import": {
+    "prefix": "import",
+    "body": "import ${1:datetime}",
+    "description": "Import a package or module"
+  },
+  "from ... import ...": {
+    "prefix": "fromim",
+    "body": "from ${1:pathlib} import ${2:Path}",
+    "description": "Import individual objects directly into the caller’s symbol table"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}:",
+      "\t${2:pass}"
+    ],
+    "description": "if statement"
+  },
+  "elif": {
+    "prefix": "elif",
+    "body": [
+      "elif ${1:expression}:",
+      "\t${2:pass}"
+    ],
+    "description": "elif statement"
+  },
+  "else": {
+    "prefix": "else",
+    "body": [
+      "else:",
+      "\t${1:pass}"
+    ],
+    "description": "else statement"
+  },
+  "if/else": {
+    "prefix": "ifelse",
+    "body": [
+      "if ${1:condition}:",
+      "\t${2:pass}",
+      "else:",
+      "\t${3:pass}"
+    ],
+    "description": "if statement with else"
+  },
+  "match/case": {
+    "prefix": "match",
+    "body": [
+      "match ${1:expression}:",
+      "\tcase ${2:pattern}:",
+      "\t\t${3:pass}"
+    ],
+    "description": "match/case statements"
+  },
+  "case": {
+    "prefix": "case",
+    "body": [
+      "case ${2:pattern}:",
+      "\t${3:pass}"
+    ],
+    "description": "case block"
+  },
+  "case wildcard": {
+    "prefix": "casew",
+    "body": [
+      "case _:",
+      "\t${1:pass}"
+    ],
+    "description": "case wildcard block if other cases fail"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while ${1:condition}:",
+      "\t${2:pass}"
+    ],
+    "description": "while loop"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1:value} in ${2:iterable}:",
+      "\t${3:pass}"
+    ],
+    "description": "for loop"
+  },
+  "for w/ range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:value} in range($2):",
+      "\t${3:pass}"
+    ],
+    "description": "for loop that iterates over range of integers"
+  },
+  "with": {
+    "prefix": "with",
+    "body": [
+      "with ${1:expression} as ${2:target}:",
+      "\t${3:pass}"
+    ],
+    "description": "'with' statement"
+  },
+  "lambda": {
+    "prefix": "lambda",
+    "body": [
+      "lambda ${1:parameter_list}: ${2:expression}"
+    ],
+    "description": "lambda statement"
+  },
+  "Function": {
+    "prefix": "def",
+    "body": [
+      "def ${1:fname}($2):",
+      "\t${3:pass}"
+    ],
+    "description": "Function definition"
+  },
+  "Function w/ return type": {
+    "prefix": "deft",
+    "body": [
+      "def ${1:fname}($2) -> ${3:None}:",
+      "\t${4:pass}"
+    ],
+    "description": "Function definition with return type"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:classname}:",
+      "\t${2:pass}"
+    ],
+    "description": "Class definition"
+  },
+  "Derived class": {
+    "prefix": "classd",
+    "body": [
+      "class ${1:classname}($2):",
+      "\t${3:pass}"
+    ],
+    "description": "Class definition with inheritance"
+  },
+  "class template": {
+    "prefix": "classi",
+    "body": [
+      "class ${1:ClassName}($2):",
+      "\t\"\"\"${3:docstring for $1.}\"\"\"",
+      "\tdef __init__(self, ${4:arg}):",
+      "\t\t${5:super($1, self).__init__()}",
+      "\t\tself.$4 = $4$0"
+    ],
+    "description": "Class definition template"
+  },
+  "Method": {
+    "prefix": "defs",
+    "body": [
+      "def ${1:mname}(self$2):",
+      "\t${3:pass}"
+    ],
+    "description": "Class method definition"
+  },
+  "Method w/ return type": {
+    "prefix": "defst",
+    "body": [
+      "def ${1:mname}(self$2) -> ${3:None}:",
+      "\t${4:pass}"
+    ],
+    "description": "Class method definition"
+  },
+  "property template": {
+    "prefix": "property",
+    "body": [
+      "@property",
+      "def ${1:pname}(self):",
+      "\t\"\"\"${2:The $1 property.}\"\"\"",
+      "\t${3:return self._$1}",
+      "",
+      "@${4:$1}.setter",
+      "def ${5:$1}(self, value):",
+      "\t${6:self._$1} = value"
+    ],
+    "description": "New property: get and set via decorator"
+  },
+  "except": {
+    "prefix": "except",
+    "body": [
+      "except$1:",
+      "\t${2:pass}"
+    ],
+    "description": "except statement"
+  },
+  "except as": {
+    "prefix": "exceptas",
+    "body": [
+      "except ${1:Exception} as ${2:e}:",
+      "\t${3:raise $2}"
+    ],
+    "description": "'except as' statement"
+  },
+  "try/except": {
+    "prefix": "try",
+    "body": [
+      "try:",
+      "\t${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "\t${4:raise $3}"
+    ],
+    "description": "try/except blocks"
+  },
+  "try/except/else": {
+    "prefix": "trya",
+    "body": [
+      "try:",
+      "\t${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "\t${4:raise $3}",
+      "else:",
+      "\t${5:pass}"
+    ],
+    "description": "try/except/else blocks"
+  },
+  "try/except/finally": {
+    "prefix": "tryf",
+    "body": [
+      "try:",
+      "\t${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "\t${4:raise $3}",
+      "finally:",
+      "\t${5:pass}"
+    ],
+    "description": "try/except/finally blocks"
+  },
+  "try/except/else/finally": {
+    "prefix": "tryef",
+    "body": [
+      "try:",
+      "\t${1:pass}",
+      "except${2: ${3:Exception} as ${4:e}}:",
+      "\t${5:raise}",
+      "else:",
+      "\t${6:pass}",
+      "finally:",
+      "\t${7:pass}"
+    ],
+    "description": "try/except/else/finally blocks"
+  },
+  "Jupyter cell": {
+    "prefix": "#cell",
+    "body": "# %%",
+    "description": "Add a new cell"
+  },
+  "Jupyter markdown cell": {
+    "prefix": "#mark",
+    "body": "# %% [markdown]",
+    "description": "Add a new markdown cell"
+  }
+}

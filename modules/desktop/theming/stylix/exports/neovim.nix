@@ -1,0 +1,603 @@
+{
+  flake.modules.nixos.editor_neovim = {
+    config,
+    lib,
+    ...
+  }: let
+    colors = config.lib.stylix.extended-palette.colors;
+    colorLines = lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (name: value: "    ${name} = '${value}',") colors
+    );
+
+    lualineStylix = ''
+      local colors = {
+      ${colorLines}
+      }
+
+      return {
+        normal = {
+          a = { fg = colors.base04, bg = colors.blue  },
+          b = { fg = colors.base04, bg = colors.base0 },
+          c = { fg = colors.fg,     bg = colors.base03 },
+        },
+        insert   = { a = { fg = colors.base04, bg = colors.green } },
+        command  = { a = { fg = colors.base04, bg = colors.yellow } },
+        visual   = { a = { fg = colors.base04, bg = colors.magenta } },
+        replace  = { a = { fg = colors.base04, bg = colors.red } },
+        terminal = { a = { fg = colors.base04, bg = colors.green } },
+        inactive = {
+          a = { fg = colors.blue,   bg = colors.base03, },
+          b = { fg = colors.fg,     bg = colors.base03 },
+          c = { fg = colors.fg,     bg = colors.base03 },
+        },
+      }
+    '';
+
+    colorschemeLua = ''
+
+      -- Clear all highlights.
+      vim.cmd.highlight 'clear'
+      if vim.fn.exists 'syntax_on' then
+          vim.cmd.syntax 'reset'
+      end
+
+      -- Enable 24-bit colors
+      vim.o.termguicolors = true
+
+      -- Set the colorscheme name.
+      vim.g.colors_name = 'stylix'
+
+      -- Colors table.
+      local colors = {
+      ${colorLines}
+      }
+
+      -- Terminal colors.
+      vim.g.terminal_color_0  = colors.base03
+      vim.g.terminal_color_1  = colors.red500
+      vim.g.terminal_color_2  = colors.green500
+      vim.g.terminal_color_3  = colors.yellow500
+      vim.g.terminal_color_4  = colors.blue500
+      vim.g.terminal_color_5  = colors.magenta500
+      vim.g.terminal_color_6  = colors.cyan500
+      vim.g.terminal_color_7  = colors.base3
+      vim.g.terminal_color_8  = colors.base02
+      vim.g.terminal_color_9  = colors.red300
+      vim.g.terminal_color_10 = colors.green300
+      vim.g.terminal_color_11 = colors.yellow300
+      vim.g.terminal_color_12 = colors.blue300
+      vim.g.terminal_color_13 = colors.magenta300
+      vim.g.terminal_color_14 = colors.cyan300
+      vim.g.terminal_color_15 = colors.base4
+      vim.g.terminal_color_background = colors.bg
+      vim.g.terminal_color_foreground = colors.fg
+
+      ---@type table<string, vim.api.keyset.highlight>
+      local groups = {
+
+        -- Editor builtin UI.
+        ColorColumn                                = { bg = colors.base02 },
+        Conceal                                    = { fg = colors.blue500 },
+        Cursor                                     = { fg = colors.base03, bg = colors.base0 },
+        lCursor                                    = { fg = colors.base03, bg = colors.base00 },
+        CursorIM                                   = { fg = colors.base03, bg = colors.base0 },
+        CursorColumn                               = { bg = colors.base02 },
+        CursorLine                                 = { bg = colors.base03 },
+        ComplMatchIns                              = { fg = colors.violet500 },
+        Directory                                  = { fg = colors.blue500 },
+        DiffAdd                                    = { bg = colors.cyan900 },
+        DiffChange                                 = { bg = colors.orange950 },
+        DiffDelete                                 = { bg = colors.red950 },
+        DiffText                                   = { bg = colors.cyan800, bold = true },
+        EndOfBuffer                                = { fg = colors.base01 },
+        ErrorMsg                                   = { fg = colors.red500, reverse = true },
+        VertSplit                                  = { fg = colors.base00 },
+        WinSeparator                               = { fg = colors.base02, bold = true },
+        Folded                                     = { fg = colors.base0, bg = colors.base02, bold = true },
+        FoldColumn                                 = { fg = colors.base0 },
+        SignColumn                                 = { fg = colors.base0 },
+        SignColumnSB                               = { fg = colors.base0 },
+        Substitute                                 = { fg = colors.base04, bg = colors.red500 },
+        LineNr                                     = { fg = colors.yellow700, bg = colors.bg },
+        LineNrAbove                                = { fg = colors.yellow700, bg = colors.bg },
+        LineNrBelow                                = { fg = colors.yellow700, bg = colors.bg },
+        CursorLineNr                               = { fg = colors.orange500, sp = colors.base1 },
+        CursorLineSign                             = { link = "FoldColumn" },
+        CursorLineFold                             = { link = "SignColumn" },
+        MatchParen                                 = { fg = colors.red100, bg = colors.red500, bold = true },
+        ModeMsg                                    = { fg = colors.blue500 },
+        MsgArea                                    = { fg = colors.base01 },
+        MsgSeparator                               = { fg = colors.yellow700, bg = colors.none },
+        MoreMsg                                    = { fg = colors.blue500 },
+        NonText                                    = { fg = colors.base00, bold = true },
+        Normal                                     = { fg = colors.base0, bg = colors.bg },
+        NormalNC                                   = { fg = colors.base00, bg = colors.bg },
+        NormalSB                                   = { fg = colors.base01, bg = colors.bg },
+        NormalFloat                                = { fg = colors.base0, bg = colors.bg },
+        FloatBorder                                = { fg = colors.yellow700, bg = colors.bg },
+        FloatTitle                                 = { fg = colors.base2, bg = colors.bg },
+        FloatFooter                                = { fg = colors.base2, bg = colors.bg },
+        Pmenu                                      = { fg = colors.base0, bg = colors.base02 },
+        PmenuSel                                   = { fg = colors.base2, bg = colors.base01 },
+        PmenuKind                                  = { fg = colors.cyan500, bg = colors.none },
+        PmenuKindSel                               = { link = "PmenuSel" },
+        PmenuExtra                                 = { link = "Pmenu" },
+        PmenuExtraSel                              = { link = "PmenuSel" },
+        PmenuMatch                                 = { fg = colors.violet500, bg = colors.none },
+        PmenuMatchSel                              = { link = "PmenuSel" },
+        PmenuSbar                                  = { fg = colors.base02, reverse = true },
+        PmenuThumb                                 = { fg = colors.base0, reverse = true },
+        Question                                   = { fg = colors.cyan500, bold = true },
+        QuickFixLine                               = { bg = colors.blue700, bold = true },
+        Search                                     = { fg = colors.yellow500, reverse = true },
+        IncSearch                                  = { fg = colors.base2, bg = colors.orange500 },
+        CurSearch                                  = { link = "IncSearch" },
+        SpecialKey                                 = { fg = colors.base00 },
+        SpellBad                                   = { sp = colors.red500, undercurl = true },
+        SpellCap                                   = { sp = colors.violet500, undercurl = true },
+        SpellLocal                                 = { sp = colors.cyan500, undercurl = true },
+        SpellRare                                  = { sp = colors.yellow500, undercurl = true },
+        StatusLine                                 = { fg = colors.base1, bg = colors.base03 },
+        StatusLineNC                               = { fg = colors.base0, bg = colors.base04 },
+        TabLine                                    = { fg = colors.base0, bg = colors.bg },
+        TabLineActive                              = { fg = colors.base4, bg = colors.yellow, bold = true },
+        TabLineFill                                = { fg = colors.base0, bg = colors.bg },
+        TabLineInactive                            = { fg = colors.base0, bg = colors.base02 },
+        TabLinePickActiveLabel                     = { fg = colors.base4, bg = colors.yellow, bold = true },
+        TabLinePickInactiveLabel                   = { fg = colors.magenta, bg = colors.base02, italic = true },
+        TabLineSel                                 = { fg = colors.base4, bg = colors.yellow, bold = true },
+        TabLineSepActive                           = { fg = colors.yellow, bg = colors.bg },
+        TabLineSepInactive                         = { fg = colors.base02, bg = colors.bg },
+        TermCursor                                 = { fg = colors.fg },
+        TermCursorNC                               = { fg = colors.base01 },
+        Title                                      = { fg = colors.orange500, bold = true },
+        Visual                                     = { bg = colors.base02 },
+        VisualNOS                                  = { bg = colors.base03, reverse = true },
+        WarningMsg                                 = { fg = colors.orange500, bold = true },
+        Whitespace                                 = { fg = colors.base01 },
+        WildMenu                                   = { fg = colors.base2, bg = colors.base02, reverse = true },
+        WinBar                                     = { link = "StatusLine" },
+        WinBarNC                                   = { link = "StatusLineNC" },
+        WinBarDir                                  = { fg = colors.magenta500, bg = colors.base03 },
+        WinBarSeparator                            = { fg = colors.blue500, bg = colors.base03 },
+
+
+        LspReferenceText                           = { bg = colors.magenta900 },
+        LspReferenceRead                           = { bg = colors.magenta900 },
+        LspReferenceWrite                          = { bg = colors.magenta900 },
+        LspReferenceTarget                         = { link = "LspReferenceText" },
+        LspSignatureActiveParameter                = { bg = colors.base03, bold = true },
+        LspCodeLens                                = { fg = colors.base01 },
+        LspCodeLensSeparator                       = { fg = colors.base01 },
+        LspInlayHint                               = { bg = colors.violet900, fg = colors.violet500 },
+        LspInfoBorder                              = { fg = colors.base02, bg = colors.bg },
+
+        DiagnosticError                            = { fg = colors.red500 },
+        DiagnosticWarn                             = { fg = colors.yellow500 },
+        DiagnosticInfo                             = { fg = colors.blue500 },
+        DiagnosticHint                             = { fg = colors.cyan500 },
+        DiagnosticOK                               = { fg = colors.green500 },
+        DiagnosticUnnecessary                      = { fg = colors.base00 },
+        DiagnosticDeprecated                       = { fg = colors.base01, strikethrough = true },
+
+        DiagnosticFloatingError                    = { fg = colors.red500 },
+        DiagnosticFloatingWarn                     = { fg = colors.yellow500 },
+        DiagnosticFloatingInfo                     = { fg = colors.blue500 },
+        DiagnosticFloatingHint                     = { fg = colors.cyan500 },
+        DiagnosticFloatingOk                       = { fg = colors.green500 },
+
+        DiagnosticVirtualTextError                 = { bg = colors.red900, fg = colors.red500 },
+        DiagnosticVirtualTextWarn                  = { bg = colors.yellow900, fg = colors.yellow500 },
+        DiagnosticVirtualTextInfo                  = { bg = colors.blue900, fg = colors.blue500 },
+        DiagnosticVirtualTextHint                  = { bg = colors.cyan900, fg = colors.cyan500 },
+        DiagnosticVirtualTextOk                    = { bg = colors.green900, fg = colors.green500 },
+
+        DiagnosticVirtualLinesError                = { bg = colors.red900, fg = colors.red500 },
+        DiagnosticVirtualLinesWarn                 = { bg = colors.yellow900, fg = colors.yellow500 },
+        DiagnosticVirtualLinesInfo                 = { bg = colors.blue900, fg = colors.blue500 },
+        DiagnosticVirtualLinesHint                 = { bg = colors.cyan900, fg = colors.cyan500 },
+        DiagnosticVirtualLinesOk                   = { bg = colors.green900, fg = colors.green500 },
+
+        DiagnosticSignError                        = { fg = colors.red500 },
+        DiagnosticSignWarn                         = { fg = colors.yellow500 },
+        DiagnosticSignInfo                         = { fg = colors.blue500 },
+        DiagnosticSignHint                         = { fg = colors.cyan500 },
+        DiagnosticSignOk                           = { fg = colors.green500 },
+
+        DiagnosticUnderlineError                   = { undercurl = true, sp = colors.red500 },
+        DiagnosticUnderlineWarn                    = { undercurl = true, sp = colors.yellow500 },
+        DiagnosticUnderlineInfo                    = { undercurl = true, sp = colors.blue500 },
+        DiagnosticUnderlineHint                    = { undercurl = true, sp = colors.cyan500 },
+        DiagnosticUnderlineOk                      = { undercurl = true, sp = colors.green500 },
+
+        healthError                                = { fg = colors.red },
+        healthSuccess                              = { fg = colors.cyan },
+        healthWarning                              = { fg = colors.yellow },
+
+        diffAdded                                  = { fg = colors.green500 },
+        diffRemoved                                = { fg = colors.red500 },
+        diffChanged                                = { fg = colors.yellow500 },
+        diffOldFile                                = { fg = colors.violet500 },
+        diffNewFile                                = { fg = colors.orange500 },
+        diffFile                                   = { fg = colors.blue500 },
+        diffLine                                   = { fg = colors.base01 },
+        diffIndexLine                              = { fg = colors.magenta500 },
+
+        -- Yank highlight.
+        YankHighlight                              = { fg = colors.orange500, bg = colors.orange900 },
+
+        -- Builtin syntax.
+        Comment                                    = { fg = colors.base01, italic = true },
+        Constant                                   = { fg = colors.cyan500 },
+        String                                     = { fg = colors.cyan500 },
+        Character                                  = { link = "Constant" },
+        Number                                     = { link = "Constant" },
+        Boolean                                    = { link = "Constant" },
+        Float                                      = { link = "Constant" },
+        Identifier                                 = { fg = colors.blue500 },
+        Function                                   = { fg = colors.blue500 },
+        Statement                                  = { fg = colors.green500 },
+        Conditional                                = { link = "Statement" },
+        Repeat                                     = { link = "Statement" },
+        Label                                      = { link = "Statement" },
+        Operator                                   = { fg = colors.green500 },
+        Keyword                                    = { fg = colors.green500, italic = true },
+        Exception                                  = { link = "Statement" },
+        PreProc                                    = { fg = colors.red500 },
+        Include                                    = { link = "PreProc" },
+        Define                                     = { link = "PreProc" },
+        Macro                                      = { link = "PreProc" },
+        PreCondit                                  = { link = "PreProc" },
+        Type                                       = { fg = colors.yellow500 },
+        StorageClass                               = { link = "Type" },
+        Structure                                  = { link = "Type" },
+        Typedef                                    = { link = "Type" },
+        Special                                    = { fg = colors.orange500 },
+        SpecialChar                                = { link = "Special" },
+        Tag                                        = { link = "Special" },
+        Delimiter                                  = { link = "Special" },
+        SpecialComment                             = { link = "Special" },
+        Debug                                      = { fg = colors.orange500 },
+        Underlined                                 = { underline = true },
+        htmlH1                                     = { fg = colors.magenta500, bold = true },
+        htmlH2                                     = { fg = colors.blue500, bold = true },
+        mkdHeading                                 = { fg = colors.orange, bold = true },
+        mkdCode                                    = { bg = colors.green900 },
+        mkdCodeDelimiter                           = { fg = colors.base0, bg = colors.green700 },
+        mkdCodeStart                               = { fg = colors.orange500, bold = true },
+        mkdCodeEnd                                 = { fg = colors.orange500, bold = true },
+        mkdLink                                    = { fg = colors.blue, underline = true },
+        markdownHeadingDelimiter                   = { fg = colors.orange500, bold = true },
+        markdownCode                               = { fg = colors.yellow500 },
+        markdownCodeBlock                          = { fg = colors.yellow500 },
+        markdownH1                                 = { fg = colors.magenta500, bold = true },
+        markdownH2                                 = { fg = colors.violet500, bold = true },
+        markdownLinkText                           = { fg = colors.blue500, underline = true },
+
+        -- Treesitter highlights.
+        ["@annotation"]                            = { link = "PreProc" },
+        ["@attribute"]                             = { link = "PreProc" },
+        ["@boolean"]                               = { link = "Boolean" },
+        ["@character"]                             = { link = "Character" },
+        ["@character.special"]                     = { link = "SpecialChar" },
+        ["@comment"]                               = { link = "Comment" },
+        ["@comment.documentation"]                 = { link = "@comment" },
+        ["@comment.error"]                         = { fg = colors.red500 },
+        ["@comment.hint"]                          = { fg = colors.cyan500 },
+        ["@comment.info"]                          = { fg = colors.blue500 },
+        ["@comment.note"]                          = { fg = colors.cyan500 },
+        ["@comment.todo"]                          = { fg = colors.violet500 },
+        ["@comment.warning"]                       = { fg = colors.yellow500 },
+        ["@constant"]                              = { link = "Constant" },
+        ["@constant.builtin"]                      = { link = "Special" },
+        ["@constant.macro"]                        = { link = "Define" },
+        ["@constructor"]                           = { fg = colors.orange500 },
+        ["@constructor.tsx"]                       = { fg = colors.blue500 },
+        ["@define"]                                = { link = "Define" },
+        ["@diff.delta"]                            = { link = "DiffChange" },
+        ["@diff.minus"]                            = { link = "DiffDelete" },
+        ["@diff.plus"]                             = { link = "DiffAdd" },
+        ["@error"]                                 = { fg = colors.red500 },
+        ["@function"]                              = { link = "Function" },
+        ["@function.builtin"]                      = { link = "Special" },
+        ["@function.call"]                         = { link = "@function" },
+        ["@function.macro"]                        = { link = "Macro" },
+        ["@function.method"]                       = { link = "Function" },
+        ["@function.method.call"]                  = { link = "@function.method" },
+        ["@keyword"]                               = { fg = colors.green500, italic = true },
+        ["@keyword.conditional"]                   = { link = "Conditional" },
+        ["@keyword.conditional.ternary"]           = { link = "@keyword.conditional" },
+        ["@keyword.coroutine"]                     = { link = "@keyword" },
+        ["@keyword.debug"]                         = { link = "Debug" },
+        ["@keyword.directive"]                     = { link = "PreProc" },
+        ["@keyword.directive.define"]              = { link = "Define" },
+        ["@keyword.exception"]                     = { link = "Exception" },
+        ["@keyword.function"]                      = { fg = colors.green500 },
+        ["@keyword.import"]                        = { link = "Include" },
+        ["@keyword.javascript"]                    = { fg = colors.green500, italic = true },
+        ["@keyword.operator"]                      = { link = "@operator" },
+        ["@keyword.repeat"]                        = { link = "Repeat" },
+        ["@keyword.return"]                        = { link = "@keyword" },
+        ["@keyword.return.javascript"]             = { fg = colors.green500, italic = true },
+        ["@keyword.return.tsx"]                    = { fg = colors.green500, italic = true },
+        ["@keyword.storage"]                       = { link = "StorageClass" },
+        ["@keyword.tsx"]                           = { fg = colors.green500, italic = true },
+        ["@label"]                                 = { fg = colors.green500 },
+        ["@markup"]                                = { link = "@none" },
+        ["@markup.environment"]                    = { link = "Macro" },
+        ["@markup.environment.name"]               = { link = "Type" },
+        ["@markup.heading"]                        = { link = "Title" },
+        ["@markup.heading.1"]                      = { link = "markdownH1" },
+        ["@markup.heading.2"]                      = { link = "markdownH2" },
+        ["@markup.heading.3"]                      = { link = "@markup.heading" },
+        ["@markup.heading.4"]                      = { link = "@markup.heading" },
+        ["@markup.heading.5"]                      = { link = "@markup.heading" },
+        ["@markup.heading.6"]                      = { link = "@markup.heading" },
+        ["@markup.italic"]                         = { italic = true },
+        ["@markup.link"]                           = { fg = colors.blue500, underline = true },
+        ["@markup.link.label"]                     = { link = "SpecialChar" },
+        ["@markup.link.label.symbol"]              = { link = "Identifier" },
+        ["@markup.link.url"]                       = { link = "Underlined" },
+        ["@markup.list"]                           = { fg = colors.blue500 },
+        ["@markup.list.checked"]                   = { fg = colors.green500 },
+        ["@markup.list.markdown"]                  = { fg = colors.orange500, bold = true },
+        ["@markup.list.unchecked"]                 = { fg = colors.yellow500 },
+        ["@markup.math"]                           = { link = "Special" },
+        ["@markup.quote"]                          = { link = "Comment" },
+        ["@markup.raw"]                            = { link = "String" },
+        ["@markup.raw.block"]                      = { link = "markdownCodeBlock" },
+        ["@markup.raw.markdown"]                   = { fg = colors.blue500 },
+        ["@markup.raw.markdown_inline"]            = { link = "markdownCode" },
+        ["@markup.strikethrough"]                  = { strikethrough = true },
+        ["@markup.strong"]                         = { bold = true },
+        ["@markup.underline"]                      = { underline = true },
+        ["@module"]                                = { link = "Include" },
+        ["@module.builtin"]                        = { link = "Special" },
+        ["@namespace.builtin"]                     = { link = "@variable.builtin" },
+        ["@none"]                                  = {},
+        ["@number"]                                = { link = "Number" },
+        ["@number.float"]                          = { link = "Float" },
+        ["@operator"]                              = { link = "Operator" },
+        ["@preproc"]                               = { link = "PreProc" },
+        ["@property"]                              = { link = "Identifier" },
+        ["@punctuation.bracket"]                   = { fg = colors.orange500 },
+        ["@punctuation.delimiter"]                 = { fg = colors.green500 },
+        ["@punctuation.special"]                   = { fg = colors.orange500 },
+        ["@punctuation.special.markdown"]          = { fg = colors.orange500, bold = true },
+        ["@string"]                                = { link = "String" },
+        ["@string.documentation"]                  = { fg = colors.cyan500 },
+        ["@string.escape"]                         = { fg = colors.orange700 },
+        ["@string.regex"]                          = { fg = colors.cyan300 },
+        ["@string.special"]                        = { link = "SpecialChar" },
+        ["@string.special.symbol"]                 = { link = "@string.special" },
+        ["@string.special.url"]                    = { link = "@markup.link.url" },
+        ["@symbol"]                                = { link = "@string.special.symbol" },
+        ["@tag"]                                   = { link = "Label" },
+        ["@tag.attribute"]                         = { link = "@property" },
+        ["@tag.delimiter"]                         = { link = "Delimiter" },
+        ["@tag.delimiter.html"]                    = { fg = colors.orange500 },
+        ["@tag.delimiter.javascript"]              = { fg = colors.orange500 },
+        ["@tag.delimiter.tsx"]                     = { fg = colors.orange500 },
+        ["@tag.delimiter.vue"]                     = { fg = colors.orange500 },
+        ["@tag.javascript"]                        = { fg = colors.yellow500 },
+        ["@tag.tsx"]                               = { fg = colors.yellow500 },
+        ["@type"]                                  = { link = "Type" },
+        ["@type.builtin"]                          = { link = "Type" },
+        ["@type.definition"]                       = { link = "Typedef" },
+        ["@type.qualifier"]                        = { link = "@keyword" },
+        ["@variable"]                              = { fg = colors.base0 },
+        ["@variable.builtin"]                      = { link = "Special" },
+        ["@variable.javascript"]                   = { fg = colors.yellow500 },
+        ["@variable.member"]                       = { fg = colors.cyan500 },
+        ["@variable.parameter"]                    = { link = "Special" },
+        ["@variable.parameter.builtin"]            = { fg = colors.yellow300 },
+        ["@variable.typescript"]                   = { fg = colors.yellow500 },
+
+        -- Lsp semantic tokens.
+        ["@lsp.type.boolean"]                      = { link = "@boolean" },
+        ["@lsp.type.builtinType"]                  = { link = "@type.builtin" },
+        ["@lsp.type.comment"]                      = { link = "@comment" },
+        ["@lsp.type.decorator"]                    = { link = "@attribute" },
+        ["@lsp.type.deriveHelper"]                 = { link = "@attribute" },
+        ["@lsp.type.enum"]                         = { link = "@type" },
+        ["@lsp.type.enumMember"]                   = { link = "@constant" },
+        ["@lsp.type.escapeSequence"]               = { link = "@string.escape" },
+        ["@lsp.type.formatSpecifier"]              = { link = "@markup.list" },
+        ["@lsp.type.generic"]                      = { link = "@variable" },
+        ["@lsp.type.interface"]                    = { fg = colors.blue500 },
+        ["@lsp.type.keyword"]                      = { link = "@keyword" },
+        ["@lsp.type.lifetime"]                     = { link = "@keyword.storage" },
+        ["@lsp.type.namespace"]                    = { link = "@module" },
+        ["@lsp.type.number"]                       = { link = "@number" },
+        ["@lsp.type.operator"]                     = { link = "@operator" },
+        ["@lsp.type.parameter"]                    = { link = "@variable.parameter" },
+        ["@lsp.type.property"]                     = { link = "@property" },
+        ["@lsp.type.selfKeyword"]                  = { link = "@variable.builtin" },
+        ["@lsp.type.selfTypeKeyword"]              = { link = "@variable.builtin" },
+        ["@lsp.type.string"]                       = { link = "@string" },
+        ["@lsp.type.typeAlias"]                    = { link = "@type.definition" },
+        ["@lsp.type.unresolvedReference"]          = { undercurl = true, sp = colors.red500 },
+        ["@lsp.type.variable"]                     = {}, -- use treesitter styles for regular variables
+        ["@lsp.typemod.class.defaultLibrary"]      = { link = "@type.builtin" },
+        ["@lsp.typemod.enum.defaultLibrary"]       = { link = "@type.builtin" },
+        ["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
+        ["@lsp.typemod.function.defaultLibrary"]   = { link = "@function.builtin" },
+        ["@lsp.typemod.keyword.async"]             = { link = "@keyword.coroutine" },
+        ["@lsp.typemod.keyword.injected"]          = { link = "@keyword" },
+        ["@lsp.typemod.macro.defaultLibrary"]      = { link = "@function.builtin" },
+        ["@lsp.typemod.method.defaultLibrary"]     = { link = "@function.builtin" },
+        ["@lsp.typemod.operator.injected"]         = { link = "@operator" },
+        ["@lsp.typemod.string.injected"]           = { link = "@string" },
+        ["@lsp.typemod.struct.defaultLibrary"]     = { link = "@type.builtin" },
+        ["@lsp.typemod.type.defaultLibrary"]       = { fg = colors.blue500 },
+        ["@lsp.typemod.typeAlias.defaultLibrary"]  = { fg = colors.blue500 },
+        ["@lsp.typemod.variable.callable"]         = { link = "@function" },
+        ["@lsp.typemod.variable.defaultLibrary"]   = { link = "@variable.builtin" },
+        ["@lsp.typemod.variable.injected"]         = { link = "@variable" },
+        ["@lsp.typemod.variable.static"]           = { link = "@constant" },
+
+        -- Treesitter context.
+        TreesitterContext                          = { bg = colors.violet900 },
+
+        -- Blink Cmp.
+        BlinkCmpLabel                              = { fg = colors.fg, bg = colors.none },
+        BlinkCmpLabelDeprecated                    = { fg = colors.base01, bg = colors.none, strikethrough = true },
+        BlinkCmpLabelMatch                         = { fg = colors.violet500, bg = colors.none },
+        BlinkCmpDoc                                = { fg = colors.fg, bg = colors.bg },
+        BlinkCmpDocBorder                          = { fg = colors.yellow700, bg = colors.bg },
+        BlinkCmpGhostText                          = { fg = colors.base01 },
+        BlinkCmpSignatureHelp                      = { fg = colors.violet500, bg = colors.none },
+        BlinkCmpSignatureHelpBorder                = { fg = colors.base02, bg = colors.none },
+        BlinkCmpSignatureHelpActiveParameter       = { fg = colors.orange, bg = colors.none },
+        BlinkCmpMenu                               = { fg = colors.base01, bg = colors.base02 },
+        BlinkCmpKind                               = { fg = colors.base01, bg = colors.none },
+        BlinkCmpKindCodeium                        = { fg = colors.cyan500, bg = colors.none },
+        BlinkCmpKindCopilot                        = { fg = colors.cyan500, bg = colors.none },
+        BlinkCmpKindTabNine                        = { fg = colors.cyan500, bg = colors.none },
+        BlinkCmpKindSupermaven                     = { fg = colors.cyan500, bg = colors.none },
+        BlinkCmpKindKeyword                        = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindVariable                       = { fg = colors.magenta, bg = colors.none },
+        BlinkCmpKindConstant                       = { fg = colors.magenta, bg = colors.none },
+        BlinkCmpKindReference                      = { fg = colors.magenta, bg = colors.none },
+        BlinkCmpKindValue                          = { fg = colors.magenta, bg = colors.none },
+        BlinkCmpKindFunction                       = { fg = colors.blue, bg = colors.none },
+        BlinkCmpKindMethod                         = { fg = colors.blue, bg = colors.none },
+        BlinkCmpKindConstructor                    = { fg = colors.blue, bg = colors.none },
+        BlinkCmpKindClass                          = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindInterface                      = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindStruct                         = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindEvent                          = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindEnum                           = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindUnit                           = { fg = colors.orange, bg = colors.none },
+        BlinkCmpKindModule                         = { fg = colors.yellow, bg = colors.none },
+        BlinkCmpKindProperty                       = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindField                          = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindTypeParameter                  = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindEnumMember                     = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindOperator                       = { fg = colors.cyan, bg = colors.none },
+        BlinkCmpKindSnippet                        = { fg = colors.violet500, bg = colors.none },
+
+        -- Git Signs.
+        GitSignsAdd                                = { fg = colors.cyan500 },
+        GitSignsChange                             = { fg = colors.yellow500 },
+        GitSignsDelete                             = { fg = colors.red500 },
+        GitSignsCurrentLineBlame                   = { fg = colors.violet600 },
+        GitSignsStagedAdd                          = { fg = colors.green700 },
+        GitSignsStagedChange                       = { fg = colors.orange900 },
+        GitSignsStagedDelete                       = { fg = colors.red700 },
+
+        -- Grug far.
+        GrugFarHelpHeader                          = { fg = colors.blue500 },
+        GrugFarHelpHeaderKey                       = { fg = colors.orange500 },
+        GrugFarHelpWinHeader                       = { fg = colors.orange500, bold = true },
+        GrugFarHelpWinActionPrefix                 = { fg = colors.orange500, bold = true },
+        GrugFarHelpWinActionText                   = { fg = colors.blue500 },
+        GrugFarHelpWinActionKey                    = { fg = colors.cyan500 },
+        GrugFarHelpWinActionDescription            = { fg = colors.base0, bg = colors.bg },
+        GrugFarInputLabel                          = { fg = colors.orange500, bold = true },
+        GrugFarInputPlaceholder                    = { fg = colors.base01, italic = true },
+        GrugFarResultsHeader                       = { fg = colors.base01, italic = true },
+        GrugFarResultsStats                        = { fg = colors.base01, italic = true },
+        GrugFarResultsActionMessage                = { fg = colors.blue500 },
+        GrugFarResultsMatch                        = { bg = colors.cyan800, bold = true },
+        GrugFarResultsMatchAdded                   = { bg = colors.cyan900 },
+        GrugFarResultsMatchRemoved                 = { bg = colors.red900 },
+        GrugFarResultsPath                         = { fg = colors.blue500, underline = true },
+        GrugFarResultsLineNr                       = { link = "LineNr" },
+        GrugFarResultsCursorLineNo                 = { link = "CursorLineNr" },
+        GrugFarResultsColumnNr                     = { link = "GrugFarResultsLineNr" },
+        GrugFarResultsNumbersSeparator             = { link = "GrugFarResultsLineNr" },
+        GrugFarResultsChangeIndicator              = { fg = colors.yellow500 },
+        GrugFarResultsRemoveIndicator              = { fg = colors.red500 },
+        GrugFarResultsAddIndicator                 = { fg = colors.cyan500 },
+        GrugFarResultsDiffSeparatorIndicator       = { fg = colors.base02 },
+        GrugFarResultsCmdHeader                    = { fg = colors.base01, italic = true },
+        GrugFarResultsNumberLabel                  = { fg = colors.violet500 },
+        GrugFarResultsLongLineStr                  = { fg = colors.base01 },
+        GrugFarVisualBufrange                      = { link = "Visual" },
+        GrugFarCurrentMatch                        = { link = "IncSearch" },
+
+        -- Incline.
+        InclineNormal                              = { fg = colors.base04, bg = colors.magenta500 },
+        InclineNormalNC                            = { fg = colors.violet500, bg = colors.base03 },
+        InclineModified                            = { fg = colors.base04, bold = true },
+
+        -- Lsp progress (ui2 message).
+        LspProgressSpinner                         = { fg = colors.blue500 },
+        LspProgressDone                            = { fg = colors.green500 },
+        LspProgressName                            = { fg = colors.orange500, bold = true },
+        LspProgressTitle                           = { fg = colors.base0 },
+        LspProgressMessage                         = { fg = colors.base01, italic = true },
+        LspProgressPercent                         = { fg = colors.magenta500 },
+
+        -- Lualine extras.
+        LualineFile                                = { fg = colors.base0, bold = true },
+        LualineFileReadonlyIcon                    = { fg = colors.red500, bold = true },
+        LualineFileModified                        = { fg = colors.red500, bold = true },
+        LualineSearchCount                         = { fg = colors.orange500, bold = true },
+        LualineMacroRecording                      = { fg = colors.red500, bold = true },
+
+        -- Mini Icons.
+        MiniIconsAzure                             = { fg = colors.blue300 },
+        MiniIconsBlue                              = { fg = colors.blue },
+        MiniIconsCyan                              = { fg = colors.cyan },
+        MiniIconsGreen                             = { fg = colors.green },
+        MiniIconsGrey                              = { fg = colors.base2 },
+        MiniIconsOrange                            = { fg = colors.orange },
+        MiniIconsPurple                            = { fg = colors.violet },
+        MiniIconsRed                               = { fg = colors.red },
+        MiniIconsYellow                            = { fg = colors.yellow },
+
+        -- Quicker nvim.
+        QuickFixText                               = { fg = colors.base0 },
+        QuickFixTextInvalid                        = { fg = colors.base01 },
+        QuickFixHeaderHard                         = { fg = colors.base02 },
+        QuickFixHeaderSoft                         = { fg = colors.base03 },
+        QuickFixLineNr                             = { link = "LineNr" },
+        QuickFixFilename                           = { link = "Directory" },
+        QuickFixFilenameInvalid                    = { fg = colors.base01 },
+
+        -- Snacks nvim.
+        SnacksDashboardDesc                        = { fg = colors.cyan500 },
+        SnacksDashboardKey                         = { fg = colors.orange500 },
+        SnacksDashboardFooter                      = { fg = colors.yellow, italic = true },
+        SnacksDashboardSpecial                     = { fg = colors.yellow500 },
+        SnacksDashboardHeader                      = { fg = colors.blue },
+        SnacksDashboardIcon                        = { fg = colors.cyan500, bold = true },
+        SnacksNotifierBorderTrace                  = { fg = colors.magenta500 },
+        SnacksNotifierIconTrace                    = { fg = colors.magenta500 },
+        SnacksNotifierTitleTrace                   = { fg = colors.magenta500 },
+        SnacksIndentScope                          = { fg = colors.violet700, nocombine = true },
+        SnacksIndent                               = { fg = colors.base03, nocombine = true },
+        SnacksPickerBorder                         = { fg = colors.base02, bg = colors.bg },
+        SnacksPickerTitle                          = { link = "Title" },
+        SnacksPickerPreviewTitle                   = { fg = colors.blue, bg = colors.bg },
+
+        -- Tiny cmdline.
+        TinyCmdlineNormal                          = { fg = colors.fg, bg = colors.bg },
+        TinyCmdlineBorder                          = { fg = colors.blue, bg = colors.bg },
+        TinyCmdlineTitle                           = { fg = colors.orange, bg = colors.bg },
+
+        -- Which key.
+        WhichKey                                   = { fg = colors.cyan },
+        WhichKeyGroup                              = { fg = colors.blue },
+        WhichKeyDesc                               = { fg = colors.magenta },
+        WhichKeySeparator                          = { fg = colors.base01 },
+        WhichKeyBorder                             = { fg = colors.base02, bg = colors.bg },
+        WhichKeyValue                              = { fg = colors.violet500 },
+
+        -- Markpoon.
+        MarkpoonMark                               = { link = "Identifier", default = true },
+        MarkpoonLineNr                             = { link = "LineNr", default = true },
+        MarkpoonLineNrCursor                       = { link = "CursorLineNr", default = true },
+      }
+
+      for group, hl in pairs(groups) do
+          vim.api.nvim_set_hl(0, group, hl)
+      end
+    '';
+  in {
+    hm.xdg.configFile."nvim/colors/stylix.lua".text = colorschemeLua;
+    hm.xdg.configFile."nvim/colors/stylix-lualine-theme.lua".text = lualineStylix;
+  };
+}

@@ -1,6 +1,5 @@
 {
   flake.modules.nixos.display-manager_noctalia-greeter = {
-    pkgs,
     inputs,
     username,
     ...
@@ -16,11 +15,6 @@
         clock = {
           enable = true;
           position = "bottom-right";
-        };
-        cursor = {
-          theme = "Bibata-Modern-Ice";
-          size = 24;
-          path = "${pkgs.bibata-cursors}/share/icons";
         };
         keyboard = {
           layout = "us";

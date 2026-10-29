@@ -1,9 +1,13 @@
 {
   flake.modules.nixos.display-manager_noctalia-greeter = {
+    config,
+    lib,
     inputs,
     username,
     ...
-  }: {
+  }: let
+    cursor = config.stylix.cursor;
+  in {
     imports = [
       inputs.noctalia-greeter.nixosModules.default
     ];
@@ -18,6 +22,11 @@
         };
         keyboard = {
           layout = "us";
+        };
+        cursor = lib.mkIf ((config.stylix.enable or false) && cursor != null) {
+          theme = cursor.name;
+          size = cursor.size;
+          path = "${cursor.package}/share/icons";
         };
       };
     };

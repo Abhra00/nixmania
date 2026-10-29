@@ -18,6 +18,9 @@
     mkNixEngine = alias: page:
       mkEngine alias "https://search.nixos.org/${page}?channel=unstable&query={searchTerms}";
 
+    # [Fastfox, Securefox, Peskyfox] 154
+    # Smoothfox 152
+    # https://github.com/yokoffing/Betterfox
     fastfox = {
       "gfx.content.skia-font-cache-size" = 20;
       "content.notify.interval" = 100000;
@@ -202,11 +205,8 @@
       "browser.newtabpage.activity-stream.logowordmark.alwaysVisible" = true;
       "browser.newtabpage.activity-stream.feeds.topsites" = false;
       "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
-      "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
       "browser.newtabpage.activity-stream.feeds.snippets" = false;
       "browser.newtabpage.activity-stream.discoverystream.enabled" = false;
-      "browser.newtabpage.activity-stream.showSponsored" = false;
-      "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
       "browser.newtabpage.activity-stream.showWeather" = false;
       "browser.newtabpage.activity-stream.system.showWeather" = false;
       "browser.newtabpage.activity-stream.newtabWallpapers.enabled" = false;
@@ -232,6 +232,18 @@
       "devtools.command-button-screenshot.enabled" = true;
     };
 
+    # Zen ui
+    zen = {
+      "sidebar.revamp" = true;
+      "sidebar.verticalTabs" = true;
+      "sidebar.visibility" = "expand-on-hover";
+      "browser.tabs.firefox-view" = false;
+      "browser.tabs.hoverPreview.enabled" = false;
+      "browser.download.alwaysOpenPanel" = false;
+      "browser.tabs.inTitlebar" = 1;
+    };
+
+    # Nix-installed extensions live outside the profile, so they need the wider scope
     extensionScopes = {
       "extensions.autoDisableScopes" = 0;
       "extensions.enabledScopes" = 15;
@@ -242,6 +254,7 @@
       "widget.use-xdg-desktop-portal.file-picker" = 1;
       "widget.use-xdg-desktop-portal.mime-handler" = 1;
       "privacy.fingerprintingProtection" = true;
+      "browser.tabs.unloadOnLowMemory" = true;
     };
   in {
     hm = lib.mkMerge [
@@ -257,6 +270,7 @@
             DisableFormHistory = true;
             DontCheckDefaultBrowser = true;
             NoDefaultBookmarks = true;
+            NewTabPage = true;
 
             OfferToSaveLogins = false;
             PasswordManagerEnabled = false;
@@ -296,12 +310,14 @@
               // smoothfoxOptions.${smoothfox}
               // startPage
               // devtools
+              // zen
               // extensionScopes
               // misc;
 
             extensions = {
               force = true;
               packages = with addons; [
+                auto-tab-discard
                 darkreader
                 react-devtools
                 sponsorblock
@@ -329,6 +345,10 @@
                 "youtube" = mkEngine "@yt" "https://www.youtube.com/results?search_query={searchTerms}";
               };
             };
+
+            userChrome = ''
+              .titlebar-buttonbox-container { display: none !important; }
+            '';
 
             userContent = ''
               * { scrollbar-width: thin !important; }

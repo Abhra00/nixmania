@@ -13,7 +13,10 @@
         xray = false;
         popups = true;
         new_optimizations = true;
+        proportional = true;
       };
+
+      wobble.enabled = true;
 
       shadow = {
         enabled = true;

@@ -49,6 +49,17 @@
             }
           ];
         }
+        {
+          _args = [
+            "easy"
+            {
+              type = "spring";
+              mass = 1;
+              stiffness = 238.1191;
+              damping = 24.21279333;
+            }
+          ];
+        }
       ];
 
       animation = [
@@ -56,19 +67,19 @@
           leaf = "windows";
           enabled = true;
           speed = 5;
-          bezier = "easeOutQuint";
+          spring = "easy";
         }
         {
           leaf = "windowsMove";
           enabled = true;
           speed = 5;
-          bezier = "easeOutQuint";
+          spring = "easy";
         }
         {
           leaf = "windowsIn";
           enabled = true;
           speed = 4.5;
-          bezier = "easeOutQuint";
+          spring = "easy";
           style = "popin 85%";
         }
         {

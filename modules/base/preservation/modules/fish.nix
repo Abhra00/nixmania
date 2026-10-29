@@ -1,8 +1,6 @@
 {
-  flake.modules.nixos.shell_fish = {username, ...}: {
-    preservation.preserveAt."/persistent".users.${username}.directories = [
-      ".config/fish"
-      ".local/share/fish"
-    ];
-  };
+  flake.modules.nixos.shell_fish.persist.user.directories = [
+    ".config/fish"
+    ".local/share/fish"
+  ];
 }

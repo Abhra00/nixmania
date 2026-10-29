@@ -1,7 +1,3 @@
 {
-  flake.modules.nixos.service_bluetooth = {
-    preservation.preserveAt."/persistent".directories = [
-      "/var/lib/bluetooth"
-    ];
-  };
+  flake.modules.nixos.service_bluetooth.persist.directories = ["/var/lib/bluetooth"];
 }

@@ -1,7 +1,3 @@
 {
-  flake.modules.nixos.desktop-shell_noctalia = {username, ...}: {
-    preservation.preserveAt."/persistent".users.${username}.directories = [
-      ".local/state/noctalia"
-    ];
-  };
+  flake.modules.nixos.desktop-shell_noctalia.persist.user.directories = [".local/state/noctalia"];
 }

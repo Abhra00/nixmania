@@ -1,10 +1,8 @@
 {
-  flake.modules.nixos.service_gnome-keyring = {username, ...}: {
-    preservation.preserveAt."/persistent".users.${username}.directories = [
-      {
-        directory = ".local/share/keyrings";
-        mode = "0700";
-      }
-    ];
-  };
+  flake.modules.nixos.service_gnome-keyring.persist.user.directories = [
+    {
+      directory = ".local/share/keyrings";
+      mode = "0700";
+    }
+  ];
 }

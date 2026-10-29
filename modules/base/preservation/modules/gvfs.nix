@@ -1,7 +1,3 @@
 {
-  flake.modules.nixos.service_gvfs = {username, ...}: {
-    preservation.preserveAt."/persistent".users.${username}.directories = [
-      ".local/share/Trash"
-    ];
-  };
+  flake.modules.nixos.service_gvfs.persist.user.directories = [".local/share/Trash"];
 }

@@ -1,7 +1,3 @@
 {
-  flake.modules.nixos.feature_kvm = {
-    preservation.preserveAt."/persistent".directories = [
-      "/var/lib/libvirt"
-    ];
-  };
+  flake.modules.nixos.feature_kvm.persist.directories = ["/var/lib/libvirt"];
 }

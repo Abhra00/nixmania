@@ -69,18 +69,27 @@ add({
       bigfile = { enabled = true },
       dashboard = {
         enabled = true,
-        width = 90,
-        preset = { header = require("bugs.utils.ascii-art") },
-        sections = {
-          { section = "header", padding = 1 },
-          {
-            section = "terminal",
-            cmd = "drift --scene rain --theme cosmic --duration 0",
-            hl = "header",
-            width = 90,
-            padding = 1,
-            align = "center",
+        width = 62,
+        preset = {
+          header = require("bugs.utils.ascii-art"),
+          keys = {
+            { icon = "\u{f15b} ", key = "f", desc = "Find file", action = function() Snacks.picker.files() end },
+            { icon = "\u{f002} ", key = "g", desc = "Grep", action = function() Snacks.picker.grep() end },
+            { icon = "\u{f1da} ", key = "r", desc = "Recent", action = function() Snacks.picker.recent() end },
+            { icon = "\u{f013} ", key = "c", desc = "Config", action = function() Snacks.picker.files({ cwd = vim.env.HOME .. "/nixmania" }) end },
+            { icon = "\u{f011} ", key = "q", desc = "Quit", action = ":qa" },
           },
+        },
+        sections = {
+          { section = "header", padding = 2 },
+          { section = "keys", gap = 1, padding = 2 },
+          function()
+            local v = vim.version()
+            return {
+              align = "center",
+              text = { { ("nvim %d.%d.%d"):format(v.major, v.minor, v.patch), hl = "footer" } },
+            }
+          end,
         },
       },
       explorer = { enabled = true },

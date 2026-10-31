@@ -557,21 +557,87 @@
         QuickFixFilename                           = { link = "Directory" },
         QuickFixFilenameInvalid                    = { fg = colors.base01 },
 
-        -- Snacks nvim.
+        -- Snacks.nvim/Dashboard.
         SnacksDashboardDesc                        = { fg = colors.cyan500 },
         SnacksDashboardKey                         = { fg = colors.orange500 },
         SnacksDashboardFooter                      = { fg = colors.yellow, italic = true },
         SnacksDashboardSpecial                     = { fg = colors.yellow500 },
         SnacksDashboardHeader                      = { fg = colors.blue },
         SnacksDashboardIcon                        = { fg = colors.cyan500, bold = true },
+        SnacksDashboardDir                         = { fg = colors.base01 },
+
+        -- Snacks.nvim/Notifier.
         SnacksNotifierBorderTrace                  = { fg = colors.magenta500 },
         SnacksNotifierIconTrace                    = { fg = colors.magenta500 },
         SnacksNotifierTitleTrace                   = { fg = colors.magenta500 },
+        SnacksNotifierTrace                        = { fg = colors.base0, bg = colors.bg },
+        SnacksNotifierDebug                        = { fg = colors.base0, bg = colors.bg },
+        SnacksNotifierBorderDebug                  = { fg = colors.base01, bg = colors.bg },
+        SnacksNotifierIconDebug                    = { fg = colors.base01 },
+        SnacksNotifierTitleDebug                   = { fg = colors.base01 },
+        SnacksNotifierInfo                         = { fg = colors.base0, bg = colors.bg },
+        SnacksNotifierBorderInfo                   = { fg = colors.blue500, bg = colors.bg },
+        SnacksNotifierIconInfo                     = { fg = colors.blue500 },
+        SnacksNotifierTitleInfo                    = { fg = colors.blue500 },
+        SnacksNotifierWarn                         = { fg = colors.base0, bg = colors.bg },
+        SnacksNotifierBorderWarn                   = { fg = colors.yellow500, bg = colors.bg },
+        SnacksNotifierIconWarn                     = { fg = colors.yellow500 },
+        SnacksNotifierTitleWarn                    = { fg = colors.yellow500 },
+        SnacksNotifierError                        = { fg = colors.base0, bg = colors.bg },
+        SnacksNotifierBorderError                  = { fg = colors.red500, bg = colors.bg },
+        SnacksNotifierIconError                    = { fg = colors.red500 },
+        SnacksNotifierTitleError                   = { fg = colors.red500 },
+
+        -- Snacks.nvim/indent.
         SnacksIndentScope                          = { fg = colors.violet700, nocombine = true },
         SnacksIndent                               = { fg = colors.base03, nocombine = true },
-        SnacksPickerBorder                         = { fg = colors.base02, bg = colors.bg },
+
+        -- Snacks.nvim/indent rainbow (levels).
+        SnacksIndent1                              = { fg = colors.blue500, nocombine = true },
+        SnacksIndent2                              = { fg = colors.yellow500, nocombine = true },
+        SnacksIndent3                              = { fg = colors.green500, nocombine = true },
+        SnacksIndent4                              = { fg = colors.cyan500, nocombine = true },
+        SnacksIndent5                              = { fg = colors.magenta500, nocombine = true },
+        SnacksIndent6                              = { fg = colors.violet500, nocombine = true },
+        SnacksIndent7                              = { fg = colors.orange500, nocombine = true },
+        SnacksIndent8                              = { fg = colors.red500, nocombine = true },
+
+        -- Snacks.nvim/picker.
+        SnacksPickerBorder                         = { fg = colors.base02, bg = colors.base04 },
         SnacksPickerTitle                          = { link = "Title" },
-        SnacksPickerPreviewTitle                   = { fg = colors.blue, bg = colors.bg },
+        SnacksPickerPreviewTitle                   = { fg = colors.blue, bg = colors.base04 },
+        SnacksPickerInputBorder                    = { fg = colors.orange500, bg = colors.base04 },
+        SnacksPickerInputTitle                     = { fg = colors.orange500, bg = colors.base04 },
+        SnacksPickerBoxTitle                       = { fg = colors.orange500, bg = colors.base04 },
+        SnacksPickerSelected                       = { fg = colors.magenta500 },
+        SnacksPickerToggle                         = { link = "SnacksProfilerBadgeInfo" },
+        SnacksPickerPickWinCurrent                 = { fg = colors.base04, bg = colors.magenta500, bold = true },
+        SnacksPickerPickWin                        = { fg = colors.fg, bg = colors.blue700, bold = true },
+
+        -- Snacks.nvim/input.
+        SnacksInputIcon                            = { fg = colors.cyan500 },
+        SnacksInputBorder                          = { fg = colors.blue500 },
+        SnacksInputTitle                           = { fg = colors.orange500 },
+
+        -- Snacks.nvim/profiler.
+        SnacksProfilerIconInfo                     = { fg = colors.cyan500, bg = colors.cyan900 },
+        SnacksProfilerBadgeInfo                    = { fg = colors.cyan500, bg = colors.cyan950 },
+        SnacksProfilerIconTrace                    = { fg = colors.base01, bg = colors.blue900 },
+        SnacksProfilerBadgeTrace                   = { fg = colors.base01, bg = colors.blue950 },
+
+        -- Snacks.nvim/footer.
+        SnacksFooterKey                            = { link = "SnacksProfilerIconInfo" },
+        SnacksFooterDesc                           = { link = "SnacksProfilerBadgeInfo" },
+
+        -- Snacks.nvim/zen.
+        SnacksZenIcon                              = { fg = colors.magenta500 },
+
+        -- Snacks.nvim/gh.
+        SnacksGhLabel                              = { fg = colors.cyan500, bold = true },
+        SnacksGhDiffHeader                         = { fg = colors.cyan500, bg = colors.cyan950 },
+
+        -- Snacks.nvim/diff.
+        SnacksDiffLabel                            = { fg = colors.cyan500, bold = true },
 
         -- Tiny cmdline.
         TinyCmdlineNormal                          = { fg = colors.fg, bg = colors.bg },

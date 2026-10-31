@@ -164,6 +164,42 @@ local function on_attach(client, bufnr)
     })
   end
 
+  if supports("workspace/symbol") then
+    map({
+      {
+        "<leader>fS",
+        function()
+          Snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = "Workspace symbols",
+      },
+    })
+  end
+
+  if supports("callHierarchy/incomingCalls") then
+    map({
+      {
+        "gai",
+        function()
+          Snacks.picker.lsp_incoming_calls()
+        end,
+        desc = "Calls incoming",
+      },
+    })
+  end
+
+  if supports("callHierarchy/outgoingCalls") then
+    map({
+      {
+        "gao",
+        function()
+          Snacks.picker.lsp_outgoing_calls()
+        end,
+        desc = "Calls outgoing",
+      },
+    })
+  end
+
   if supports("textDocument/rename") then
     map({
       {

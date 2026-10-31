@@ -163,7 +163,6 @@ require("vim._core.ui2").enable({
       progress = "msg",
       quickfix = "msg",
       shell_ret = "msg",
-      typed_cmd = "msg",
       undo = "msg",
       wmsg = "msg",
 
@@ -172,6 +171,7 @@ require("vim._core.ui2").enable({
       completion = "cmd",
       search_cmd = "cmd",
       search_count = "cmd",
+      typed_cmd = "cmd",
       wildlist = "cmd",
 
       emsg = "pager",

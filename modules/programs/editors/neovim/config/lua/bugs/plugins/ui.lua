@@ -8,6 +8,7 @@ local icons = Utils.icons
 local map_keys = Utils.map.map_keys
 local lualine_utils = Utils.lualine
 local lazygit_utils = Utils.lazygit
+local root_utils = Utils.root
 
 -- Plugin picker helper function
 local function plugin_picker()
@@ -103,11 +104,25 @@ add({
       picker = {
         enabled = true,
         sources = {
-          files = { hidden = true },
-          grep = { hidden = true },
+          files = { hidden = false },
+          grep = { hidden = false },
         },
-        icons = {
-          kinds = icons.kinds,
+        icons = { kinds = icons.kinds },
+        win = {
+          input = {
+            keys = {
+              ["<a-c>"] = { "toggle_cwd", mode = { "n", "i" } },
+            },
+          },
+        },
+        actions = {
+          toggle_cwd = function(p)
+            local root = root_utils
+            local base = root.get(p.input.filter.current_buf)
+            local cwd = root.cwd()
+            p:set_cwd(p:cwd() == base and cwd or base)
+            p:find()
+          end,
         },
       },
       quickfile = { enabled = true },
@@ -134,7 +149,7 @@ add({
           end,
           desc = "File Explorer",
         },
-        -- find
+        -- Find
         {
           "<leader>fb",
           function()
@@ -164,6 +179,13 @@ add({
           desc = "Buffers",
         },
         {
+          "<leader>fB",
+          function()
+            Snacks.picker.buffers({ hidden = true, nofile = true })
+          end,
+          desc = "Buffers (all)",
+        },
+        {
           "<leader>fc",
           function()
             Snacks.picker.files({ cwd = vim.env.HOME .. "/nixmania" })
@@ -173,9 +195,16 @@ add({
         {
           "<leader>ff",
           function()
+            Snacks.picker.files({ cwd = root_utils.get() })
+          end,
+          desc = "Find Files (Root)",
+        },
+        {
+          "<leader>fF",
+          function()
             Snacks.picker.files()
           end,
-          desc = "Find Files",
+          desc = "Find Files (cwd)",
         },
         {
           "<leader>fg",
@@ -198,7 +227,14 @@ add({
           end,
           desc = "Recent",
         },
-        -- git
+        {
+          "<leader>fR",
+          function()
+            Snacks.picker.recent({ filter = { cwd = true } })
+          end,
+          desc = "Recent (cwd)",
+        },
+        -- Git
         {
           "<leader>gb",
           function()
@@ -248,7 +284,7 @@ add({
           end,
           desc = "Git Log File",
         },
-        -- gh
+        -- Gh
         {
           "<leader>gi",
           function()
@@ -295,19 +331,34 @@ add({
         {
           "<leader>sg",
           function()
+            Snacks.picker.grep({ cwd = root_utils.get() })
+          end,
+          desc = "Grep (Root)",
+        },
+        {
+          "<leader>sG",
+          function()
             Snacks.picker.grep()
           end,
-          desc = "Grep",
+          desc = "Grep (cwd)",
         },
         {
           "<leader>sw",
           function()
-            Snacks.picker.grep_word()
+            Snacks.picker.grep_word({ cwd = root_utils.get() })
           end,
-          desc = "Visual selection or word",
+          desc = "Visual selection or word (Root)",
           mode = { "n", "x" },
         },
-        -- search
+        {
+          "<leader>sW",
+          function()
+            Snacks.picker.grep_word()
+          end,
+          desc = "Visual selection or word (cwd)",
+          mode = { "n", "x" },
+        },
+        -- Search
         {
           '<leader>s"',
           function()

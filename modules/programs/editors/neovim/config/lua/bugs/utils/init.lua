@@ -1,5 +1,6 @@
 local M = {}
 
+M.cursor_animate = require("bugs.utils.cursor-animate")
 M.editor = require("bugs.utils.editor")
 M.icons = require("bugs.utils.icons")
 M.lazygit = require("bugs.utils.lazygit")

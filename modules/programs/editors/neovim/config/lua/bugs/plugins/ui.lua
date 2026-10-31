@@ -9,6 +9,7 @@ local map_keys = Utils.map.map_keys
 local lualine_utils = Utils.lualine
 local lazygit_utils = Utils.lazygit
 local root_utils = Utils.root
+local cursor_animate = Utils.cursor_animate
 
 -- Plugin picker helper function
 local function plugin_picker()
@@ -73,10 +74,38 @@ add({
         preset = {
           header = require("bugs.utils.ascii-art"),
           keys = {
-            { icon = "\u{f15b} ", key = "f", desc = "Find file", action = function() Snacks.picker.files() end },
-            { icon = "\u{f002} ", key = "g", desc = "Grep", action = function() Snacks.picker.grep() end },
-            { icon = "\u{f1da} ", key = "r", desc = "Recent", action = function() Snacks.picker.recent() end },
-            { icon = "\u{f013} ", key = "c", desc = "Config", action = function() Snacks.picker.files({ cwd = vim.env.HOME .. "/nixmania" }) end },
+            {
+              icon = "\u{f15b} ",
+              key = "f",
+              desc = "Find file",
+              action = function()
+                Snacks.picker.files()
+              end,
+            },
+            {
+              icon = "\u{f002} ",
+              key = "g",
+              desc = "Grep",
+              action = function()
+                Snacks.picker.grep()
+              end,
+            },
+            {
+              icon = "\u{f1da} ",
+              key = "r",
+              desc = "Recent",
+              action = function()
+                Snacks.picker.recent()
+              end,
+            },
+            {
+              icon = "\u{f013} ",
+              key = "c",
+              desc = "Config",
+              action = function()
+                Snacks.picker.files({ cwd = vim.env.HOME .. "/nixmania" })
+              end,
+            },
             { icon = "\u{f011} ", key = "q", desc = "Quit", action = ":qa" },
           },
         },
@@ -106,7 +135,15 @@ add({
           },
         },
         theme = {
-          activeBorderColor = { fg = "WarningMsg", bold = true },
+          activeBorderColor = { fg = "SnacksLazygitActiveBorder", bold = true },
+          inactiveBorderColor = { fg = "SnacksLazygitInactiveBorder" },
+          searchingActiveBorderColor = { fg = "SnacksLazygitSearchBorder", bold = true },
+          optionsTextColor = { fg = "SnacksLazygitOptionsText" },
+          selectedLineBgColor = { bg = "SnacksLazygitSelectedLine" },
+          cherryPickedCommitBgColor = { fg = "SnacksLazygitCherryBg" },
+          cherryPickedCommitFgColor = { fg = "SnacksLazygitCherryFg" },
+          unstagedChangesColor = { fg = "SnacksLazygitUnstaged" },
+          defaultFgColor = { fg = "SnacksLazygitDefaultFg" },
         },
       },
       notifier = { enabled = true },
@@ -141,6 +178,7 @@ add({
       words = { enabled = true },
     },
     on_setup = function()
+      cursor_animate.setup()
       map_keys({
         -- Smart picker
         {

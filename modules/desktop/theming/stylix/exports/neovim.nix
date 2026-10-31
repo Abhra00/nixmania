@@ -4,6 +4,7 @@
     lib,
     ...
   }: let
+    stx = config.lib.stylix.colors.withHashtag;
     colors = config.lib.stylix.extended-palette.colors;
     colorLines = lib.concatStringsSep "\n" (
       lib.mapAttrsToList (name: value: "    ${name} = '${value}',") colors
@@ -565,6 +566,17 @@
         SnacksDashboardHeader                      = { fg = colors.blue },
         SnacksDashboardIcon                        = { fg = colors.cyan500, bold = true },
         SnacksDashboardDir                         = { fg = colors.base01 },
+
+        -- Snacks.nvim/Lazygit.
+        SnacksLazygitActiveBorder                  = { fg = "${stx.base0D}" },
+        SnacksLazygitInactiveBorder                = { fg = "${stx.base03}" },
+        SnacksLazygitSearchBorder                  = { fg = "${stx.base04}" },
+        SnacksLazygitOptionsText                   = { fg = "${stx.base06}" },
+        SnacksLazygitSelectedLine                  = { bg = "${stx.base03}" },
+        SnacksLazygitCherryBg                      = { fg = "${stx.base02}" },
+        SnacksLazygitCherryFg                      = { fg = "${stx.base03}" },
+        SnacksLazygitUnstaged                      = { fg = "${stx.base08}" },
+        SnacksLazygitDefaultFg                     = { fg = "${stx.base05}" },
 
         -- Snacks.nvim/Notifier.
         SnacksNotifierBorderTrace                  = { fg = colors.magenta500 },

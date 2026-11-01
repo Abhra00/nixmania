@@ -1,113 +1,104 @@
 {
   flake.modules.nixos.cli_fastfetch = {
+    config,
+    lib,
+    inputs,
+    ...
+  }: let
+    stx = config.lib.stylix.colors;
+
+    boxWidth = 50;
+    logoW = 16;
+    logoH = 8;
+    padTop = 1;
+    padLeft = 3;
+    padRight = 2;
+    textCol = padLeft + logoW + padRight + 1;
+
+    esc = builtins.fromJSON ''"\u001b"'';
+    sgr = code: "${esc}[${code}m";
+    col = n: "${esc}[${toString n}G";
+    rgb = slot: "38;2;${stx."${slot}-rgb-r"};${stx."${slot}-rgb-g"};${stx."${slot}-rgb-b"}";
+    fg = slot: sgr (rgb slot);
+
+    white = fg "base07";
+    orange = fg "base09";
+    reset = sgr "0";
+
+    lb = "${col 1}${white}║";
+    rb = "${col boxWidth}${white}║${reset}";
+
+    rule = n: lib.concatStrings (lib.genList (_: "═") n);
+    inner = boxWidth - 2;
+
+    border = left: right: {
+      type = "custom";
+      format = "${col 1}${white}${left}${rule inner}${right}${reset}";
+    };
+    blank = {
+      type = "custom";
+      format = "${lb}${rb}";
+    };
+
+    row = type: name: accent: format:
+      {
+        inherit type;
+        key = "${lb}${col textCol}${fg accent}${lib.fixedWidthString 3 " " name} ${orange}▸${white} ";
+        format = "${white}${format}${rb}";
+      }
+      // lib.optionalAttrs (type == "memory") {percent.type = ["bar"];};
+  in {
     hm.programs.fastfetch = {
       enable = true;
-      settings = let
-        esc = builtins.fromJSON ''"\u001b"'';
-        c = code: "${esc}[${code}m";
-        reset = c "0";
-        red = "31";
-        green = "32";
-        gold = "1;33";
-        blue = "34";
-        magenta = "35";
-        cyan = "36";
-        white = "97";
-        grey = "90";
-        magentaItalic = "3;35";
-      in {
+      settings = {
         "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
-        logo.type = "none";
-        display = {
-          separator = " ${c grey}│${reset} ";
-          color.keys = "white";
-          brightColor = false;
+
+        logo = {
+          type = "kitty";
+          source = "${inputs.self}/assets/pictures/fastfetch/logo.gif";
+          width = logoW;
+          height = logoH;
+          padding = {
+            top = padTop;
+            left = padLeft;
+            right = padRight;
+          };
+          animationFrame = 0;
         };
+
+        display = {
+          separator = "";
+          color = {
+            keys = "white";
+            title = "white";
+            output = "white";
+          };
+          bar = {
+            width = 8;
+            char = {
+              elapsed = "▰";
+              total = "▱";
+            };
+            border = null;
+            color = null;
+          };
+        };
+
         modules = [
-          "break"
-          {
-            type = "custom";
-            format = "  ${c grey}◤━━━━━━━━━━━━━━━━━━━━━━━▶${reset}";
-          }
-          {
-            type = "custom";
-            format = "      ${c "1;${red}"}N${c green} I ${c gold}X${c blue} M ${c cyan}A${c magenta} N ${c red}I${c green} A${reset}";
-          }
-          {
-            type = "custom";
-            format = "  ${c grey}◣━━━━━━━━━━━━━━━━━━━━━━━▶${reset}";
-          }
-          "break"
+          (border "╔" "╗")
+          blank
           {
             type = "title";
-            format = "  ${c red}{user-name}${c gold} @ ${c cyan}{host-name}${reset}";
+            format = "${lb}${col textCol}${fg "base0D"} {user-name}${fg "base0E"}@${fg "base0C"}{host-name}${rb}";
           }
-          "break"
-          {
-            type = "os";
-            key = "    os";
-            format = "${c white}{name}${reset}";
-            keyColor = red;
-          }
-          {
-            type = "kernel";
-            key = "   krn";
-            format = "${c white}{release}${reset}";
-            keyColor = green;
-          }
-          {
-            type = "uptime";
-            key = "    up";
-            keyColor = gold;
-          }
-          {
-            type = "wm";
-            key = "    wm";
-            format = "${c white}{pretty-name}${reset}";
-            keyColor = blue;
-          }
-          {
-            type = "shell";
-            key = "    sh";
-            format = "${c white}{pretty-name}${reset}";
-            keyColor = magenta;
-          }
-          {
-            type = "terminal";
-            key = "   tty";
-            format = "${c white}{pretty-name}${reset}";
-            keyColor = cyan;
-          }
-          {
-            type = "packages";
-            key = "   pkg";
-            format = "${c white}{all}${reset}";
-            keyColor = red;
-          }
-          {
-            type = "memory";
-            key = "   ram";
-            format = "${c white}{used} / {total}${reset}";
-            keyColor = green;
-            percent.type = 0;
-          }
-          {
-            type = "swap";
-            key = "  zram";
-            format = "${c white}{used} / {total}${reset}";
-            keyColor = blue;
-            percent.type = 0;
-          }
-          "break"
-          {
-            type = "custom";
-            format = "  ${c grey}◤━━━━━━━━━━━━━━━━━━━━━━━►${reset}";
-          }
-          {
-            type = "custom";
-            format = "  ${c magentaItalic}NIX does it all!! Hail NIX!!${reset}";
-          }
-          "break"
+          blank
+          (row "os" "os" "base08" "{pretty-name}")
+          (row "wm" "wm" "base0B" "{pretty-name}")
+          (row "shell" "sh" "base0C" "{pretty-name}")
+          (row "uptime" "up" "base0D" "{formatted}")
+          (row "memory" "ram" "base0E" "{percentage-bar} {used}")
+          blank
+          (border "╚" "╝")
         ];
       };
     };

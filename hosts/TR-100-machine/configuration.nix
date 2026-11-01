@@ -37,6 +37,7 @@
         cli_devenv
         cli_direnv
         cli_dfetch
+        cli_drift
         cli_eza
         cli_fastfetch
         cli_fd

@@ -10,7 +10,6 @@
       hyperfine
       imagemagick
       jq
-      drift
     ];
   };
 

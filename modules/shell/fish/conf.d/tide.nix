@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.shell_fish = {lib, ...}: let
+  flake.modules.nixos.shell_fish = {
+    config,
+    lib,
+    ...
+  }: let
     set = name: value: "set -g ${name} ${value}";
 
     glyph = cp: let
@@ -20,16 +24,17 @@
       connection = "disconnected";
     };
 
-    sharedBg = "303030";
-    gitBg = "268BD2";
-    gitDirtyBg = "C4A000";
-    gitUrgentBg = "CC0000";
-    statusBgFailure = "CC0000";
-    statusFgFailure = "FFFF00";
-    separatorColor = "949494";
-    frameColor = "6C6C6C";
+    pal = config.lib.stylix.tide-palette.colors;
 
-    vcsFg = "000000";
+    sharedBg = pal.bg.shared;
+    gitBg = pal.bg.git;
+    gitDirtyBg = pal.bg.gitDirty;
+    gitUrgentBg = pal.bg.gitUrgent;
+    statusBgFailure = pal.bg.statusFailure;
+    statusFgFailure = pal.fg.statusFailure;
+    separatorColor = pal.separator;
+    frameColor = pal.frame;
+    vcsFg = pal.fg.vcs;
 
     gitColorKeys = [
       "branch"
@@ -42,70 +47,16 @@
       "upstream"
     ];
 
-    fg = {
-      status = "5FAF00";
-      cmd_duration = "87875F";
-      jobs = "5FAF00";
-      direnv = "D7AF00";
-      bun = "FBF0DF";
-      node = "44883E";
-      python = "00AFAF";
-      rustc = "F74C00";
-      java = "ED8B00";
-      php = "617CBE";
-      pulumi = "F7BF2A";
-      ruby = "B31209";
-      go = "00ACD7";
-      gcloud = "4285F4";
-      kubectl = "326CE5";
-      distrobox = "FF00FF";
-      toolbox = "613583";
-      terraform = "844FBA";
-      aws = "FF9900";
-      nix_shell = "7EBAE4";
-      crystal = "FFFFFF";
-      elixir = "4E2A8E";
-      zig = "F7A41D";
-      time = "5F8787";
-      character = "5FD700";
-      os = "EEEEEE";
-      private_mode = "FFFFFF";
-      sudo = "F1C40F";
-      shlvl = "d78700";
-      docker = "2496ED";
-    };
+    fg = pal.items;
+    viModeColors = pal.viMode;
+    contextColors = pal.context;
+    pwd = pal.pwd;
 
-    viModeColors = {
-      default = "949494";
-      insert = "87AFAF";
-      replace = "87AF87";
-      visual = "FF8700";
-    };
-
-    contextColors = {
-      default = "D7AF87";
-      root = "D7AF00";
-      ssh = "D7AF87";
-    };
-
-    pwd = {
-      color_anchors = "00AFFF";
-      color_dirs = "0087AF";
-      color_truncated_dirs = "8787AF";
-    };
-
-    sharedBgItems =
-      builtins.attrNames fg
-      ++ [
-        "context"
-        "pwd"
-        "vi_mode_bg_color_default"
-        "vi_mode_bg_color_insert"
-        "vi_mode_bg_color_replace"
-        "vi_mode_bg_color_visual"
-        "direnv_bg_color_denied"
-        "docker"
-      ];
+    # Full variable names that all share one background.
+    sharedBgVars =
+      map (i: "tide_${i}_bg_color") (builtins.attrNames fg ++ ["context" "pwd"])
+      ++ map (m: "tide_vi_mode_bg_color_${m}") (builtins.attrNames viModeColors)
+      ++ ["tide_direnv_bg_color_denied"];
 
     noIcons = ["cmd_duration_icon" "pwd_icon" "pwd_icon_home"];
 
@@ -158,15 +109,18 @@
     };
 
     scalars = {
-      tide_character_color_failure = "FF0000";
+      tide_character_color_failure = pal.fg.characterFailure;
       tide_cmd_duration_decimals = "0";
       tide_cmd_duration_threshold = "3000";
       tide_context_always_display = "false";
       tide_context_hostname_parts = "1";
-      tide_direnv_color_denied = "FF0000";
+      tide_direnv_color_denied = pal.fg.direnvDenied;
       tide_docker_default_contexts = "default colima";
       tide_git_truncation_length = "24";
       tide_git_truncation_strategy = "''";
+      tide_jj_ancestor_bookmark_limit = "1";
+      tide_jj_fit_width = "true";
+      tide_jj_show_description = "false";
       tide_jobs_number_threshold = "1000";
       tide_left_prompt_frame_enabled = "false";
       tide_left_prompt_items = "pwd vcs newline character";
@@ -228,7 +182,7 @@
       ++ lib.mapAttrsToList (k: c: set "tide_pwd_${k}" c) pwd
       ++ lib.mapAttrsToList (k: c: set "tide_vi_mode_color_${k}" c) viModeColors
       ++ lib.mapAttrsToList (k: c: set "tide_context_color_${k}" c) contextColors
-      ++ map (item: set "tide_${item}_bg_color" sharedBg) sharedBgItems
+      ++ map (v: set v sharedBg) sharedBgVars
       ++ lib.mapAttrsToList (name: val: set name val) scalars
       ++ [
         (set "tide_git_bg_color" gitBg)

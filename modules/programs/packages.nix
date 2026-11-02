@@ -10,6 +10,7 @@
       hyperfine
       imagemagick
       jq
+      typst
     ];
   };
 

@@ -8,9 +8,6 @@
       yt-dlp
       nvme-cli
       smartmontools
-
-      # GUI
-      onlyoffice-desktopeditors
     ];
   };
 }

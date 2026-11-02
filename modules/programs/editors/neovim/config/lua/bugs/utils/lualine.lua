@@ -25,8 +25,8 @@ local function highlight(group, text, reset)
 end
 
 ---@class utils.lualine.PrettyPathOpts
----@field relative? "cwd"|"root" Base for the displayed path. Files outside it fall back to the project root, then to `~`-relative. Default: `"cwd"`.
----@field length? integer Maximum number of path segments; `0` disables truncation. Default: `3`.
+---@field relative? "cwd"|"root" Base for the displayed path.
+---@field length? integer Maximum number of path segments [`0` disables truncation, otherwise it must be greater than `1`. Default: `3`].
 ---@field directory_hl? string Highlight group for the directory part.
 ---@field filename_hl? string Highlight group for the file name.
 ---@field modified_hl? string Highlight group for the file name of a modified buffer.
@@ -51,6 +51,7 @@ function M.pretty_path(opts)
     readonly_hl = "LualineFileReadonlyIcon",
     readonly_icon = " " .. icons.misc.lock .. " ",
   }, opts or {})
+  assert(opts.length == 0 or opts.length > 1, "pretty_path: length must be 0 (disabled) or greater than 1")
 
   return function(self)
     local path = vim.fn.expand("%:p")
@@ -58,11 +59,15 @@ function M.pretty_path(opts)
       return ""
     end
 
-    -- Compare resolved paths, but display the path as it was opened so that
-    -- symlinks (e.g. /etc/hosts on NixOS) keep their familiar name.
+    -- Show the resolved path when it is inside the base, otherwise the path as it was opened.
     local real = root.normalize(path)
-    local rel = opts.relative == "cwd" and root.relative(real, root.cwd()) or nil
-    rel = rel or root.relative(real, root.get()) or vim.fn.fnamemodify(path, ":~")
+    local shown = vim.fs.joinpath(root.normalize(vim.fs.dirname(path)), vim.fs.basename(path))
+    local cwd, project = root.cwd(), root.get()
+    local rel
+    if opts.relative == "cwd" then
+      rel = root.relative(real, cwd) or root.relative(shown, cwd)
+    end
+    rel = rel or root.relative(real, project) or root.relative(shown, project) or vim.fn.fnamemodify(path, ":~")
 
     local lead = rel:sub(1, 1) == "/" and "/" or ""
     local parts = vim.split(rel, "/", { plain = true, trimempty = true })

@@ -28,7 +28,6 @@
       # programs/cli/*
       cli_bat
       cli_btop
-      cli_chafa
       cli_comma
       cli_delta
       cli_devenv

@@ -1,16 +1,25 @@
 {
   flake.modules.nixos.cli_packages = {pkgs, ...}: {
     hm.home.packages = with pkgs; [
-      bc
+      # Disk & filesystem
       dysk
+      gdu
+
+      # Media
+      chafa
       ffmpeg
       ffmpegthumbnailer
-      gdu
-      ghostscript
-      hyperfine
       imagemagick
-      jq
+      kew
+
+      # Documents
+      ghostscript
       typst
+
+      # Utilities
+      bc
+      hyperfine
+      jq
     ];
   };
 

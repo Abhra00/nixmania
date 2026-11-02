@@ -31,7 +31,6 @@
         cli_bat
         cli_btop
         cli_cava
-        cli_chafa
         cli_comma
         cli_delta
         cli_devenv
@@ -50,11 +49,13 @@
         cli_nix-index
         cli_nix-search-tv
         cli_packages
+        cli_pandoc
         cli_persist-doctor
         cli_ripgrep
         cli_tmux
         cli_vivid
         cli_yazi
+        cli_yt-dlp
         cli_zoxide
 
         # programs/editor/*

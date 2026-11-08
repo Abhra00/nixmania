@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.TR-100-machine = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      # CLI & TUI
+      # CLI
       wget
       curl
       nvme-cli

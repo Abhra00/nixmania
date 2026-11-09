@@ -18,6 +18,7 @@
         SUDO_EDITOR = "nvim";
         NIXOS_OZONE_WL = "1";
         NIXPKGS_ALLOW_UNFREE = "1";
+        VIRTUAL_ENV_DISABLE_PROMPT = "true";
 
         SUDO_PROMPT = lib.concatStrings [
           (bold "31" "[")

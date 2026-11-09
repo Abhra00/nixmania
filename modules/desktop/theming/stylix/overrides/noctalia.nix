@@ -4,15 +4,26 @@
     lib,
     ...
   }: let
-    cfg = config.stylix.enable or false;
+    enabled = config.stylix.enable or false;
     stx = config.lib.stylix.colors.withHashtag;
-    theme = "stylix";
-    polarity = config.stylix.polarity;
-    variant =
-      if polarity == "dark"
-      then "dark"
-      else "light";
-    palette = {
+    name = "stylix";
+    mode =
+      if config.stylix.polarity == "light"
+      then "light"
+      else "dark";
+
+    ansi = {
+      black = stx.base00;
+      red = stx.base08;
+      green = stx.base0B;
+      yellow = stx.base0A;
+      blue = stx.base0D;
+      magenta = stx.base0E;
+      cyan = stx.base0C;
+      white = stx.base05;
+    };
+
+    variant = {
       mPrimary = stx.base0D;
       mOnPrimary = stx.base00;
       mSecondary = stx.base0E;
@@ -27,57 +38,49 @@
       mOnSurfaceVariant = stx.base04;
       mOutline = stx.base03;
       mShadow = stx.base00;
-      mHover = stx.base0E;
-      mOnHover = stx.base00;
+      mHover = stx.base02;
+      mOnHover = stx.base05;
 
       terminal = {
-        foreground = stx.base05;
         background = stx.base00;
+        foreground = stx.base05;
         cursor = stx.base05;
         cursorText = stx.base00;
-        selectionFg = stx.base05;
         selectionBg = stx.base02;
-        normal = {
-          black = stx.base03;
-          red = stx.base08;
-          green = stx.base0B;
-          yellow = stx.base0A;
-          blue = stx.base0D;
-          magenta = stx.base0E;
-          cyan = stx.base0C;
-          white = stx.base05;
-        };
-        bright = {
-          black = stx.base03;
-          red = stx.base08;
-          green = stx.base0B;
-          yellow = stx.base0A;
-          blue = stx.base0D;
-          magenta = stx.base0E;
-          cyan = stx.base0C;
-          white = stx.base05;
-        };
+        selectionFg = stx.base05;
+        normal = ansi;
+        bright =
+          ansi
+          // {
+            black = stx.base03;
+            white = stx.base07;
+          };
       };
     };
   in {
-    hm.programs.noctalia = lib.mkIf cfg {
-      settings = {
-        theme = {
-          source = "custom";
-          custom_palette = theme;
-          mode = variant;
+    hm.programs.noctalia = lib.mkIf enabled {
+      settings =
+        {
+          theme = {
+            source = "custom";
+            custom_palette = name;
+            inherit mode;
+          };
+
+          dock.background_opacity = config.stylix.opacity.desktop;
+          notification.background_opacity = config.stylix.opacity.popups;
+          osd.background_opacity = config.stylix.opacity.popups;
+
+          shell.font_family = config.stylix.fonts.sansSerif.name;
+        }
+        // lib.optionalAttrs (config.stylix.image != null) {
+          wallpaper.default.path = toString config.stylix.image;
         };
 
-        dock.background_opacity = config.stylix.opacity.desktop;
-        notification.background_opacity = config.stylix.opacity.popups;
-        osd.background_opacity = config.stylix.opacity.popups;
-
-        shell.font_family = config.stylix.fonts.sansSerif.name;
-
-        wallpaper.default.path = toString config.stylix.image;
+      customPalettes.${name} = {
+        dark = variant;
+        light = variant;
       };
-
-      customPalettes.${theme}.${variant} = palette;
     };
   };
 }

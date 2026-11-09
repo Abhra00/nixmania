@@ -49,6 +49,7 @@
           };
 
           bar.default = {
+            contact_shadow = true;
             capsule_radius = 4;
             capsule_thickness = 0.75;
             center = ["clock"];
@@ -98,9 +99,11 @@
           };
 
           dock = {
+            enabled = true;
             active_monitor_only = true;
             auto_hide = true;
-            enabled = true;
+            auto_hide_reveal_delay_ms = 250;
+            colorize_icons = true;
             inactive_opacity = 0.8;
             inactive_scale = 1.0;
             magnification_scale = 1.15;
@@ -133,6 +136,11 @@
 
           location = {
             address = "Memari,India";
+          };
+
+          # Hide notifications while locked, restore the previous state on unlock.
+          lockscreen = {
+            dnd = true;
           };
 
           lockscreen_widgets = {
@@ -217,6 +225,7 @@
 
           notification = {
             history_retention_hours = 1;
+            # newest_on_edge = true; # stack new toasts at the screen edge
           };
 
           plugin_settings."noctalia/screen_recorder" = {
@@ -231,7 +240,6 @@
           shell = {
             avatar_path = "${confDir}/assets/pictures/profile-pictures/pfp.jpg";
             app_icon_color = "primary";
-            app_icon_colorize = true;
             clipboard_image_action_command = "noctalia msg annotate {path}";
             corner_radius_scale = 0.4;
             launch_apps_as_systemd_services = true;
@@ -252,6 +260,7 @@
             launcher = {
               app_grid = true;
               compact = true;
+              colorize_icons = true;
               show_app_actions = true;
               providers = {
                 emoji = {
@@ -359,6 +368,7 @@
             workspaces = {
               capsule = true;
               style = "focus_hint";
+              colorize_icons = true;
             };
           };
         };

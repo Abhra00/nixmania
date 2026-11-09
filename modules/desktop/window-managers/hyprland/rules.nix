@@ -15,9 +15,10 @@
           suppress_event = "maximize";
         }
         {
-          name = "no-shadow-tiled";
+          name = "tiled-no-effects";
           match.float = false;
           no_shadow = true;
+          no_wobble = true;
         }
         {
           name = "fix-xwayland-drags";
@@ -77,6 +78,7 @@
           };
           size = [900 600];
         })
+
         {
           name = "browser-pip";
           match = {
@@ -86,9 +88,16 @@
           float = true;
           pin = true;
           keep_aspect_ratio = true;
+          no_wobble = true;
           no_initial_focus = true;
           size = [600 340];
           move = ["monitor_w - window_w - 24" "monitor_h - window_h - 24"];
+        }
+
+        {
+          name = "mpv-no-wobble";
+          match.class = "^mpv$";
+          no_wobble = true;
         }
 
         (dlg {

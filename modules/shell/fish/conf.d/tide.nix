@@ -54,7 +54,7 @@
 
     # Full variable names that all share one background.
     sharedBgVars =
-      map (i: "tide_${i}_bg_color") (builtins.attrNames fg ++ ["context" "pwd"])
+      map (i: "tide_${i}_bg_color") (lib.remove "character" (builtins.attrNames fg) ++ ["context" "pwd"])
       ++ map (m: "tide_vi_mode_bg_color_${m}") (builtins.attrNames viModeColors)
       ++ ["tide_direnv_bg_color_denied"];
 
@@ -119,6 +119,8 @@
       tide_git_truncation_length = "24";
       tide_git_truncation_strategy = "''";
       tide_jj_ancestor_bookmark_limit = "1";
+      tide_jj_bookmark_length = "24";
+      tide_jj_description_length = "24";
       tide_jj_fit_width = "true";
       tide_jj_show_description = "false";
       tide_jobs_number_threshold = "1000";

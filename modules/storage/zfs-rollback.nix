@@ -154,17 +154,20 @@
             datasets.root = {
               type = "zfs_fs";
               mountpoint = "/";
+              options.mountpoint = "legacy";
               postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/root@blank$' || zfs snapshot zroot/root@blank";
             };
 
             datasets.nix = {
               type = "zfs_fs";
               mountpoint = "/nix";
+              options.mountpoint = "legacy";
             };
 
             datasets.persistent = {
               type = "zfs_fs";
               mountpoint = "/persistent";
+              options.mountpoint = "legacy";
             };
           };
         };
@@ -199,6 +202,7 @@
             datasets.data = {
               type = "zfs_fs";
               mountpoint = "/data";
+              options.mountpoint = "legacy";
             };
           };
         };

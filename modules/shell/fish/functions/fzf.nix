@@ -72,6 +72,25 @@
       ls = coreutil "ls";
       readlink = coreutil "readlink";
       sleep = coreutil "sleep";
+      tee = coreutil "tee";
+    };
+
+    batteryDir = "/sys/class/power_supply/BAT1";
+    sudo = "/run/wrappers/bin/sudo";
+
+    glyph = code: builtins.fromJSON ''"\u${code}"'';
+    icons = {
+      type = glyph "f021";
+      start = glyph "f04b";
+      stop = glyph "f04d";
+      status = glyph "f240";
+      health = glyph "f21e";
+      cycles = glyph "f01e";
+      vendor = glyph "f275";
+      tech = glyph "f0c3";
+      types = glyph "f013";
+      power = glyph "f0e7";
+      volt = glyph "f1e6";
     };
 
     fdExcludes = [".git" "node_modules" "target" "result"];
@@ -119,6 +138,11 @@
         name = "variable";
         widget = "fzf_variable_widget";
         description = "Search and preview shell variables";
+      }
+      {
+        name = "battery";
+        widget = "fzf_battery_widget";
+        description = "Browse and manage battery properties";
       }
     ];
 
@@ -220,15 +244,23 @@
       label,
     }: ''--bind "ctrl-h:transform:string match -qr -- '\(hidden\)' \"\$FZF_PROMPT\"; and echo 'reload(${cmd})+change-prompt(${label}> )'; or echo 'reload(${cmd} --hidden)+change-prompt(${label} (hidden)> )'"'';
 
-    mkWidget = body: ''
-      ${body}
-      commandline -f repaint
-    '';
+    mkWidget = widget: body: {
+      description =
+        (lib.findFirst (p: p.widget == widget) {description = "";} pickers).description;
+      body = ''
+        ${body}
+        commandline -f repaint
+      '';
+    };
   in {
     hm.xdg.configFile."fish/completions/fzf-module.fish".text = ''
       complete -c fzf-module -f
 
       ${lib.concatMapStringsSep "\n" (p: "complete -c fzf-module -n '__fish_use_subcommand' -a ${p.name} -d '${p.description}'") pickers}
+    '';
+
+    hm.programs.fish.interactiveShellInit = ''
+      functions -q fzf-module ${lib.concatMapStringsSep " " (p: p.widget) pickers}
     '';
 
     hm.programs.fish.functions = {
@@ -303,7 +335,7 @@
         }}
       '';
 
-      fzf_file_widget = mkWidget ''
+      fzf_file_widget = mkWidget "fzf_file_widget" ''
         set -l selection (__fzf_module_file)
 
         for path in $selection
@@ -361,7 +393,7 @@
                 --bind "alt-K:execute-silent(${bin.kill} -9 {+1})+reload(${bin.sleep} 0.3; ${psCmd})"
       '';
 
-      fzf_process_widget = mkWidget ''
+      fzf_process_widget = mkWidget "fzf_process_widget" ''
         set -l selection (__fzf_module_process)
 
         for line in $selection
@@ -425,7 +457,7 @@
                 --bind "alt-a:execute-silent(${bin.git} add -A)+reload(${gitStatusCmd})"
       '';
 
-      fzf_git_status_widget = mkWidget ''
+      fzf_git_status_widget = mkWidget "fzf_git_status_widget" ''
         set -l selection (__fzf_module_git_status)
 
         for line in $selection
@@ -463,7 +495,7 @@
         test -n "$selection"; and __fzf_module_git_hash $selection
       '';
 
-      fzf_git_log_widget = mkWidget ''
+      fzf_git_log_widget = mkWidget "fzf_git_log_widget" ''
         set -l hash (__fzf_module_git_log)
 
         if test -n "$hash"
@@ -486,7 +518,7 @@
                 --preview '__fzf_module_history_preview {}'
       '';
 
-      fzf_history_widget = mkWidget ''
+      fzf_history_widget = mkWidget "fzf_history_widget" ''
         set -l selection (__fzf_module_history)
 
         if test -n "$selection"
@@ -527,12 +559,112 @@
         test -n "$varname"; and echo $$varname
       '';
 
-      fzf_variable_widget = mkWidget ''
+      fzf_variable_widget = mkWidget "fzf_variable_widget" ''
         set -l value (__fzf_module_variable)
 
         if test -n "$value"
             commandline -i -- "$value"
         end
+      '';
+
+      __fzf_module_battery_dir = ''
+        set -q BAT; and echo $BAT; or echo ${batteryDir}
+      '';
+
+      __fzf_module_battery_rd = ''
+        set -l f (__fzf_module_battery_dir)/$argv[1]
+        test -r $f; and ${bin.cat} $f
+      '';
+
+      __fzf_module_battery_decode = ''
+        if string match -q '0x*' -- $argv[1]
+            for b in (string split ' ' -- $argv[1])
+                set -l n (math $b)
+                test $n -ne 0; and printf (printf '\\\\%03o' $n)
+            end
+        else
+            printf '%s' $argv[1]
+        end
+      '';
+
+      __fzf_module_battery_row = ''
+        printf 'info\t%s  %s%-9s%s %s\n' $argv[1] (set_color ${palette.key}) $argv[2] (set_color normal) "$argv[3]"
+      '';
+
+      __fzf_module_battery_info = ''
+        set -l full (__fzf_module_battery_rd energy_full; or __fzf_module_battery_rd charge_full)
+        set -l design (__fzf_module_battery_rd energy_full_design; or __fzf_module_battery_rd charge_full_design)
+        set -l health "?"
+        if test -n "$full" -a -n "$design"; and test "$design" -gt 0
+            set health (math -s1 "$full / $design * 100")"%"
+        end
+
+        set -l vendor (__fzf_module_battery_decode (__fzf_module_battery_rd manufacturer))" "(__fzf_module_battery_decode (__fzf_module_battery_rd model_name))
+
+        __fzf_module_battery_row ${icons.status} Status (__fzf_module_battery_rd status)" ("(__fzf_module_battery_rd capacity)"%)"
+        __fzf_module_battery_row ${icons.health} Health $health
+        __fzf_module_battery_row ${icons.cycles} Cycles (__fzf_module_battery_rd cycle_count)
+        __fzf_module_battery_row ${icons.vendor} Vendor "$vendor"
+        __fzf_module_battery_row ${icons.tech} Tech (__fzf_module_battery_rd technology)
+        __fzf_module_battery_row ${icons.types} Types (__fzf_module_battery_rd charge_types)
+
+        set -l p (__fzf_module_battery_rd power_now)
+        test -n "$p"; and __fzf_module_battery_row ${icons.power} Power (math -s1 "$p / 1000000")" W"
+        set -l v (__fzf_module_battery_rd voltage_now)
+        test -n "$v"; and __fzf_module_battery_row ${icons.volt} Voltage (math -s2 "$v / 1000000")" V"
+      '';
+
+      __fzf_module_battery_list = ''
+        set -l dir (__fzf_module_battery_dir)
+
+        # active type is bracketed, skip it
+        for t in (__fzf_module_battery_rd charge_types | string split ' ' | string match -rv '^(\[|$)')
+            printf '%s\t%s  Change charge type to : %s\n' "type:$t" ${icons.type} $t
+        end
+
+        if test -e $dir/charge_control_start_threshold
+            printf 'start\t%s  Change start threshold : %s%%\n' ${icons.start} (__fzf_module_battery_rd charge_control_start_threshold)
+        end
+        if test -e $dir/charge_control_end_threshold
+            printf 'stop\t%s  Change stop threshold : %s%%\n' ${icons.stop} (__fzf_module_battery_rd charge_control_end_threshold)
+        end
+
+        printf 'info\t%s\n' "────────────────────"
+        __fzf_module_battery_info
+      '';
+
+      __fzf_module_battery_set = ''
+        printf '%s\n' $argv[2] | ${sudo} ${bin.tee} (__fzf_module_battery_dir)/$argv[1] >/dev/null
+      '';
+
+      __fzf_module_battery_act = ''
+        switch $argv[1]
+            case 'type:*'
+                __fzf_module_battery_set charge_types (string replace 'type:' "" -- $argv[1])
+            case start
+                read -P "start at (%): " v; and test -n "$v"
+                and __fzf_module_battery_set charge_control_start_threshold $v
+            case stop
+                read -P "stop at (%): " v; and test -n "$v"
+                and __fzf_module_battery_set charge_control_end_threshold $v
+        end
+      '';
+
+      __fzf_module_battery = ''
+        __fzf_module_battery_list \
+            | __fzf_module_run \
+                --ansi \
+                --no-multi \
+                --delimiter '\t' \
+                --with-nth 2.. \
+                --prompt "Battery> " \
+                --header "enter apply  ctrl-r reload" \
+                --bind "enter:execute(__fzf_module_battery_act {1})+reload(__fzf_module_battery_list)" \
+                --bind "ctrl-r:reload(__fzf_module_battery_list)"
+      '';
+
+      fzf_battery_widget = mkWidget "fzf_battery_widget" ''
+        __fzf_module_battery
       '';
     };
   };

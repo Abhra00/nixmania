@@ -36,11 +36,9 @@
         # Enable transient prompt
         set -g fish_transient_prompt 1
 
-        # Preload fzf-module
-        functions -q fzf-module
-
         # fzf-module keybindings
         for mode in insert default
+            bind -M $mode \e\cb fzf_battery_widget     # Ctrl+Alt+B — battery
             bind -M $mode \e\cf fzf_file_widget        # Ctrl+Alt+F — file search
             bind -M $mode \e\cp fzf_process_widget     # Ctrl+Alt+P — process
             bind -M $mode \e\cl fzf_git_log_widget     # Ctrl+Alt+L — git log

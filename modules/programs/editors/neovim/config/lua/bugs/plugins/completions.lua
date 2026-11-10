@@ -5,7 +5,7 @@ local add = Utils.vim_pack.add
 local map_keys = Utils.map.map_keys
 
 -- Import the kind icons
-local kind_icons = Utils.icons.kinds
+local kind_icons = Utils.icons.symbol_kinds
 
 add({
   -- Blink lib: The optimized rust binary for fuzzy matching

@@ -16,7 +16,12 @@
         proportional = true;
       };
 
-      wobble.enabled = true;
+      wobble = {
+        enabled = true;
+        intensity = 0.6;
+        stiffness = 180;
+        damping = 11;
+      };
 
       shadow = {
         enabled = true;

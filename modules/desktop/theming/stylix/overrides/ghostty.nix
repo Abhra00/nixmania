@@ -9,10 +9,13 @@
     hex = config.lib.stylix.colors.withHashtag;
     opacity = config.stylix.opacity.terminal;
     fonts = config.stylix.fonts;
-    symbols = lib.replaceStrings [" Console"] [" Symbols"] fonts.monospace.name;
+    symbols = [
+      (lib.replaceStrings [" Console"] [" Symbols"] fonts.monospace.name)
+      "Symbols Nerd Font Mono"
+    ];
   in {
     hm.programs.ghostty.settings = lib.mkIf cfg {
-      font-family = [fonts.monospace.name symbols];
+      font-family = [fonts.monospace.name] ++ symbols;
       font-size = fonts.sizes.terminal;
 
       background = stx.base00;

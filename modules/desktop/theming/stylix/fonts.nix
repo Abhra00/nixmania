@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.theming_fonts = {pkgs, ...}: let
+  flake.modules.nixos.theming_fonts = {
+    inputs,
+    pkgs,
+    ...
+  }: let
     inkwell = {
       sansSerif = {
         name = "Inter";
@@ -29,6 +33,12 @@
           terminal = 12;
         };
       };
+
+    # Symbol fallbacks for the terminal
+    fonts.packages = [
+      inputs.plemoljp-symbols.packages.${pkgs.stdenv.hostPlatform.system}.default
+      pkgs.nerd-fonts.symbols-only
+    ];
 
     # PlemolJP Console has two glyph widths (528/1056), so fontconfig scans it
     # as spacing=dual. Ghostty always requests spacing=mono, and fontconfig

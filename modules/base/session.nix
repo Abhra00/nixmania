@@ -35,6 +35,7 @@
 
         CARGO_HOME = "${devtoolsDir}/cargo";
         PNPM_HOME = "${devtoolsDir}/pnpm";
+        _ZO_DATA_DIR = "${config.xdg.dataHome}/fish";
       };
 
       home.sessionPath = [

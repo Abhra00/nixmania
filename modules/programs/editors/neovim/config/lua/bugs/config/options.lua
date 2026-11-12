@@ -32,6 +32,8 @@ vim.opt.signcolumn = "yes" -- Always show sign column
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.cmdheight = 0 -- Command line height
+vim.opt.showcmd = false -- Don't show pending keys in the (hidden) cmdline
+vim.opt.ruler = false -- Don't show the cursor position in the (hidden) cmdline
 vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
 vim.opt.showmode = false -- Don't show mode in command line
 vim.opt.pumheight = 10 -- Popup menu height
@@ -152,6 +154,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Floating cmdline and messages using new ui2 module
+
 require("vim._core.ui2").enable({
   msg = {
     targets = {
@@ -184,6 +187,7 @@ require("vim._core.ui2").enable({
       shell_out = "pager",
       verbose = "pager",
     },
+    cmd = { height = 0.3 },
     msg = { height = 0.3, timeout = 5000 },
   },
 })

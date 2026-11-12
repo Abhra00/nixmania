@@ -417,7 +417,7 @@ end
 
 for name, icon in pairs(diagnostic_icons) do
   local hl = "DiagnosticSign" .. title_case(name)
-  vim.fn.sign_define(hl, { text = icon, texthl = hl })
+  vim.fn.sign_define(hl, { text = icon .. " ", texthl = hl })
 end
 
 vim.diagnostic.config({
@@ -443,7 +443,7 @@ vim.diagnostic.config({
         ["Lua Syntax Check."] = "lua",
       }
 
-      local message = diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]]
+      local message = diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]] .. " "
       if diagnostic.source then
         message = message .. (short_sources[diagnostic.source] or diagnostic.source)
       end

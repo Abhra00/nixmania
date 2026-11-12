@@ -121,6 +121,8 @@ add({
         end,
       },
       appearance = {
+        -- Icons are padded by blink according to the font variant
+        nerd_font_variant = "normal",
         kind_icons = kind_icons,
       },
     },

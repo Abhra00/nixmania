@@ -683,18 +683,18 @@ add({
             {
               "diagnostics",
               symbols = {
-                error = icons.diagnostics.ERROR,
-                warn = icons.diagnostics.WARN,
-                info = icons.diagnostics.INFO,
-                hint = icons.diagnostics.HINT,
+                error = icons.diagnostics.ERROR .. " ",
+                warn = icons.diagnostics.WARN .. " ",
+                info = icons.diagnostics.INFO .. " ",
+                hint = icons.diagnostics.HINT .. " ",
               },
             },
             {
               "diff",
               symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
+                added = icons.git.added .. " ",
+                modified = icons.git.modified .. " ",
+                removed = icons.git.removed .. " ",
               },
               source = function()
                 local gitsigns = vim.b.gitsigns_status_dict

@@ -9,6 +9,9 @@ require("bugs.plugins.ui")
 -- Editor
 require("bugs.plugins.editor")
 
+-- Debugging
+require("bugs.plugins.dap")
+
 -- Completions
 require("bugs.plugins.completions")
 

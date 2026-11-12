@@ -158,6 +158,7 @@ add({
         mode = { "n", "x" },
         { "<leader>b", group = "buffers" },
         { "<leader>c", group = "code" },
+        { "<leader>d", group = "debug" },
         { "<leader>f", group = "file/find" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "hunks" },

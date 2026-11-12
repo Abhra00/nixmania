@@ -71,12 +71,12 @@ M.symbol_kinds = {
   Variable      = "",
 }
 
--- For dap ui
+-- For dap gutter signs
 M.dap = {
-  Stopped             = { "", "DiagnosticWarn", "DapStoppedLine" },
-  Breakpoint          = "",
+  Stopped             = "",
+  Breakpoint          = "󰃤",
   BreakpointCondition = "",
-  BreakpointRejected  = { "󰅙", "DiagnosticError" },
+  BreakpointRejected  = "󰅙",
   LogPoint            = "",
 }
 

@@ -478,6 +478,28 @@
         BlinkCmpKindOperator                       = { fg = colors.cyan, bg = colors.none },
         BlinkCmpKindSnippet                        = { fg = colors.violet500, bg = colors.none },
 
+        -- Nvim dap.
+        DapBreakpoint                              = { fg = colors.blue500 },
+        DapBreakpointCondition                     = { fg = colors.blue500 },
+        DapBreakpointRejected                      = { fg = colors.red500 },
+        DapLogPoint                                = { fg = colors.blue500 },
+        DapStopped                                 = { fg = colors.yellow500 },
+        DapStoppedLine                             = { link = "Visual" },
+
+        -- Nvim dap ui.
+        DapUIFloatBorder                           = { link = "FloatBorder" },
+        DapUIModifiedValue                         = { fg = colors.orange500, bold = true },
+        DapUIBreakpointsCurrentLine                = { fg = colors.orange500, bold = true },
+        DapUICurrentFrameName                      = { link = "DapUIBreakpointsCurrentLine" },
+        DapUIPlayPause                             = { fg = colors.green500 },
+        DapUIRestart                               = { fg = colors.green500 },
+        DapUIStop                                  = { fg = colors.red500 },
+        DapUIStepOver                              = { fg = colors.blue500 },
+        DapUIStepInto                              = { fg = colors.blue500 },
+        DapUIStepBack                              = { fg = colors.blue500 },
+        DapUIStepOut                               = { fg = colors.blue500 },
+        DapUIUnavailable                           = { fg = colors.base01 },
+
         -- Git Signs.
         GitSignsAdd                                = { fg = colors.cyan500 },
         GitSignsChange                             = { fg = colors.yellow500 },

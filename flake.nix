@@ -34,10 +34,7 @@
     };
 
     # hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
     # import-tree
     import-tree.url = "github:vic/import-tree";
@@ -52,10 +49,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # noctalia
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     # noctalia greeter
     noctalia-greeter = {

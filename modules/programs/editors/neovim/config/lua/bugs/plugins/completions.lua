@@ -63,6 +63,8 @@ add({
             if require("luasnip").choice_active() then
               require("luasnip.extras.select_choice")()
             end
+
+            vim.cmd("stopinsert")
           end,
           mode = { "i", "s" },
           desc = "Select choice",

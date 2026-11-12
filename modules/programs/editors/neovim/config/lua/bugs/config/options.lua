@@ -21,6 +21,10 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.smartindent = true -- Smart auto-indenting
 vim.opt.autoindent = true -- Copy indent from current line
 
+-- Formatting
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()" -- Use conform formatexpr
+vim.g.autoformat = true -- Turn on auto-formatting by default
+
 -- Search settings
 vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true -- Case sensitive if uppercase in search
@@ -119,6 +123,8 @@ vim.opt.splitright = true -- Vertical splits go right
 
 -- Diff mode settings.
 vim.opt.diffopt:append("followwrap,vertical,context:99")
+
+-- Shortmess settings
 vim.opt.shortmess:append({
   w = true,
   s = true,
@@ -154,8 +160,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Floating cmdline and messages using new ui2 module
-
 require("vim._core.ui2").enable({
+  enable = true,
   msg = {
     targets = {
       [""] = "msg",

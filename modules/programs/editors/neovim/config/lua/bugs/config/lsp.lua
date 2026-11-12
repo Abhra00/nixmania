@@ -393,23 +393,20 @@ local function on_attach(client, bufnr)
     })
   end
 
-  if client.name == "oxlint" or client.name == "stylelint_lsp" then
-    local is_oxlint = client.name == "oxlint"
-
+  if client.name == "oxlint" then
     map({
       {
         "<leader>cl",
         function()
           local uri = vim.uri_from_bufnr(bufnr)
-          -- oxc.fixAll takes only the uri; stylelint also wants the buffer version
-          local argument = is_oxlint and { uri = uri } or { uri = uri, version = vim.lsp.util.buf_versions[bufnr] }
+          local argument = { uri = uri }
 
           client:request("workspace/executeCommand", {
-            command = is_oxlint and "oxc.fixAll" or "stylelint.applyAutoFixes",
+            command = "oxc.fixAll",
             arguments = { argument },
           }, nil, bufnr)
         end,
-        desc = string.format("Fix all %s errors", is_oxlint and "OXLint" or "Stylelint"),
+        desc = "Fix all OXLint errors",
       },
     })
   end

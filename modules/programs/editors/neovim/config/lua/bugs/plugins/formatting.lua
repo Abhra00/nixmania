@@ -2,7 +2,7 @@
 local add_on_event = Utils.vim_pack.add_on_event
 
 -- Conform: Format buffer
-add_on_event("BufWritePre", {
+add_on_event({ "BufReadPre", "BufNewFile" }, {
   {
     src = "stevearc/conform.nvim",
     opts = {
@@ -50,9 +50,3 @@ add_on_event("BufWritePre", {
     },
   },
 })
-
--- Use conform for gq
-vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
--- Start auto-formatting by default (and disable with my ToggleFormat command)
-vim.g.autoformat = true

@@ -3,8 +3,6 @@ local diagnostic_icons = Utils.icons.diagnostics
 
 local M = {}
 
-vim.g.inlay_hints = false
-
 local function title_case(name)
   return name:sub(1, 1) .. name:sub(2):lower()
 end

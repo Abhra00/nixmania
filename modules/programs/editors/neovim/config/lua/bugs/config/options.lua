@@ -24,6 +24,7 @@ vim.opt.autoindent = true -- Copy indent from current line
 -- Formatting
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()" -- Use conform formatexpr
 vim.g.autoformat = true -- Turn on auto-formatting by default
+vim.g.inlay_hints = false -- Inlay hints off by default (toggle with my ToggleInlayHints command)
 
 -- Search settings
 vim.opt.ignorecase = true -- Case insensitive search

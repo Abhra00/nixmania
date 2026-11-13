@@ -143,8 +143,33 @@ local function on_progress(ev)
   state.current = token_id
 end
 
+-- ui2 resolves a message target from its trigger before its kind. While `:` is open, messages carry
+-- the "typed_cmd" trigger, which our ui2 config sends to the cmdline, so every spinner tick lands in
+-- the dialog window and stacks up at the bottom instead of replacing the line in the msg window.
+-- Drop the trigger for progress messages so the kind (-> "msg") decides.
+local routed = false
+
+local function route_progress_to_msg()
+  if routed then
+    return
+  end
+  local ok, messages = pcall(require, "vim._core.ui2.messages")
+  if not ok then
+    return
+  end
+  local msg_show = messages.msg_show
+  messages.msg_show = function(kind, content, replace_last, history, append, id, trigger)
+    if kind == "progress" then
+      trigger = ""
+    end
+    return msg_show(kind, content, replace_last, history, append, id, trigger)
+  end
+  routed = true
+end
+
 --- Start showing LSP progress. Safe to call more than once.
 function M.setup()
+  route_progress_to_msg()
   vim.api.nvim_create_autocmd("LspProgress", {
     group = vim.api.nvim_create_augroup("bugs/lsp_progress", { clear = true }),
     desc = "Show LSP progress as a native progress message",

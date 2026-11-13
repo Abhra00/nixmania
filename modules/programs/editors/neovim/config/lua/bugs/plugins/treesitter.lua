@@ -114,7 +114,7 @@ add({
         { "al", select("@loop.outer"), mode = { "x", "o" }, desc = "Around loop" },
         { "il", select("@loop.inner"), mode = { "x", "o" }, desc = "Inside loop" },
 
-        -- Move (N:B: [c / ]c shadow the builtin diff hunk jumps)
+        -- Move
         { "]f", move("goto_next_start", "@function.outer"), mode = { "n", "x", "o" }, desc = "Next function start" },
         { "]c", move("goto_next_start", "@class.outer"), mode = { "n", "x", "o" }, desc = "Next class start" },
         { "]a", move("goto_next_start", "@parameter.inner"), mode = { "n", "x", "o" }, desc = "Next argument" },

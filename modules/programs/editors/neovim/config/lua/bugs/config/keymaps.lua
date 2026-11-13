@@ -29,6 +29,22 @@ map_keys({
   -- Jumplist
   { "<C-m>", "<C-i>" },
 
+  -- Diff hunks
+  {
+    "]h",
+    function()
+      vim.cmd.normal({ vim.v.count1 .. "]c", bang = true })
+    end,
+    desc = "Next diff hunk",
+  },
+  {
+    "[h",
+    function()
+      vim.cmd.normal({ vim.v.count1 .. "[c", bang = true })
+    end,
+    desc = "Prev diff hunk",
+  },
+
   -- Tabs
   { "te", ":tabedit<CR>" },
   { "<tab>", ":tabnext<CR>" },
@@ -82,8 +98,9 @@ map_keys({
     "<esc>",
     function()
       ---@diagnostic disable: undefined-field
-      if require("luasnip").expand_or_jumpable() then
-        require("luasnip").unlink_current()
+      local luasnip = require("luasnip")
+      if luasnip.session.current_nodes[vim.api.nvim_get_current_buf()] and not luasnip.session.jump_active then
+        luasnip.unlink_current()
       end
       ---@diagnostic enable: undefined-field
       vim.cmd("noh")

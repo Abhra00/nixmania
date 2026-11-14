@@ -93,8 +93,6 @@ add({
   -- Treesitter textobjects: Select, move and swap by syntax node
   {
     src = "nvim-treesitter/nvim-treesitter-textobjects",
-    -- N:B: `master` is the old configs-style branch, doesn't work with main nvim-treesitter.
-    version = "main",
     module_name = "nvim-treesitter-textobjects",
     opts = {
       select = { lookahead = true },

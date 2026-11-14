@@ -135,6 +135,7 @@
             content.partitions.root = {
               priority = 2;
               size = "100%";
+              type = "BF01";
               content = {
                 type = "zfs";
                 pool = "zroot";
@@ -182,6 +183,7 @@
 
             content.partitions.data = {
               size = "100%";
+              type = "BF01";
               content = {
                 type = "zfs";
                 pool = "zstorage";

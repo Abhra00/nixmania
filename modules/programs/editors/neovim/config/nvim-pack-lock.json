@@ -17,7 +17,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "ef707fb93301a9b856f36eae4c8f56f5b988a794",
+      "rev": "dc7698f932792a764d3db95fedee26c38e728355",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mini.icons": {
-      "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
+      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "nvim-autopairs": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "19bdfc04f40ed2ccb3340591d125f759b0406875",
+      "rev": "60c0f468de3e636fa660a419d537e8033aca4e39",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

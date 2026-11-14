@@ -17,7 +17,7 @@
       settings = {
         appearance.password_style = "random";
         clock = {
-          enable = true;
+          enabled = true;
           position = "bottom-right";
         };
         keyboard = {

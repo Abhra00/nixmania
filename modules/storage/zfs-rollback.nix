@@ -205,6 +205,7 @@
               type = "zfs_fs";
               mountpoint = "/data";
               options.mountpoint = "legacy";
+              mountOptions = ["defaults" "x-gvfs-show"];
             };
           };
         };

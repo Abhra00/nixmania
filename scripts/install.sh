@@ -215,15 +215,6 @@ check_tools() {
 		fi
 		print_status "OK" "$cmd is available"
 	done
-
-	if ! command -v nvme >/dev/null 2>&1; then
-		print_status "WARNING" "nvme-cli missing (will use nix shell)"
-		nvme() { nix shell nixpkgs#nvme-cli --command nvme "$@"; }
-	fi
-	if ! command -v age >/dev/null 2>&1; then
-		print_status "WARNING" "age missing (will use nix shell)"
-		age() { nix shell nixpkgs#age --command age "$@"; }
-	fi
 }
 
 # ┏━┓╺┳╸┏━┓┏━╸┏━╸   ┏━┓
@@ -266,6 +257,27 @@ prompt_host() {
 	print_status "OK" "Using target host: ${B}${HOST}${RST}"
 }
 
+ensure_tool() {
+	local cmd="$1" attr="$2" out path
+
+	if command -v "$cmd" >/dev/null 2>&1; then
+		return 0
+	fi
+
+	print_status "INFO" "Fetching $cmd from the flake's nixpkgs..."
+	out="$(nix build --no-link --print-out-paths "${FLAKE_ATTR}.config.nixpkgs.pkgs.${attr}")" ||
+		die "Could not fetch $attr"
+
+	while IFS= read -r path; do
+		if [[ -d "${path}/bin" ]]; then
+			PATH="${path}/bin:${PATH}"
+		fi
+	done <<<"$out"
+
+	command -v "$cmd" >/dev/null 2>&1 || die "$cmd still not found after fetching $attr"
+	print_status "OK" "$cmd added to PATH"
+}
+
 first_eval() {
 	local sys d
 
@@ -276,6 +288,8 @@ first_eval() {
 		die "Flake evaluation failed for host ${HOST}"
 	nix build --no-link "${REPO_DIR}#formatter.${sys}" ||
 		die "Could not build the flake formatter"
+	ensure_tool age age
+	ensure_tool nvme nvme-cli
 	print_status "OK" "First flake evaluation complete without errors"
 
 	MAIN_DISK="$(nix eval --raw "${FLAKE_ATTR}.config.storage.zfs.device")"

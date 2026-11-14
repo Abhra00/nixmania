@@ -71,6 +71,7 @@
 
         # services/*
         service_bluetooth
+        service_gh-keyring-seed
         service_gnome-keyring
         service_gpg
         service_gvfs

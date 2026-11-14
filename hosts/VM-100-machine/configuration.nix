@@ -62,7 +62,8 @@
       gui_packages
       gui_zathura
 
-      # services/* (sops-backed ones are here for signed commits)
+      # services/*
+      service_gh-keyring-seed
       service_gnome-keyring
       service_gpg
       service_gvfs

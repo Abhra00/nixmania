@@ -2,6 +2,7 @@
   flake.modules.nixos.service_gpg = {
     config,
     pkgs,
+    username,
     ...
   }: let
     gpg = config.hm.programs.gpg.package;
@@ -30,6 +31,7 @@
     systemd.user.services.gpg-import-key = {
       description = "Import GPG private key from sops";
       wantedBy = ["default.target"];
+      unitConfig.ConditionUser = username;
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;

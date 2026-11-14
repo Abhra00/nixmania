@@ -289,7 +289,9 @@ first_eval() {
 	nix build --no-link "${REPO_DIR}#formatter.${sys}" ||
 		die "Could not build the flake formatter"
 	ensure_tool age age
-	ensure_tool nvme nvme-cli
+	if [[ "$WIPE" == true ]]; then
+		ensure_tool nvme nvme-cli
+	fi
 	print_status "OK" "First flake evaluation complete without errors"
 
 	MAIN_DISK="$(nix eval --raw "${FLAKE_ATTR}.config.storage.zfs.device")"

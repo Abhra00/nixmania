@@ -264,8 +264,8 @@ ensure_tool() {
 		return 0
 	fi
 
-	print_status "INFO" "Fetching $cmd from the flake's nixpkgs..."
-	out="$(nix build --no-link --print-out-paths "${FLAKE_ATTR}.config.nixpkgs.pkgs.${attr}")" ||
+	print_status "INFO" "Fetching $cmd..."
+	out="$(nix build --no-link --print-out-paths "nixpkgs#${attr}")" ||
 		die "Could not fetch $attr"
 
 	while IFS= read -r path; do

@@ -4,6 +4,9 @@
     system.stateVersion = "26.05";
     imports =
       (with config.flake.modules.nixos; [
+        # secureboot
+        secureboot_secureboot
+
         # storage
         storage_zfs-rollback
 

@@ -39,6 +39,12 @@
     # import-tree
     import-tree.url = "github:vic/import-tree";
 
+    # lanzaboote
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.2.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix index database
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

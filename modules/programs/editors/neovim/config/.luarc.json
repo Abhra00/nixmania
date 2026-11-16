@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "diagnostics": {
+  "globals": ["Snacks", "MiniIcons"]
+},
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [
+      // Runtime and builtin libraries.
+      "$VIMRUNTIME/lua",
+      "${3rd}/luv/library",
+      // Extra custom bits.
+      "lua/bugs/utils/icons.lua",
+      "lua/bugs/utils/vim-pack.lua",
+      // Include some plugins for API completion.
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/LuaSnip/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-autopairs/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/snacks.nvim/lua"
+    ]
+  },
+    "diagnostics.disable": [
+        "redundant-return-value",
+        "need-check-nil"
+    ]
+}

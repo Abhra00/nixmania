@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.secureboot_secureboot = {
+  flake.modules.nixos.security_secureboot = {
     inputs,
     lib,
     pkgs,

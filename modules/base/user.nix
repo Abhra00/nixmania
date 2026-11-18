@@ -1,5 +1,10 @@
 {
-  flake.modules.nixos.base = {username, ...}: {
+  flake.modules.nixos.base = {
+    config,
+    lib,
+    username,
+    ...
+  }: {
     users.mutableUsers = false;
 
     users.users = {
@@ -8,11 +13,13 @@
       ${username} = {
         isNormalUser = true;
         hashedPasswordFile = "/persistent/passwd/${username}";
-        extraGroups = [
-          "wheel"
-          "audio"
-          "video"
-        ];
+        extraGroups =
+          [
+            "wheel"
+            "audio"
+            "video"
+          ]
+          ++ lib.optional config.security.tpm2.enable "tss";
       };
     };
   };

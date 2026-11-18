@@ -1,5 +1,11 @@
 {
-  flake.modules.nixos.base = {username, ...}: let
+  flake.modules.nixos.base = {
+    config,
+    lib,
+    pkgs,
+    username,
+    ...
+  }: let
     # Only main user can read the secrets
     userSecret = {
       owner = username;
@@ -9,6 +15,7 @@
     sops = {
       defaultSopsFile = ../../secrets/secrets.yaml;
       age.keyFile = "/persistent/var/lib/sops-nix/key.txt";
+      age.plugins = lib.optional config.security.tpm2.enable pkgs.age-plugin-tpm;
 
       secrets = {
         gh_token = userSecret;

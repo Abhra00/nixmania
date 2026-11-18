@@ -4,13 +4,6 @@
     system.stateVersion = "26.05";
     imports =
       (with config.flake.modules.nixos; [
-        # security/*
-        security_secureboot
-        security_tpm
-
-        # storage
-        storage_zfs-rollback
-
         # desktop
         desktop_common-packages
         desktop-shell_noctalia
@@ -73,8 +66,13 @@
         gui_packages
         gui_zathura
 
+        # security/*
+        security_secureboot
+        security_tpm
+
         # services/*
         service_bluetooth
+        service_fwupd
         service_gh-keyring-seed
         service_gnome-keyring
         service_gpg
@@ -86,6 +84,9 @@
 
         # services/rules/*
         rule_igpu
+
+        # storage
+        storage_zfs-rollback
 
         # shell/*
         shell_aliases

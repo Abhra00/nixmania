@@ -21,6 +21,7 @@
         gh_token = userSecret;
         gpg_private_key = userSecret;
         ssh_private_key = userSecret;
+        ssh_host_ed25519_key = {};
         google_ical_url = userSecret;
       };
     };

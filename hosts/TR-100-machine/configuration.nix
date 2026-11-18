@@ -79,6 +79,7 @@
         service_gvfs
         service_power-profiles-daemon
         service_ssh
+        service_sshd
         service_udiskie
         service_upower
 

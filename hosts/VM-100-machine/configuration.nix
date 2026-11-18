@@ -69,6 +69,7 @@
       service_gpg
       service_gvfs
       service_ssh
+      service_sshd
       service_xrandr
 
       # shell/*

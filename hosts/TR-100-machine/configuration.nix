@@ -59,7 +59,7 @@
         editor_neovim
 
         # programs/gui/*
-        gui_firefox
+        gui_zen
         gui_ghostty
         gui_mpv
         gui_nautilus

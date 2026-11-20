@@ -99,7 +99,7 @@
         [
           (bind (m "Return") (dsp.exec "ghostty +new-window"))
           (bind (m "E") (execSd "nautilus"))
-          (bind (m "B") (execSd "firefox"))
+          (bind (m "B") (execSd "zen-beta"))
           (bind (m "Q") dsp.close)
           (bind (ms "Q") dsp.exit)
           (bind (key ["ALT" "SHIFT"] "L") (noctalia "panel-toggle session"))

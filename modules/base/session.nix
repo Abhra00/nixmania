@@ -12,7 +12,7 @@
     in {
       home.sessionVariables = {
         TERMINAL = "ghostty";
-        BROWSER = "firefox";
+        BROWSER = "zen-beta";
         EDITOR = "nvim";
         VISUAL = "nvim";
         SUDO_EDITOR = "nvim";

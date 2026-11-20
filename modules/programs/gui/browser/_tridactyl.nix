@@ -188,7 +188,7 @@
     }
   '';
 in {
-  programs.firefox = {
+  programs.zen-browser = {
     nativeMessagingHosts = [pkgs.tridactyl-native];
     profiles.default.extensions.packages = [addons.tridactyl];
   };

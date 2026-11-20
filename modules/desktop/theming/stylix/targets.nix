@@ -19,7 +19,6 @@
         "cava"
         "drift"
         "eog"
-        "firefox"
         "font-packages"
         "fontconfig"
         "fzf"
@@ -33,22 +32,17 @@
         "x11"
         "yazi"
         "zathura"
+        "zen-browser"
       ])
       {
         cava.rainbow.enable = true;
-        firefox = {
-          colorTheme.enable = true;
-          colors.enable = true;
-          firefoxGnomeTheme.enable = false;
-          fonts.enable = true;
-          profileNames = ["default"];
-        };
         fzf.colors.enable = true;
         vivid.colors.enable = true;
         yazi = {
           boldDirectory = true;
           colors.enable = true;
         };
+        zen-browser.profileNames = ["default"];
       }
     ];
   };

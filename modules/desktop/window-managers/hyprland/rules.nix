@@ -34,8 +34,8 @@
         }
 
         {
-          name = "firefox-workspace";
-          match.class = "^firefox$";
+          name = "zen-workspace";
+          match.class = "^zen-beta$";
           workspace = "3";
         }
 
@@ -62,7 +62,7 @@
         {
           name = "browser-sharing-indicator";
           match = {
-            class = "^firefox$";
+            class = "^zen-beta$";
             title = "^.*Sharing Indicator$";
           };
           float = true;
@@ -73,8 +73,8 @@
         (dlg {
           name = "browser-library";
           match = {
-            class = "^firefox$";
-            title = "^(Library|About (Mozilla )?Firefox.*)$";
+            class = "^zen-beta$";
+            title = "^(Library|About (Mozilla )?Zen.*)$";
           };
           size = [900 600];
         })
@@ -82,7 +82,7 @@
         {
           name = "browser-pip";
           match = {
-            class = "^firefox$";
+            class = "^zen-beta$";
             title = "^Picture-in-Picture$";
           };
           float = true;
@@ -108,7 +108,7 @@
 
         {
           name = "inhibit-idle-fullscreen-media";
-          match.class = "^(mpv|firefox)$";
+          match.class = "^(mpv|zen-beta)$";
           idle_inhibit = "fullscreen";
         }
       ];

@@ -32,6 +32,7 @@
             IPv6AcceptRA = true;
           };
           dhcpV4Config.RouteMetric = 100;
+          linkConfig.RequiredForOnline = "no";
         };
         "40-libvirt" = {
           matchConfig.Name = "virbr*";

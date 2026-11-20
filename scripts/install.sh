@@ -53,6 +53,7 @@ ZFS_PASS=""
 USER_PASS=""
 ROOT_PASS=""
 HW_CHANGED=false
+SECUREBOOT=false
 
 # ┏┓ ┏━┓┏┓╻┏┓╻┏━╸┏━┓┏━┓
 # ┣┻┓┣━┫┃┗┫┃┗┫┣╸ ┣┳┛┗━┓
@@ -289,6 +290,7 @@ first_eval() {
 	nix build --no-link "${REPO_DIR}#formatter.${sys}" ||
 		die "Could not build the flake formatter"
 	ensure_tool age age
+	ensure_tool sops sops
 	if [[ "$WIPE" == true ]]; then
 		ensure_tool nvme nvme-cli
 	fi
@@ -314,6 +316,33 @@ first_eval() {
 		print_status "OK" "Data disk: ${DATA_DISK}"
 	else
 		print_status "INFO" "No data disk configured (no zstorage pool)"
+	fi
+}
+
+load_caches() {
+	local subs keys
+
+	subs="$(nix eval --raw --apply 'x: builtins.concatStringsSep " " (x.extra-substituters or [])' "${FLAKE_ATTR}.config.nix.settings")" ||
+		die "Could not read binary caches from the flake"
+	keys="$(nix eval --raw --apply 'x: builtins.concatStringsSep " " (x.extra-trusted-public-keys or [])' "${FLAKE_ATTR}.config.nix.settings")" ||
+		die "Could not read binary cache keys from the flake"
+
+	if [[ -z "$subs" ]]; then
+		print_status "INFO" "Flake defines no extra binary caches"
+		return 0
+	fi
+	export NIX_CONFIG="${NIX_CONFIG}"$'\n'"extra-substituters = ${subs}"$'\n'"extra-trusted-public-keys = ${keys}"
+	print_status "OK" "Binary caches enabled: ${subs}"
+}
+
+detect_secureboot() {
+	local enabled
+
+	enabled="$(nix eval --json --apply 'c: (c.boot ? lanzaboote) && c.boot.lanzaboote.enable' "${FLAKE_ATTR}.config")" ||
+		die "Could not read the Secure Boot setting from the flake"
+	if [[ "$enabled" == "true" ]]; then
+		SECUREBOOT=true
+		print_status "INFO" "Host uses lanzaboote (Secure Boot)"
 	fi
 }
 
@@ -530,6 +559,13 @@ provision_persistent() {
 	provision_passwords
 }
 
+check_sops_decrypt() {
+	print_status "INFO" "Checking that the age key decrypts secrets.yaml..."
+	SOPS_AGE_KEY_FILE="$AGE_KEY_TARGET" sops -d "${REPO_DIR}/secrets/secrets.yaml" >/dev/null ||
+		die "The age key cannot decrypt secrets.yaml (wrong key?). Nothing was installed yet"
+	print_status "OK" "age key decrypts secrets.yaml"
+}
+
 regen_hwconfig() {
 	local hw="${REPO_DIR}/hosts/${HOST}/_hardware-configuration.nix" old new
 
@@ -564,6 +600,24 @@ regen_hwconfig() {
 install_system() {
 	print_status "INFO" "Installing NixOS (this is the long step)..."
 	nixos-install --root "$TARGET_ROOT" --no-root-password --flake "$FLAKE_REF"
+}
+
+verify_boot_signed() {
+	local f out
+	local files=("${TARGET_ROOT}/boot/EFI/systemd/systemd-bootx64.efi" "${TARGET_ROOT}/boot/EFI/BOOT/BOOTX64.EFI")
+
+	if [[ "$SECUREBOOT" != true ]]; then
+		return 0
+	fi
+	ensure_tool sbverify sbsigntool
+
+	files+=("${TARGET_ROOT}"/boot/EFI/Linux/*.efi)
+	for f in "${files[@]}"; do
+		[[ -f "$f" ]] || die "Expected boot file is missing: $f"
+		out="$(sbverify --list "$f" 2>&1 || true)"
+		grep -q 'image signature issuers' <<<"$out" || die "Boot file is not signed: $f"
+	done
+	print_status "OK" "Bootloader and kernel images are signed"
 }
 
 copy_repo() {
@@ -610,6 +664,8 @@ main() {
 	prompt_host
 	echo
 	first_eval
+	load_caches
+	detect_secureboot
 	echo
 
 	print_status "PROMPT" "Passphrase for ZFS root dataset:"
@@ -636,8 +692,10 @@ main() {
 	run_disko
 	verify_pools
 	provision_persistent
+	check_sops_decrypt
 	regen_hwconfig
 	install_system
+	verify_boot_signed
 	copy_repo
 	finish
 
@@ -645,6 +703,10 @@ main() {
 	done_banner
 	echo
 	print_status "OK" "Installation completed. You may now reboot."
+	print_status "INFO" "After first boot run: ~/nixmania/scripts/post-install.sh swap"
+	if [[ "$SECUREBOOT" == true ]]; then
+		print_status "WARNING" "Secure Boot was off for the installer: boot once, run post-install.sh, then enable it in the BIOS"
+	fi
 	if [[ "$HW_CHANGED" == true ]]; then
 		print_status "INFO" "Remember to commit hosts/${HOST}/_hardware-configuration.nix after first boot"
 	fi

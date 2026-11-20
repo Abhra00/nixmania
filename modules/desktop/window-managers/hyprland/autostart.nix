@@ -11,12 +11,11 @@
     hm.wayland.windowManager.hyprland.settings.on = [
       (hl.on "window.bell" ''
         function(w)
-          local name = (w and w.title) or "terminal"
           hl.notification.create({
-            text = name,
+            text = w.title ~= "" and w.title or "terminal",
             timeout = 4000,
-            icon = "info",
-            color = "rgba(${colors.base0A}ff)",
+            icon = "ok",
+            color = "rgb(${colors.base0D})",
             font_size = ${fontSize},
           })
         end

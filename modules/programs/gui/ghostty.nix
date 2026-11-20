@@ -26,7 +26,7 @@
         unfocused-split-opacity = 0.4;
 
         # Notifications
-        bell-features = "system,no-attention,no-title,no-border";
+        bell-features = "attention,system,no-title,no-border";
         notify-on-command-finish = "unfocused";
         notify-on-command-finish-action = "bell,no-notify";
 

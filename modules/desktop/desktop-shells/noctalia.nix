@@ -245,7 +245,9 @@
             launch_apps_as_systemd_services = true;
             password_style = "random";
             polkit_agent = true;
+            polkit_colorize_icons = true;
             screen_time_enabled = true;
+            screen_time_colorize_icons = true;
             settings_window_translucent = true;
             telemetry_enabled = false;
 
@@ -308,6 +310,7 @@
 
             window_switcher = {
               mru = true;
+              colorize_icons = true;
             };
           };
 

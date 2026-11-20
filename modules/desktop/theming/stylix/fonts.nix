@@ -1,13 +1,30 @@
 {
   flake.modules.nixos.theming_fonts = {pkgs, ...}: let
+    ibm-plex = pkgs.ibm-plex.override {
+      families = [
+        "math"
+        "sans"
+        "sans-arabic"
+        "sans-condensed"
+        "sans-devanagari"
+        "sans-hebrew"
+        "sans-jp"
+        "sans-kr"
+        "sans-sc"
+        "sans-tc"
+        "sans-thai"
+        "sans-thai-looped"
+        "serif"
+      ];
+    };
     inkwell = {
       sansSerif = {
-        name = "Inter";
-        package = pkgs.inter;
+        name = "IBM Plex Sans";
+        package = ibm-plex;
       };
       serif = {
-        name = "Lora";
-        package = pkgs.lora;
+        name = "IBM Plex Serif";
+        package = ibm-plex;
       };
       monospace = {
         name = "PlemolJP Console NF";

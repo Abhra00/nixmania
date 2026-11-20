@@ -55,6 +55,10 @@
         ancestor() { local l=$1 d; for d in "''${DECLARED[@]}"; do [[ $d == "$l"/* ]] && return 0; done; return 1; }
         ignored()  { local l=$1 i; for i in $IGNORE; do [[ $l == "$i" || $l == "$i"/* ]] && return 0; done; return 1; }
 
+        PRUNED=()
+        for d in "''${DECLARED[@]}"; do ancestor "$d" || PRUNED+=("$d"); done
+        DECLARED=("''${PRUNED[@]}")
+
         ORPHANS=()
         walk() {
           local p l

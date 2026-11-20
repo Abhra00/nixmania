@@ -9,7 +9,11 @@
     # Wrap regex metacharacters in a bracket class instead of backslash-escaping
     # them, so the pattern survives the Lua string rendering of the config unchanged
     metacharacters = stringToCharacters ".+*?()[]{}|$";
-    literal = s: concatMapStrings (c: if elem c metacharacters then "[${c}]" else c) (stringToCharacters s);
+    literal = s:
+      concatMapStrings (c:
+        if elem c metacharacters
+        then "[${c}]"
+        else c) (stringToCharacters s);
 
     # Hyprland matches the client's resolved binary path with a full-match
     # Rules follow package updates automatically

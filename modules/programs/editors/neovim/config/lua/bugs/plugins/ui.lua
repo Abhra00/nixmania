@@ -116,7 +116,9 @@ add({
             local v = vim.version()
             return {
               align = "center",
-              text = { { ("nvim %d.%d.%d"):format(v.major, v.minor, v.patch), hl = "footer" } },
+              text = {
+                { ("NVIM %d.%d.%d | BLAZIGLY FAST NVIM CONFIG"):format(v.major, v.minor, v.patch), hl = "footer" },
+              },
             }
           end,
         },

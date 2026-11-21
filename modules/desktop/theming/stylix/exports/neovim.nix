@@ -478,6 +478,9 @@
         BlinkCmpKindOperator                       = { fg = colors.cyan, bg = colors.none },
         BlinkCmpKindSnippet                        = { fg = colors.violet500, bg = colors.none },
 
+        -- Cursor animation.
+        CursorAnimation                            = { fg = colors.base0, reverse = true, nocombine = true },
+
         -- Nvim dap.
         DapBreakpoint                              = { fg = colors.blue500 },
         DapBreakpointCondition                     = { fg = colors.blue500 },

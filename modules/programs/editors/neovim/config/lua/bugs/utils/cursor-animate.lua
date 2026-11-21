@@ -10,6 +10,7 @@ local uv = vim.uv or vim.loop
 ---@field hl_group string Highlight group used for the overlay
 ---@field scroll_grace_ms integer Ignore cursor moves this soon after a scroll
 ---@field animate table Options forwarded to `Snacks.animate`
+---@type cursor_animation.Config
 local defaults = {
   min_lines = 2,
   max_steps = 1000,
@@ -171,7 +172,14 @@ local function setup_highlight()
   vim.api.nvim_set_hl(0, config.hl_group, { default = true, reverse = true, nocombine = true })
 end
 
----@param opts? cursor_animation.Config
+---@class cursor_animation.Opts
+---@field min_lines? integer
+---@field max_steps? integer
+---@field hl_group? string
+---@field scroll_grace_ms? integer
+---@field animate? table
+
+---@param opts? cursor_animation.Opts
 function M.setup(opts)
   config = vim.tbl_deep_extend("force", vim.deepcopy(defaults), opts or {})
   setup_highlight()

@@ -15,7 +15,7 @@ H.truncate_to = 17
 -- Pick letters, in order of preference
 H.alphabet = "asdfghjklqwertyuiopzxcvbnm"
 H.picking = false
-H.labels = {} -- tabnr -> letter, filled only while picking
+H.labels = {}
 
 ---@param filename string
 ---@return string icon, string hl

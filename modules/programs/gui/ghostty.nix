@@ -1,0 +1,80 @@
+{
+  flake.modules.nixos.gui_ghostty = {
+    hm.programs.ghostty = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        # Palette generation
+        palette-generate = true;
+        palette-harmonious = true;
+
+        # Metrics
+        adjust-cell-height = "10%";
+        adjust-cursor-height = "10%";
+        adjust-underline-thickness = "10%";
+        adjust-cursor-thickness = "110%";
+        adjust-underline-position = 2;
+
+        # Cursor
+        cursor-style = "block";
+        cursor-style-blink = true;
+
+        # Shell integration
+        shell-integration-features = "no-cursor,sudo,ssh-env,ssh-terminfo";
+
+        # Splits
+        unfocused-split-opacity = 0.4;
+
+        # Notifications
+        bell-features = "attention,system,no-title,no-border";
+        notify-on-command-finish = "unfocused";
+        notify-on-command-finish-action = "bell,no-notify";
+
+        # Window
+        window-padding-x = 25;
+        window-padding-y = 25;
+        window-padding-balance = true;
+        window-theme = "ghostty";
+        window-decoration = "none";
+
+        # Exit behavior
+        quit-after-last-window-closed = true;
+        quit-after-last-window-closed-delay = "5m";
+
+        # Misc
+        confirm-close-surface = false;
+        mouse-hide-while-typing = true;
+
+        # Key bindings
+        keybind = [
+          "alt+one=goto_tab:1"
+          "alt+two=goto_tab:2"
+          "alt+three=goto_tab:3"
+          "alt+four=goto_tab:4"
+          "alt+five=goto_tab:5"
+          "alt+shift+t=new_tab"
+          "alt+shift+comma=reload_config"
+          "alt+shift+q=close_surface"
+          "alt+equal=increase_font_size:1"
+          "alt+minus=decrease_font_size:1"
+          "alt+zero=reset_font_size"
+          "alt+shift+v=new_split:right"
+          "alt+shift+s=new_split:down"
+          "alt+shift+k=goto_split:top"
+          "alt+shift+j=goto_split:bottom"
+          "alt+shift+h=goto_split:left"
+          "alt+shift+l=goto_split:right"
+          "alt+shift+z=toggle_split_zoom"
+          "alt+shift+e=equalize_splits"
+          "alt+shift+u=jump_to_prompt:-1"
+          "alt+shift+n=jump_to_prompt:1"
+          "alt+shift+y=copy_to_clipboard"
+          "alt+shift+p=paste_from_clipboard"
+          "alt+shift+b=write_screen_file:paste"
+          "alt+shift+enter=toggle_fullscreen"
+          "alt+shift+w=toggle_command_palette"
+        ];
+      };
+    };
+  };
+}

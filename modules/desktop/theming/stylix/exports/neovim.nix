@@ -129,7 +129,7 @@
         PmenuSbar                                  = { fg = colors.base02, reverse = true },
         PmenuThumb                                 = { fg = colors.base0, reverse = true },
         Question                                   = { fg = colors.cyan500, bold = true },
-        QuickFixLine                               = { bg = colors.blue700, bold = true },
+        QuickFixLine                               = { bg = colors.blue900, bold = true },
         Search                                     = { fg = colors.yellow500, reverse = true },
         IncSearch                                  = { fg = colors.base2, bg = colors.orange500 },
         CurSearch                                  = { link = "IncSearch" },

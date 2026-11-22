@@ -16,32 +16,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
 })
 
--- Group for cursorline autocmds
-local cursorline_group = create_group("bugs/cursorline_group", { clear = true })
-
--- Disable cursorline on inactive window
-vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
-  group = cursorline_group,
-  desc = "Disable cursorline on inactive window",
-  callback = function()
-    if vim.wo.cursorline then
-      vim.w.cursorline_enabled = true
-      vim.wo.cursorline = false
-    end
-  end,
-})
-
--- Highlight cursorline on active window
-vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
-  group = cursorline_group,
-  desc = "Highlight cursorline on active window",
-  callback = function()
-    if vim.w.cursorline_enabled then
-      vim.wo.cursorline = true
-      vim.w.cursorline_enabled = nil
-    end
-  end,
-})
+-- Show the cursorline in the active window only
+Utils.cursorline.setup()
 
 -- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {

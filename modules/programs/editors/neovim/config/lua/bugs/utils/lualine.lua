@@ -252,4 +252,40 @@ function M.pretty_time()
   end
 end
 
+---Component that shows the current document symbols location from Trouble.
+---Disable it for a buffer with `vim.b.trouble_lualine = false`.
+---@return table
+function M.trouble_symbols()
+  local symbols ---@type { get: fun(): string, has: fun(): boolean }?
+
+  -- Trouble may not be loaded when lualine is set up, so resolve it on first use
+  local function load()
+    if not symbols then
+      local ok, trouble = pcall(require, "trouble")
+      if ok then
+        symbols = trouble.statusline({
+          mode = "symbols",
+          groups = {},
+          title = false,
+          filter = { range = true },
+          format = "{kind_icon}{symbol.name:Normal}",
+          hl_group = "lualine_c_normal",
+        })
+      end
+    end
+    return symbols
+  end
+
+  return {
+    function()
+      local s = load()
+      return s and s.get() or ""
+    end,
+    cond = function()
+      local s = load()
+      return vim.g.trouble_lualine == true and vim.b.trouble_lualine ~= false and s ~= nil and s.has()
+    end,
+  }
+end
+
 return M

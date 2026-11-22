@@ -80,45 +80,43 @@ add_on_event("InsertEnter", {
 -- Nvim ts-autotag: Autoclosing tags for HTML and JSX/TSX
 add_on_event({ "BufReadPre", "BufNewFile" }, { { src = "windwp/nvim-ts-autotag" } })
 
--- Quicker nvim: Improved quickfix ui
+-- Trouble: Better diagnostics list and others
 add_on_event("UIEnter", {
   {
-    src = "stevearc/quicker.nvim",
+    src = "folke/trouble.nvim",
     opts = {
-      borders = { vert = solid_bar },
-      keys = {
-        {
-          ">",
-          function()
-            require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-          end,
-          desc = "Expand context",
-        },
-        {
-          "<",
-          function()
-            require("quicker").collapse()
-          end,
-          desc = "Collapse context",
+      modes = {
+        lsp = {
+          win = { position = "right" },
         },
       },
     },
     on_setup = function()
-      local quicker = require("quicker")
+      local trouble = require("trouble")
 
-      vim.keymap.set("n", "<leader>xq", function()
-        quicker.toggle()
-      end, { desc = "Toggle quickfix" })
-      vim.keymap.set("n", "<leader>xl", function()
-        quicker.toggle({ loclist = true })
-      end, { desc = "Toggle loclist" })
-      vim.keymap.set("n", "<leader>xd", function()
-        if quicker.is_open() then
-          quicker.close()
-        else
-          vim.diagnostic.setqflist()
+      local function step(trouble_fn, fallback)
+        return function()
+          if trouble.is_open() then
+            trouble[trouble_fn]({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(fallback)
+            if not ok then
+              vim.notify(err, vim.log.levels.ERROR)
+            end
+          end
         end
-      end, { desc = "Toggle diagnostics" })
+      end
+
+      map_keys({
+        { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+        { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
+        { "<leader>cS", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references/definitions/... (Trouble)" },
+        { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+        { "[q", step("prev", vim.cmd.cprev), desc = "Previous Trouble/Quickfix Item" },
+        { "]q", step("next", vim.cmd.cnext), desc = "Next Trouble/Quickfix Item" },
+      })
     end,
   },
 })
@@ -144,6 +142,12 @@ add({
             todo.jump_prev()
           end,
           desc = "Previous todo comment",
+        },
+        { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
+        {
+          "<leader>xT",
+          "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
+          desc = "Todo/Fix/Fixme (Trouble)",
         },
       })
     end,

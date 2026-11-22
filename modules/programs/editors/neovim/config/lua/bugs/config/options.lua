@@ -50,6 +50,7 @@ vim.opt.conceallevel = 0 -- Don't hide markup
 vim.opt.concealcursor = "" -- Don't hide cursor line markup
 vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.laststatus = 3 -- Use global statusline
+vim.g.trouble_lualine = true -- Trouble symbols in lualine
 
 -- File handling
 vim.opt.backup = false -- Don't create backup files

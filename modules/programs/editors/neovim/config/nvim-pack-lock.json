@@ -17,7 +17,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "dc7698f932792a764d3db95fedee26c38e728355",
+      "rev": "c0862d382a35b7b45757d8d151a6a634c09bf3ce",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mini.icons": {
-      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
+      "rev": "5d58117d176c133f4cb5585ec8cb3450881c89a0",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "nvim-autopairs": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "04f17886f75416dfdc25374c950a52c63f0e98fe",
+      "rev": "52773f0d13a0c11d0c3ef33c14ab6ecc1c17148b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -80,10 +80,6 @@
       "rev": "1af6ffb9b5229a856e8090fa2f690e0931a5aace",
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
-    "quicker.nvim": {
-      "rev": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
-      "src": "https://github.com/stevearc/quicker.nvim"
-    },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
@@ -95,6 +91,10 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "trouble.nvim": {
+      "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
+      "src": "https://github.com/folke/trouble.nvim"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

@@ -160,10 +160,14 @@ add({
           input = {
             keys = {
               ["<a-c>"] = { "toggle_cwd", mode = { "n", "i" } },
+              ["<a-t>"] = { "trouble_open", mode = { "n", "i" } },
             },
           },
         },
         actions = {
+          trouble_open = function(...)
+            return require("trouble.sources.snacks").actions.trouble_open.action(...)
+          end,
           toggle_cwd = function(p)
             local root = root_utils
             local base = root.get(p.input.filter.current_buf)
@@ -717,6 +721,7 @@ add({
               }),
               padding = { left = 0, right = 1 },
             },
+            lualine_utils.trouble_symbols(),
           },
           lualine_x = {
             Snacks.profiler.status(),

@@ -87,6 +87,32 @@ map_keys({
     desc = "Delete hidden buffers",
   },
 
+  -- Location list
+  {
+    "<leader>xl",
+    function()
+      local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+      if not ok and err then
+        vim.notify(err, vim.log.levels.ERROR)
+      end
+    end,
+    desc = "Location List",
+  },
+
+  -- Quickfix list
+  {
+    "<leader>xq",
+    function()
+      local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+      if not ok and err then
+        vim.notify(err, vim.log.levels.ERROR)
+      end
+    end,
+    desc = "Quickfix List",
+  },
+  { "[q", vim.cmd.cprev, desc = "Previous Quickfix" },
+  { "]q", vim.cmd.cnext, desc = "Next Quickfix" },
+
   -- Formatting
   { "gQ", "mzgggqG`z<cmd>delmarks z<cr>zz", desc = "Format buffer" },
 
@@ -115,7 +141,7 @@ map_keys({
   {
     "<leader>pu",
     function()
-      vim.pack.update()
+      vim.pack.update(nil, { target = "lockfile" })
     end,
     desc = "Update packages",
   },

@@ -4,12 +4,15 @@
   in {
     stylix.targets = on [
       "console"
+      "delta"
       "font-packages"
       "fontconfig"
       "gtk"
       "lightdm"
       "nixos-icons"
       "plymouth"
+      "tide"
+      "tridactyl"
     ];
 
     hm.stylix.targets = lib.mkMerge [

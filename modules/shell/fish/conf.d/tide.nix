@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.shell_fish = {
-    config,
-    lib,
-    ...
-  }: let
+  flake.modules.nixos.shell_fish = {lib, ...}: let
     set = name: value: "set -g ${name} ${value}";
 
     glyph = cp: let
@@ -23,40 +19,6 @@
       tails = "round";
       connection = "disconnected";
     };
-
-    pal = config.lib.stylix.tide-palette.colors;
-
-    sharedBg = pal.bg.shared;
-    gitBg = pal.bg.git;
-    gitDirtyBg = pal.bg.gitDirty;
-    gitUrgentBg = pal.bg.gitUrgent;
-    statusBgFailure = pal.bg.statusFailure;
-    statusFgFailure = pal.fg.statusFailure;
-    separatorColor = pal.separator;
-    frameColor = pal.frame;
-    vcsFg = pal.fg.vcs;
-
-    gitColorKeys = [
-      "branch"
-      "conflicted"
-      "dirty"
-      "operation"
-      "staged"
-      "stash"
-      "untracked"
-      "upstream"
-    ];
-
-    fg = pal.items;
-    viModeColors = pal.viMode;
-    contextColors = pal.context;
-    pwd = pal.pwd;
-
-    # Full variable names that all share one background.
-    sharedBgVars =
-      map (i: "tide_${i}_bg_color") (lib.remove "character" (builtins.attrNames fg) ++ ["context" "pwd"])
-      ++ map (m: "tide_vi_mode_bg_color_${m}") (builtins.attrNames viModeColors)
-      ++ ["tide_direnv_bg_color_denied"];
 
     noIcons = ["cmd_duration_icon" "pwd_icon" "pwd_icon_home"];
 
@@ -109,12 +71,10 @@
     };
 
     scalars = {
-      tide_character_color_failure = pal.fg.characterFailure;
       tide_cmd_duration_decimals = "0";
       tide_cmd_duration_threshold = "3000";
       tide_context_always_display = "false";
       tide_context_hostname_parts = "1";
-      tide_direnv_color_denied = pal.fg.direnvDenied;
       tide_docker_default_contexts = "default colima";
       tide_git_truncation_length = "24";
       tide_git_truncation_strategy = "''";
@@ -129,7 +89,6 @@
       tide_prompt_add_newline_before = "true";
       tide_prompt_min_cols = "34";
       tide_prompt_pad_items = "true";
-      tide_prompt_transient_enabled = "false";
       tide_pwd_markers = ".bzr .citc .git .hg .jj .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform bun.lockb Cargo.toml composer.json CVS go.mod package.json build.zig";
       tide_right_prompt_frame_enabled = "false";
       tide_right_prompt_items = "status cmd_duration context jobs direnv bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig time";
@@ -180,24 +139,7 @@
     tail = tails.${style.tails};
 
     lines =
-      lib.mapAttrsToList (item: c: set "tide_${item}_color" c) fg
-      ++ lib.mapAttrsToList (k: c: set "tide_pwd_${k}" c) pwd
-      ++ lib.mapAttrsToList (k: c: set "tide_vi_mode_color_${k}" c) viModeColors
-      ++ lib.mapAttrsToList (k: c: set "tide_context_color_${k}" c) contextColors
-      ++ map (v: set v sharedBg) sharedBgVars
-      ++ lib.mapAttrsToList (name: val: set name val) scalars
-      ++ [
-        (set "tide_git_bg_color" gitBg)
-        (set "tide_git_bg_color_unstable" gitDirtyBg)
-        (set "tide_git_bg_color_urgent" gitUrgentBg)
-        (set "tide_jj_bg_color" gitBg)
-        (set "tide_jj_color" vcsFg)
-        (set "tide_status_bg_color_failure" statusBgFailure)
-        (set "tide_status_color_failure" statusFgFailure)
-        (set "tide_prompt_color_separator_same_color" separatorColor)
-        (set "tide_prompt_color_frame_and_connection" frameColor)
-      ]
-      ++ map (k: set "tide_git_color_${k}" vcsFg) gitColorKeys
+      lib.mapAttrsToList (name: val: set name val) scalars
       ++ map (name: "set -g tide_${name}") noIcons
       ++ lib.mapAttrsToList (item: cp: set "tide_${item}_icon" (glyph cp)) icons
       ++ lib.mapAttrsToList (name: cp: set "tide_${name}" (glyph cp)) iconVariants

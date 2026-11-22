@@ -237,7 +237,7 @@
           };
         };
       }
-      (import ./_tridactyl.nix {inherit config lib pkgs addons;})
+      (import ./_tridactyl.nix {inherit lib pkgs addons;})
     ];
   };
 }

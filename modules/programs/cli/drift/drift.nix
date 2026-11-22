@@ -3,7 +3,6 @@
     hm = {
       imports = [
         ./_module.nix
-        ./_stylix.nix
       ];
 
       programs.drift = {

@@ -78,6 +78,7 @@
         service_gpg
         service_gvfs
         service_power-profiles-daemon
+        service_printing
         service_ssh
         service_sshd
         service_udiskie

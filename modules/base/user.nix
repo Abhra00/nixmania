@@ -19,7 +19,11 @@
             "audio"
             "video"
           ]
-          ++ lib.optional config.security.tpm2.enable "tss";
+          ++ lib.optional config.security.tpm2.enable "tss"
+          ++ lib.optionals config.hardware.sane.enable [
+            "lp"
+            "scanner"
+          ];
       };
     };
   };

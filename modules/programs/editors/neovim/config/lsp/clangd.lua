@@ -1,4 +1,3 @@
--- C/C++ language server (clangd)
 ---@type vim.lsp.Config
 return {
   cmd = {
@@ -7,7 +6,7 @@ return {
     "--clang-tidy",
     "--header-insertion=never",
     "--completion-style=detailed",
-    "--function-arg-placeholders",
+    "--function-arg-placeholders=true",
   },
   filetypes = { "c", "cpp", "objc", "objcpp" },
   root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },

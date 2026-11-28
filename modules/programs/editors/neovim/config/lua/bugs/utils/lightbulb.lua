@@ -3,7 +3,7 @@
 
 local M = {}
 
-local lb_name = "bugs/lightbulb"
+local lb_name = "Lightbulb"
 local lb_namespace = vim.api.nvim_create_namespace(lb_name)
 local lb_icon = require("bugs.utils.icons").diagnostics.HINT
 local lb_group = vim.api.nvim_create_augroup(lb_name, {})

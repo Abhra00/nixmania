@@ -9,7 +9,7 @@ end
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  group = create_group("bugs/disable_paste_mode", {}),
+  group = create_group("DisablePasteMode", {}),
   desc = "Disable paste mode after leaving insert",
   callback = function()
     vim.o.paste = false
@@ -21,7 +21,7 @@ Utils.cursorline.setup()
 
 -- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = create_group("bugs/highlight_on_yank", {}),
+  group = create_group("HighlightOnYank", {}),
   desc = "Highlight yanked text",
   callback = function()
     vim.hl.on_yank({ higroup = "YankHighlight", timeout = 150 })
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Treesitter folding + indent
 vim.api.nvim_create_autocmd("FileType", {
-  group = create_group("bugs/treesitter_folding", { clear = true }),
+  group = create_group("TreesitterFolding", { clear = true }),
   desc = "Enable Treesitter folding and indent",
   callback = function(args)
     local bufnr = args.buf
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Add the ability to close some buffers with q
 vim.api.nvim_create_autocmd("FileType", {
-  group = create_group("bugs/close_with_q", { clear = true }),
+  group = create_group("CloseWithQ", { clear = true }),
   desc = "Close with <q>",
   pattern = {
     "git",
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Remember last location
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = create_group("bugs/last_location", { clear = true }),
+  group = create_group("LastLocation", { clear = true }),
   desc = "Go to the last location when opening a buffer",
   callback = function(args)
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')

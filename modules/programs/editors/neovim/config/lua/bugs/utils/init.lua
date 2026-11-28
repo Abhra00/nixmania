@@ -10,6 +10,7 @@ M.lualine = require("bugs.utils.lualine")
 M.map = require("bugs.utils.map")
 M.root = require("bugs.utils.root")
 M.tabline = require("bugs.utils.tabline")
+M.treesitter = require("bugs.utils.treesitter")
 M.vim_pack = require("bugs.utils.vim-pack")
 
 return M

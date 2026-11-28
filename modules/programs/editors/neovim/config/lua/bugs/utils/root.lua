@@ -86,7 +86,7 @@ function M.get(buf)
   return root
 end
 
-local group = vim.api.nvim_create_augroup("bugs_root_cache", { clear = true })
+local group = vim.api.nvim_create_augroup("RootCache", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufFilePost", "LspAttach", "LspDetach" }, {
   group = group,

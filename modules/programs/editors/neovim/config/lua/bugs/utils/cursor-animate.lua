@@ -1,6 +1,6 @@
 local M = {}
 
-local NAME = "cursor_animation"
+local NAME = "CursorAnimation"
 local ns = vim.api.nvim_create_namespace(NAME)
 local uv = vim.uv or vim.loop
 

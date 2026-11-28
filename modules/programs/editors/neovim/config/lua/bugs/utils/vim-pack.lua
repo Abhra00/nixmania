@@ -3,7 +3,7 @@
 
 local M = {}
 
-local group = vim.api.nvim_create_augroup("bugs/vim_pack", { clear = false })
+local group = vim.api.nvim_create_augroup("VimPack", { clear = false })
 
 ---@class PluginSpec
 ---@field src string GitHub owner/repo, a git URL (https://, ssh://, git@host:) or a local path
@@ -96,19 +96,54 @@ local function setup_plugin(plugin)
   end
 end
 
+---@param opts table|fun():table|nil
+---@return table
+local function resolve_opts(opts)
+  if type(opts) == "function" then
+    opts = opts()
+  end
+  return opts or {}
+end
+
+---Fold two specs of the same plugin into one.
+---Opts are deep-merged (later wins), on_setup hooks run in order, and plain fields keep the first value set.
+---@param base PluginSpec
+---@param extra PluginSpec
+---@return PluginSpec
+local function merge_specs(base, extra)
+  local merged = vim.tbl_extend("keep", base, extra)
+  if base.opts ~= nil and extra.opts ~= nil then
+    merged.opts = function()
+      return vim.tbl_deep_extend("force", resolve_opts(base.opts), resolve_opts(extra.opts))
+    end
+  end
+  if base.on_setup and extra.on_setup then
+    merged.on_setup = function()
+      base.on_setup()
+      extra.on_setup()
+    end
+  end
+  return merged
+end
+
 ---@param plugins PluginSpec[]
 local function configure(plugins)
-  local specs, unique, seen = {}, {}, {}
+  local specs, unique, index = {}, {}, {}
   for _, plugin in ipairs(plugins) do
     vim.validate("plugin.src", plugin.src, "string")
     local url = to_url(plugin.src)
-    -- If a plugin is listed twice, the first spec wins
-    if not seen[url] then
-      seen[url] = true
+    if index[url] then
+      -- A plugin listed twice is merged into its first spec
+      unique[index[url]] = merge_specs(unique[index[url]], plugin)
+    else
       unique[#unique + 1] = plugin
-      -- A nil version tracks the remote's default branch
-      specs[#specs + 1] = { src = url, version = plugin.version, name = plugin.name }
+      index[url] = #unique
     end
+  end
+
+  for _, plugin in ipairs(unique) do
+    -- A nil version tracks the remote's default branch
+    specs[#specs + 1] = { src = to_url(plugin.src), version = plugin.version, name = plugin.name }
   end
 
   local ok, err = pcall(vim.pack.add, specs)
@@ -142,6 +177,26 @@ end
 ---@param plugins PluginSpec[]
 function M.add(plugins)
   configure(plugins)
+end
+
+---@type PluginSpec[]
+local queued = {}
+
+---Queue plugin specs without setting them up.
+---Specs for the same plugin, even from different files, are merged when flush() runs.
+---
+---@param plugins PluginSpec[]
+function M.collect(plugins)
+  vim.list_extend(queued, plugins)
+end
+
+---Add and configure everything queued by collect(), merging specs per plugin.
+function M.flush()
+  local plugins = queued
+  queued = {}
+  if #plugins > 0 then
+    configure(plugins)
+  end
 end
 
 ---Add and configure plugins the first time the event fires.

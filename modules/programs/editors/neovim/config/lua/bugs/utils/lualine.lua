@@ -156,7 +156,7 @@ function M.macro_recording(opts)
   }, opts or {})
 
   vim.api.nvim_create_autocmd("RecordingLeave", {
-    group = vim.api.nvim_create_augroup("bugs_lualine_macro_recording", { clear = true }),
+    group = vim.api.nvim_create_augroup("LualineMacroRecordingRefresh", { clear = true }),
     callback = function()
       vim.schedule(function()
         local ok, lualine = pcall(require, "lualine")
@@ -212,7 +212,7 @@ function M.search_count(opts)
         end
       end)
     end
-  end, vim.api.nvim_create_namespace("bugs_lualine_search_count"))
+  end, vim.api.nvim_create_namespace("LualineSearchCountRefresh"))
 
   return function(self)
     if vim.v.hlsearch == 0 then
@@ -250,6 +250,69 @@ function M.pretty_time()
     local now = os.date("*t")
     return string.format("%s %02d:%02d", clock_icons[now.hour % 12 + 1], now.hour, now.min)
   end
+end
+
+local lsp_work = {}
+
+---@return boolean
+local function lsp_busy()
+  for _, count in pairs(lsp_work) do
+    if count > 0 then
+      return true
+    end
+  end
+  return false
+end
+
+---Color for lsp_status: the spinner group while LSP work is in progress, otherwise the idle group.
+---A table with only a foreground is returned because lualine drops the separator for string colors.
+---@return table
+function M.lsp_status_color()
+  local name = lsp_busy() and "LualineLspSpinner" or "LualineLspStatus"
+  local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+  return { fg = hl.fg and ("#%06x"):format(hl.fg) or nil }
+end
+
+---Redraw the statusline in step with the lsp_status spinner while LSP work is in progress.
+---Call it once during setup.
+function M.animate_lsp_spinner()
+  local frame_ns = 80e6
+  local ticker = assert(vim.uv.new_timer())
+  local shown
+
+  local group = vim.api.nvim_create_augroup("LualineLspSpinnerRefresh", { clear = true })
+
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = group,
+    callback = function(ev)
+      local id, kind = ev.data.client_id, ev.data.params.value.kind
+      lsp_work[id] = math.max((lsp_work[id] or 0) + (kind == "begin" and 1 or kind == "end" and -1 or 0), 0)
+      if not lsp_busy() or ticker:is_active() then
+        return
+      end
+      shown = nil
+      ticker:start(0, 10, function()
+        local frame = math.floor(vim.uv.hrtime() / frame_ns)
+        if frame == shown then
+          return
+        end
+        shown = frame
+        vim.schedule(function()
+          if not lsp_busy() then
+            ticker:stop()
+          end
+          require("lualine").refresh({ place = { "statusline" }, force = true })
+        end)
+      end)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("LspDetach", {
+    group = group,
+    callback = function(ev)
+      lsp_work[ev.data.client_id] = nil
+    end,
+  })
 end
 
 ---Component that shows the current document symbols location from Trouble.

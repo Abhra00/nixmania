@@ -48,8 +48,8 @@
         source = link "${configDir}/snippets";
         recursive = true;
       };
-      xdg.configFile."nvim/lsp" = {
-        source = link "${configDir}/lsp";
+      xdg.configFile."nvim/after/lsp" = {
+        source = link "${configDir}/after/lsp";
         recursive = true;
       };
       xdg.configFile."nvim/nvim-pack-lock.json".source = link "${configDir}/nvim-pack-lock.json";

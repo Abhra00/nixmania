@@ -2,12 +2,21 @@
 
 -- Treesitter
 require("bugs.plugins.treesitter")
+require("bugs.plugins.textobjects")
+
+-- Snacks: The following modules only queue their specs; ui merges and sets them up in a single pass
+require("bugs.plugins.picker")
+require("bugs.plugins.terminal")
+require("bugs.plugins.git")
 
 -- UI
 require("bugs.plugins.ui")
 
--- Editor
-require("bugs.plugins.editor")
+-- Editing
+require("bugs.plugins.editing")
+
+-- Diagnostics
+require("bugs.plugins.diagnostics")
 
 -- Debugging
 require("bugs.plugins.dap")
@@ -18,5 +27,5 @@ require("bugs.plugins.completions")
 -- Formatting
 require("bugs.plugins.formatting")
 
--- Utils
-require("bugs.plugins.utils")
+-- Markdown
+require("bugs.plugins.markdown")

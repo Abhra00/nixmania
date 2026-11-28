@@ -1,30 +1,32 @@
 -- Import the package manager wrapper functions
-local add = Utils.vim_pack.add
 local add_on_event = Utils.vim_pack.add_on_event
 
--- Import the helper function for setting keymap
-local map = Utils.map.map_keys
+-- Import the helper function for setting keymaps
+local map_keys = Utils.map.map_keys
 
-add({
-  -- Live preview: Live browser based preview for markdown & katex files with mermaid diagram support
+-- Nvim-autopairs: Automatically close brackets and quotes
+add_on_event("InsertEnter", {
   {
-    src = "brianhuster/live-preview.nvim",
-    setup = false,
+    src = "windwp/nvim-autopairs",
     on_setup = function()
-      local lp = require("livepreview.config")
-      lp.set({
-        port = 5500,
-        browser = "default",
-        dynamic_root = false,
-        sync_scroll = true,
-        address = "127.0.0.1",
-      })
-      map({
-        { "<leader>lp", "<cmd>LivePreview pick<cr>", desc = "Pick file to preview live" },
-      })
+      local Rule = require("nvim-autopairs.rule")
+      local conds = require("nvim-autopairs.conds")
+
+      -- Automatically close angle brackets that follow an identifier (generics, templates)
+      require("nvim-autopairs").add_rule(Rule("<", ">", {
+        -- Disabled for these filetypes to avoid conflicts with nvim-ts-autotag
+        "-html",
+        "-javascriptreact",
+        "-typescriptreact",
+      }):with_pair(conds.before_regex("%a+:?:?$", 3)):with_move(function(opts)
+        return opts.char == ">"
+      end))
     end,
   },
 })
+
+-- Nvim-ts-autotag: Automatically close and rename HTML and JSX/TSX tags
+add_on_event({ "BufReadPre", "BufNewFile" }, { { src = "windwp/nvim-ts-autotag" } })
 
 -- Grug far: Project-wide find and replace in an editable buffer (needs ripgrep)
 add_on_event("UIEnter", {
@@ -34,7 +36,7 @@ add_on_event("UIEnter", {
       headerMaxWidth = 80,
     },
     on_setup = function()
-      map({
+      map_keys({
         {
           "<leader>sr",
           function()

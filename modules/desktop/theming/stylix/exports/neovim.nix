@@ -555,6 +555,7 @@
         LualineFileModified                        = { fg = colors.red500, bold = true },
         LualineSearchCount                         = { fg = colors.orange500, bold = true },
         LualineLspStatus                           = { fg = colors.blue500 },
+        LualineLspSpinner                          = { fg = colors.orange500 },
         LualineMacroRecording                      = { fg = colors.red500, bold = true },
 
         -- Mini Icons.
